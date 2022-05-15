@@ -65,17 +65,18 @@
         android:layout_height="160dp"
         android:layout_marginStart="20dp"
         android:layout_marginTop="200dp"
+        android:background="@drawable/iamge"
         android:text="티어"
         android:textColor="#5ED5A8"
-        android:textSize="40dp"
-        android:background="@drawable/iamge" />
+        android:textSize="40dp" />
 
     <Button
         android:id="@+id/Skin"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:layout_marginStart="180dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="200dp"
+        android:layout_toEndOf="@+id/Tier"
         android:background="@drawable/iamge"
         android:text="스킨"
         android:textColor="#5ED5A8"
@@ -93,12 +94,48 @@
         android:textSize="40dp" />
 
     <Button
-        android:id="@+id/main"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:id="@+id/btn_store"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_toStartOf="@+id/btn_myItem"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="570dp"
+        android:background="@drawable/vector" />
+
+    <Button
+        android:id="@+id/btn_myItem"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_toStartOf="@+id/btn_main"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="570dp"
+        android:background="@drawable/vector" />
+    <Button
+        android:id="@+id/btn_main"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="570dp"
         android:background="@drawable/vector" />
+
+    <Button
+        android:id="@+id/btn_ranking"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="570dp"
+        android:layout_toEndOf="@+id/btn_main"
+        android:background="@drawable/vector" />
+
+    <Button
+        android:id="@+id/btn_friend"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_toEndOf="@+id/btn_ranking"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="570dp"
+        android:background="@drawable/vector" />
+
 
 
 
