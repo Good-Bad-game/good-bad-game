@@ -76,21 +76,21 @@
         android:layout_height="160dp"
         android:layout_marginStart="180dp"
         android:layout_marginTop="200dp"
+        android:background="@drawable/iamge"
         android:text="스킨"
         android:textColor="#5ED5A8"
-        android:textSize="40dp"
-        android:background="@drawable/iamge" />
+        android:textSize="40dp" />
 
     <Button
         android:id="@+id/btn_start"
         android:layout_width="320dp"
         android:layout_height="180dp"
-        android:layout_marginTop="380dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="380dp"
+        android:background="@drawable/iamge"
         android:text="게임시작"
         android:textColor="#5ED5A8"
-        android:textSize="40dp"
-        android:background="@drawable/iamge" />
+        android:textSize="40dp" />
 
     <Button
         android:id="@+id/main"
