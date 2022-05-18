@@ -3,29 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity__ready_game.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_home.xml" value="0.28442028985507245" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_in_game.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_ready_game.xml" value="0.18854166666666666" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_sign_in.xml" value="0.22580645161290322" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_vote.xml" value="0.17395833333333333" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/layout.xml" value="0.36614583333333334" />
         <entry key="app/src/main/res/drawable/btn_sign_in.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/component_1.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/ellipse_441.xml" value="0.1105" />
         <entry key="app/src/main/res/drawable/iamge.xml" value="0.1105" />
         <entry key="app/src/main/res/drawable/rectangle.xml" value="0.2045" />
-        <entry key="app/src/main/res/drawable/rectangle_1.xml" value="0.107" />
         <entry key="app/src/main/res/drawable/rectangle_2.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/rectangle_3.xml" value="0.1105" />
         <entry key="app/src/main/res/drawable/rectangle_4.xml" value="0.1105" />
         <entry key="app/src/main/res/drawable/sign_in_ema.xml" value="0.147" />
-        <entry key="app/src/main/res/drawable/vector.xml" value="0.107" />
-        <entry key="app/src/main/res/layout/activity_friend.xml" value="0.2296195652173913" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.2301964365837657" />
-        <entry key="app/src/main/res/layout/activity_in_game.xml" value="0.25853954812754754" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.18492940266927083" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
-        <entry key="app/src/main/res/layout/activity_my_item.xml" value="0.2296195652173913" />
-        <entry key="app/src/main/res/layout/activity_ranking.xml" value="0.2296195652173913" />
-        <entry key="app/src/main/res/layout/activity_ready_game.xml" value="0.2296195652173913" />
-        <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/activity_store.xml" value="0.2296195652173913" />
-        <entry key="app/src/main/res/layout/activity_vote.xml" value="0.2296195652173913" />
-        <entry key="app/src/main/res/layout/item.xml" value="0.2296195652173913" />
       </map>
     </option>
   </component>

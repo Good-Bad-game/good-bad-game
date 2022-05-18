@@ -37,6 +37,15 @@
             android:name=".SignUp"
             android:exported="false" />
         <activity
+            android:name=".ReadyGame"
+            android:exported="false" />
+        <activity
+            android:name=".Vote"
+            android:exported="false" />
+        <activity
+            android:name=".InGame"
+            android:exported="false" />
+        <activity
             android:name=".SignIn"
             android:exported="true">
             <intent-filter>

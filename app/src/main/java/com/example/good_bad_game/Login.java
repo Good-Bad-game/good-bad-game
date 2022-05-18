@@ -40,25 +40,5 @@ public class Login {
 
 
 
-//    public void set_password(String password){ this.password = password; }
-//
-//    public void set_name(String name){
-//        this.name = name;
-//    }
-//
-//    public void set_nickname(String nickname){
-//        this.nickname = nickname;
-//    }
-//
-//    public void set_mail(String mail){
-//        this.mail = mail;
-//    }
-//
-//    public void set_phone(String phone){
-//        this.phone = phone;
-//    }
-//
-//    public void set_userid(String userid) { this.userid = userid; }
-
 }
 
