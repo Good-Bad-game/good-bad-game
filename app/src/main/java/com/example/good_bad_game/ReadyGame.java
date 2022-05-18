@@ -7,22 +7,20 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Home extends AppCompatActivity {
+public class ReadyGame extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_ready_game);
+        Button btn_start = findViewById(R.id.btn_start);
 
-        Button start = findViewById(R.id.btn_start);
-        start.setOnClickListener(new View.OnClickListener() {
+        btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ReadyGame.class);
+                Intent intent = new Intent(getApplicationContext(), InGame.class);
                 startActivity(intent);
             }
         });
     }
-
-
 }

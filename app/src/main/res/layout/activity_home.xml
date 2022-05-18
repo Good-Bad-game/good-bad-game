@@ -58,30 +58,47 @@
         android:textAppearance="@style/id"
         android:gravity="top"
         />
-    <View
+
+    <Button
         android:id="@+id/Tier"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:background="@drawable/iamge"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="200dp"
-        android:layout_marginStart="0dp"
-        />
-    <View
+        android:text="티어"
+        android:textColor="#5ED5A8"
+        android:textSize="40dp"
+        android:background="@drawable/iamge" />
+
+    <Button
         android:id="@+id/Skin"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
-        android:background="@drawable/iamge"
-        android:layout_marginTop="200dp"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
         android:layout_marginStart="180dp"
-        />
-    <View
-        android:id="@+id/btn_start"
-        android:layout_width="3600dp"
-        android:layout_height="180dp"
+        android:layout_marginTop="200dp"
         android:background="@drawable/iamge"
-        android:layout_marginTop="400dp"
-        android:layout_marginStart="0dp"
-        />
+        android:text="스킨"
+        android:textColor="#5ED5A8"
+        android:textSize="40dp" />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="320dp"
+        android:layout_height="180dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="380dp"
+        android:background="@drawable/iamge"
+        android:text="게임시작"
+        android:textColor="#5ED5A8"
+        android:textSize="40dp" />
+
+    <Button
+        android:id="@+id/main"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="570dp"
+        android:background="@drawable/vector" />
 
 
 

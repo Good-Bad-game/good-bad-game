@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import retrofit2.Call;
@@ -21,6 +23,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class SignIn extends AppCompatActivity {
 
+    Boolean pass = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +34,7 @@ public class SignIn extends AppCompatActivity {
         EditText email = findViewById(R.id.email);
         EditText pw = findViewById(R.id.password);
         Button btn = findViewById(R.id.btn_sign_in);
+        Boolean pass = false;
 
         signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,14 +44,6 @@ public class SignIn extends AppCompatActivity {
             }
         });
 
-        Button home = findViewById(R.id.btn_sign_in);
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Home.class);
-                startActivity(intent);
-            }
-        });
 
         //----------------------------------------------22.05.10 (Django <-> Android 로그인)
 
@@ -59,7 +56,7 @@ public class SignIn extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String ipt_email = email.getText().toString();
-                String ipt_pw = pw.getText().toString();
+                String ipt_pw = passwordHash(pw.getText().toString());
 
                 LoginService LoginService = retrofit.create(LoginService.class);
 
@@ -90,24 +87,33 @@ public class SignIn extends AppCompatActivity {
                             Log.d("데베패스워드 : ", login_info.get_password());
                             if(ipt_email.equals(login_info.get_mail()) && ipt_pw.equals(login_info.get_password())) {
                                 Log.d("성공!","이름, 폰번호 일치");
-                                AlertDialog.Builder ad = new AlertDialog.Builder(SignIn.this);
-                                ad.setTitle("성공");
-                                ad.setMessage("ID : " + login_info.get_mail() + "    password : " + login_info.get_password());
-                                ad.show();
 
-                                new Handler().postDelayed(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        Intent intent = new Intent(getApplicationContext(), Home.class);
-                                        startActivity(intent);
-                                    }
-                                }, 3000);
+//                                AlertDialog.Builder ad = new AlertDialog.Builder(SignIn.this);
+//                                ad.setTitle("성공");
+//                                ad.setMessage("ID : " + login_info.get_mail() + "    password : " + login_info.get_password());
+//                                ad.show();
+
+                                boolean pass = true;
+                                Intent intent = new Intent(getApplicationContext(), Home.class);
+                                startActivity(intent);
 
                                 break;
                             }
                         }
 
-                        // home 화면 이동 작성해야함
+                        if(pass == false){
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    AlertDialog.Builder ad = new AlertDialog.Builder(SignIn.this);
+                                    ad.setTitle("로그인 실패!");
+                                    ad.setMessage("이메일 혹은 패스워드가 잘못 되었습니다.");
+                                    ad.show();
+
+                                }
+                            }, 500);
+
+                        }
 
                     }
 
@@ -126,4 +132,46 @@ public class SignIn extends AppCompatActivity {
         });
 
     }
+
+    public static String passwordHash(String password){
+        return sha1("kD0a1"+md5("xA4"+password)+"f4A");
+    }
+
+    // SHA ( Secure Hash Algorithm )
+    public static String sha1(String clearString) {
+        try {
+            MessageDigest messageDigest = MessageDigest.getInstance("SHA-1");
+            messageDigest.update(clearString.getBytes("UTF-8"));
+            byte[] bytes = messageDigest.digest();
+            StringBuilder buffer = new StringBuilder();
+            for (byte b : bytes) {
+                buffer.append(Integer.toString((b & 0xff) + 0x100, 16).substring(1));
+            }
+            return buffer.toString();
+        }
+        catch (Exception ignored) {
+            ignored.printStackTrace();
+            return null;
+        }
+    }
+
+    // MD5 ( Message Digest Algorithm : 무결성 검사에 사용하는 128비트 해쉬 함수 )
+    // IETF의 RFC 1321로 지정되어 있으나 다수의 중요 결함이 발견되어 현재는 해쉬 용도로 SHA(해쉬함수 집합)와 같이 사용.
+    public static String md5(String s) {
+        try {
+            MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(s.getBytes());
+            byte messageDigest[] = digest.digest();
+
+            StringBuffer hexString = new StringBuffer();
+            for (int i=0; i<messageDigest.length; i++)
+                hexString.append(Integer.toHexString(0xFF & messageDigest[i]));
+
+            return hexString.toString();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return "";
+    }
+
 }
