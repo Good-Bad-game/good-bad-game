@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:clipToOutline="true"
+    android:background="@drawable/sign_in_ema">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:id="@+id/recylcerview_row_image"
+        android:src="@mipmap/ic_launcher_round"
+        android:adjustViewBounds="true"
+        android:layout_height="wrap_content" />
+
+<!--    <TextView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_below="@id/recylcerview_row_image"-->
+<!--        android:textColor="#3f3f3f"-->
+<!--        android:textSize="13dp"-->
+<!--        android:hint="글자입니다."-->
+<!--        android:gravity="center"-->
+<!--        android:id="@+id/recylcerview_row_name"-->
+<!--        android:layout_height="wrap_content" />-->
+
+
+</RelativeLayout>

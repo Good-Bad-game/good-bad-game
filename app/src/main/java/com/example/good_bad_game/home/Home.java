@@ -1,14 +1,22 @@
-package com.example.good_bad_game;
+package com.example.good_bad_game.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.example.good_bad_game.R;
+import com.example.good_bad_game.friend.FriendFragment;
+import com.example.good_bad_game.myitem.MyItemFragment;
+import com.example.good_bad_game.ranking.RankingFragment;
+import com.example.good_bad_game.score.StoreFragment;
 
 import java.util.Locale;
 
@@ -27,6 +35,11 @@ public class Home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        TextView user_1234 = findViewById(R.id.user_1234);
+        Intent receive_intent = getIntent();
+        String move_nick = receive_intent.getStringExtra("nickname");
+        user_1234.setText(move_nick);
 
         tts = new TextToSpeech(Home.this, new TextToSpeech.OnInitListener(){
 

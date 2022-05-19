@@ -1,4 +1,4 @@
-package com.example.good_bad_game;
+package com.example.good_bad_game.friend;
 
 import android.os.Bundle;
 import android.util.Log;

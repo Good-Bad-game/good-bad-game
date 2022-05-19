@@ -11,19 +11,10 @@
         android:theme="@style/Theme.Goodbadgame">
 
         <activity
-            android:name=".ReadyRoomFramework"
+            android:name=".readyroom.ReadyRoomFramework"
             android:exported="false" />
         <activity
-            android:name=".MyItem"
-            android:exported="false" />
-        <activity
-            android:name=".Store"
-            android:exported="false" />
-        <activity
-            android:name=".MenuFriend"
-            android:exported="false" />
-        <activity
-            android:name=".Ranking"
+            android:name=".friend.MenuFriend"
             android:exported="false" />
         <activity
             android:name=".Vote"
@@ -47,7 +38,7 @@
             android:name=".SignIn"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".home.Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

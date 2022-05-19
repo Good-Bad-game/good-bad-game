@@ -1,4 +1,4 @@
-package com.example.good_bad_game;
+package com.example.good_bad_game.readyroom;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.good_bad_game.R;
 
 public class ReadyRoomFramework extends Fragment {
     private static String TAG = "ReadyRoomFramework";

@@ -11,6 +11,8 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.good_bad_game.home.Home;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
@@ -95,6 +97,7 @@ public class SignIn extends AppCompatActivity {
 
                                 boolean pass = true;
                                 Intent intent = new Intent(getApplicationContext(), Home.class);
+                                intent.putExtra("nickname",login_info.get_nickname());
                                 startActivity(intent);
 
                                 break;

@@ -1,4 +1,4 @@
-package com.example.good_bad_game;
+package com.example.good_bad_game.readyroom;
 
 public class Room {
     private  String roomNumber;

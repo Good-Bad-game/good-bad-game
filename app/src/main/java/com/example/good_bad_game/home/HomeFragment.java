@@ -1,4 +1,4 @@
-package com.example.good_bad_game;
+package com.example.good_bad_game.home;
 
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -10,6 +10,9 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+
+import com.example.good_bad_game.R;
+import com.example.good_bad_game.readyroom.ReadyRoomFramework;
 
 import java.util.Locale;
 
