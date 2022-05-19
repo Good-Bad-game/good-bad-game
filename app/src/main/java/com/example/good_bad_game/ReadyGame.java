@@ -19,6 +19,7 @@ public class ReadyGame extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), InGame.class);
+                intent.putExtra("type", "1");
                 startActivity(intent);
             }
         });

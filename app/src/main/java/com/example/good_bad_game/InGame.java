@@ -2,15 +2,24 @@ package com.example.good_bad_game;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Point;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class InGame extends AppCompatActivity {
 
-    TextView count_view;
+    String type = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,9 +28,12 @@ public class InGame extends AppCompatActivity {
 
         // 게임 시작
 
-        //
+        // GOOD BAD CHOICE ------------------------------------------------------------------------
+        Intent getintent = getIntent();
+        type = getintent.getStringExtra("type");
 
-
+        Intent intent = new Intent(this, PopupActivity.class);
+        startActivityForResult(intent, 1);
 
         // 타이머 코딩 부분 --------------------------------------------------------------------------
 
@@ -118,13 +130,35 @@ public class InGame extends AppCompatActivity {
                 count_view.setText("토론 시간 종료");
 
                 // TODO : 타이머가 모두 종료될때 어떤 이벤트를 진행할지
+                Intent intent = new Intent(getApplicationContext(), Vote.class);
+                intent.putExtra("type", type);
+                startActivity(intent);
+
 
             }
         }.start();
 
-
-        // 타이머 코딩 부분 --------------------------------------------------------------------------
-
     }
+
+    // Good-Bad 선택 후에 Good인지 Bad인지 데이터를 받아오는 곳
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+               type = data.getStringExtra("type");
+            }
+        }
+    }
+
+    // 투표하기 클릭시 바로 이동
+
+    public void StrightVote(View view){
+        Intent intent = new Intent(getApplicationContext(), Vote.class);
+        intent.putExtra("type", type);
+        startActivity(intent);
+    }
+
 
 }
