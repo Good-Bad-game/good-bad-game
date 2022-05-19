@@ -57,39 +57,39 @@
         android:gravity="top"
         />
 
-    <Button
-        android:id="@+id/Tier"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="140dp"
-        android:background="@drawable/iamge"
-        android:text="티어"
-        android:textColor="#5ED5A8"
-        android:textSize="40dp" />
+<!--    <Button-->
+<!--        android:id="@+id/Tier"-->
+<!--        android:layout_width="160dp"-->
+<!--        android:layout_height="160dp"-->
+<!--        android:layout_marginStart="15dp"-->
+<!--        android:layout_marginTop="140dp"-->
+<!--        android:background="@drawable/iamge"-->
+<!--        android:text="티어"-->
+<!--        android:textColor="#5ED5A8"-->
+<!--        android:textSize="40dp" />-->
 
-    <Button
-        android:id="@+id/Skin"
-        android:layout_width="160dp"
-        android:layout_height="160dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="140dp"
-        android:layout_toEndOf="@+id/Tier"
-        android:background="@drawable/iamge"
-        android:text="스킨"
-        android:textColor="#5ED5A8"
-        android:textSize="40dp" />
+<!--    <Button-->
+<!--        android:id="@+id/Skin"-->
+<!--        android:layout_width="160dp"-->
+<!--        android:layout_height="160dp"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginTop="140dp"-->
+<!--        android:layout_toEndOf="@+id/Tier"-->
+<!--        android:background="@drawable/iamge"-->
+<!--        android:text="스킨"-->
+<!--        android:textColor="#5ED5A8"-->
+<!--        android:textSize="40dp" />-->
 
-    <Button
-        android:id="@+id/btn_start"
-        android:layout_width="330dp"
-        android:layout_height="180dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="320dp"
-        android:background="@drawable/iamge"
-        android:text="게임시작"
-        android:textColor="#5ED5A8"
-        android:textSize="40dp" />
+<!--    <Button-->
+<!--        android:id="@+id/btn_start"-->
+<!--        android:layout_width="330dp"-->
+<!--        android:layout_height="180dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="320dp"-->
+<!--        android:background="@drawable/iamge"-->
+<!--        android:text="게임시작"-->
+<!--        android:textColor="#5ED5A8"-->
+<!--        android:textSize="40dp" />-->
 
     <Button
         android:id="@+id/btn_store"
@@ -135,6 +135,11 @@
         android:background="@drawable/friend" />
 
 
-
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:layout_marginTop="110dp"
+        android:layout_weight="1"/>
 
 </RelativeLayout>

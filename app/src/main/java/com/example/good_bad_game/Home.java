@@ -1,13 +1,12 @@
 package com.example.good_bad_game;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.util.Locale;
 
@@ -15,6 +14,12 @@ public class Home extends AppCompatActivity {
 
     private final static String TAG = "home";
     public TextToSpeech tts;
+
+    private final int store = 1;
+    private final int myitem = 2;
+    private final int home = 3;
+    private final int ranking = 4;
+    private final int friend = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,58 +40,136 @@ public class Home extends AppCompatActivity {
             }
         });
 
-        Button start = findViewById(R.id.btn_start);
-        start.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_store).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ReadyGame.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                FragmentView(store);
             }
         });
-
-        Button store = findViewById(R.id.btn_store);
-        store.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.btn_myItem).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
+                FragmentView(myitem);
+            }
+        });
+        findViewById(R.id.btn_main).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentView(home);
+            }
+        });
+        findViewById(R.id.btn_ranking).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentView(ranking);
+            }
+        });
+        findViewById(R.id.btn_friend).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentView(friend);
+            }
+        });
+        FragmentView(home);
+//
+//        Button start = findViewById(R.id.btn_start);
+//        start.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getApplicationContext(), ReadyGame.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        Button store = findViewById(R.id.btn_store);
+//        store.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                tts.speak("상점", TextToSpeech.QUEUE_FLUSH, null);
+//                Intent intent = new Intent(getApplicationContext(), Store.class);
+//                startActivity(intent);
+//                overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit);
+//            }
+//        });
+//
+//        Button myitem = findViewById(R.id.btn_myItem);
+//        myitem.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                tts.speak("보관함", TextToSpeech.QUEUE_FLUSH, null);
+//                Intent intent = new Intent(getApplicationContext(), MyItem.class);
+//                startActivity(intent);
+//                overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit);
+//            }
+//        });
+//
+//        Button ranking = findViewById(R.id.btn_ranking);
+//        ranking.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                tts.speak("랭킹", TextToSpeech.QUEUE_FLUSH, null);
+//                Intent intent = new Intent(getApplicationContext(), Ranking.class);
+//                startActivity(intent);
+//                overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
+//            }
+//        });
+//
+//        Button friend = findViewById(R.id.btn_friend);
+//        friend.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                tts.speak("친구", TextToSpeech.QUEUE_FLUSH, null);
+//                Intent intent = new Intent(getApplicationContext(), MenuFriend.class);
+//                startActivity(intent);
+//                overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
+//            }
+//        });
+
+    }
+    private void FragmentView(int fragment){
+
+        //FragmentTransactiom를 이용해 프래그먼트를 사용합니다.
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        switch (fragment){
+            case 1:
+                // 첫번 째 프래그먼트 호출
+                StoreFragment storeFrag = new StoreFragment();
+                transaction.replace(R.id.fragment_container, storeFrag);
+                transaction.commit();
                 tts.speak("상점", TextToSpeech.QUEUE_FLUSH, null);
-                Intent intent = new Intent(getApplicationContext(), Store.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit);
-            }
-        });
+                break;
 
-        Button myitem = findViewById(R.id.btn_myItem);
-        myitem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            case 2:
+                // 두번 째 프래그먼트 호출
+                MyItemFragment myitemFrag = new MyItemFragment();
+                transaction.replace(R.id.fragment_container, myitemFrag);
+                transaction.commit();
                 tts.speak("보관함", TextToSpeech.QUEUE_FLUSH, null);
-                Intent intent = new Intent(getApplicationContext(), MyItem.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit);
-            }
-        });
-
-        Button ranking = findViewById(R.id.btn_ranking);
-        ranking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case 3:
+                // 첫번 째 프래그먼트 호출
+                HomeFragment homeFrag = new HomeFragment();
+                transaction.replace(R.id.fragment_container, homeFrag);
+                transaction.commit();
+                tts.speak("메인화면", TextToSpeech.QUEUE_FLUSH, null);
+                break;
+            case 4:
+                // 첫번 째 프래그먼트 호출
+                RankingFragment rankingFrag = new RankingFragment();
+                transaction.replace(R.id.fragment_container, rankingFrag);
+                transaction.commit();
                 tts.speak("랭킹", TextToSpeech.QUEUE_FLUSH, null);
-                Intent intent = new Intent(getApplicationContext(), Ranking.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
-            }
-        });
-
-        Button friend = findViewById(R.id.btn_friend);
-        friend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                break;
+            case 5:
+                // 첫번 째 프래그먼트 호출
+                FriendFragment friendFrag = new FriendFragment();
+                transaction.replace(R.id.fragment_container, friendFrag);
+                transaction.commit();
                 tts.speak("친구", TextToSpeech.QUEUE_FLUSH, null);
-                Intent intent = new Intent(getApplicationContext(), MenuFriend.class);
-                startActivity(intent);
-                overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
-            }
-        });
+                break;
+
+        }
 
     }
 
