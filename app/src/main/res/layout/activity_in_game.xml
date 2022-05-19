@@ -105,6 +105,7 @@
         android:layout_marginTop="520dp"
         android:background="@drawable/iamge"
         android:text="회의종료"
+        android:onClick="StrightVote"
         android:textAlignment="center"
         android:textColor="#5ED5A8"
         android:textSize="35dp" />

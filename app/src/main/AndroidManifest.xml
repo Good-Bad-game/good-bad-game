@@ -27,6 +27,9 @@
         <activity
             android:name=".InGame"
             android:exported="false" />
+
+        <activity android:name=".PopupActivity" android:theme="@android:style/Theme.Dialog"/>
+
         <activity
             android:name=".SignIn"
             android:exported="true" >
