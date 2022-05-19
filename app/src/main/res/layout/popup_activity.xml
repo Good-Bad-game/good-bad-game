@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/popup"
     android:layout_width="350dp"
     android:layout_gravity="center"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    tools:context=".PopupActivity">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -18,34 +20,32 @@
             android:background="@drawable/sign_in_ema">
 
             <ImageView
-                android:id="@+id/thumb_up"
-                android:layout_width="175dp"
-                android:layout_height="175dp"
-                android:layout_marginTop="28dp"
-                android:onClick="UpOrder"
-                app:layout_constraintBottom_toTopOf="@+id/dialog_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/question"
-                app:layout_constraintVertical_bias="0.0"
-                app:srcCompat="@drawable/thumb_up"
-                tools:ignore="SpeakableTextPresentCheck" />
-
-            <ImageView
                 android:id="@+id/thumb_down"
-                android:layout_width="175dp"
-                android:layout_height="175dp"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:background="@drawable/thumb_down"
                 android:onClick="DownOrder"
                 app:layout_constraintBottom_toTopOf="@+id/dialog_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/thumb_up"
                 app:layout_constraintTop_toBottomOf="@+id/question"
-                app:layout_constraintVertical_bias="0.482"
-                app:srcCompat="@drawable/thumb_down"
-                tools:ignore="SpeakableTextPresentCheck"
-                android:contentDescription="TODO" />
+                app:layout_constraintVertical_bias="0.297" />
+
+            <ImageView
+                android:id="@+id/thumb_up"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/thumb_up"
+                android:onClick="UpOrder"
+                app:layout_constraintBottom_toTopOf="@+id/dialog_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.171"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/question"
+                app:layout_constraintVertical_bias="0.0"
+                />
 
             <TextView
                 android:id="@+id/question"

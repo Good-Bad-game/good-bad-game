@@ -10,9 +10,7 @@
     <View
         android:id="@+id/rectangle_4"
         android:layout_width="414dp"
-        android:layout_height="130dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="110dp"
         android:alpha="0.1"
         android:background="@drawable/rectangle_4" />
 
@@ -21,7 +19,7 @@
         android:layout_width="45dp"
         android:layout_height="45dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/ellipse_441" />
 
     <Button
@@ -29,7 +27,7 @@
         android:layout_width="100dp"
         android:layout_height="30dp"
         android:layout_marginStart="230dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:background="@drawable/rectangle_3"
         android:text="@string/edit_profile"
         android:textAppearance="@style/edit_profile"
@@ -43,7 +41,7 @@
         android:layout_width="90dp"
         android:layout_height="21dp"
         android:layout_marginStart="70dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="50dp"
         android:text="@string/nickname"
         android:textAppearance="@style/user_1234"
         android:gravity="top"
@@ -53,7 +51,7 @@
         android:layout_width="111dp"
         android:layout_height="17dp"
         android:layout_marginLeft="70dp"
-        android:layout_marginTop="95dp"
+        android:layout_marginTop="75dp"
         android:text="@string/id"
         android:textAppearance="@style/id"
         android:gravity="top"
@@ -63,8 +61,8 @@
         android:id="@+id/Tier"
         android:layout_width="160dp"
         android:layout_height="160dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="140dp"
         android:background="@drawable/iamge"
         android:text="티어"
         android:textColor="#5ED5A8"
@@ -75,7 +73,7 @@
         android:layout_width="160dp"
         android:layout_height="160dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="140dp"
         android:layout_toEndOf="@+id/Tier"
         android:background="@drawable/iamge"
         android:text="스킨"
@@ -84,10 +82,10 @@
 
     <Button
         android:id="@+id/btn_start"
-        android:layout_width="320dp"
+        android:layout_width="330dp"
         android:layout_height="180dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="380dp"
+        android:layout_marginTop="320dp"
         android:background="@drawable/iamge"
         android:text="게임시작"
         android:textColor="#5ED5A8"
@@ -97,44 +95,44 @@
         android:id="@+id/btn_store"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_toStartOf="@+id/btn_myItem"
+        android:layout_marginTop="540dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginTop="570dp"
-        android:background="@drawable/vector" />
+        android:layout_toStartOf="@+id/btn_myItem"
+        android:background="@drawable/store" />
 
     <Button
         android:id="@+id/btn_myItem"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_toStartOf="@+id/btn_main"
+        android:layout_marginTop="540dp"
         android:layout_marginEnd="10dp"
-        android:layout_marginTop="570dp"
-        android:background="@drawable/vector" />
+        android:layout_toStartOf="@+id/btn_main"
+        android:background="@drawable/myitem" />
     <Button
         android:id="@+id/btn_main"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="570dp"
-        android:background="@drawable/vector" />
+        android:layout_marginTop="540dp"
+        android:background="@drawable/home" />
 
     <Button
         android:id="@+id/btn_ranking"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="570dp"
+        android:layout_marginTop="540dp"
         android:layout_toEndOf="@+id/btn_main"
-        android:background="@drawable/vector" />
+        android:background="@drawable/rank" />
 
     <Button
         android:id="@+id/btn_friend"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="570dp"
+        android:layout_marginTop="540dp"
         android:layout_toEndOf="@+id/btn_ranking"
-        android:background="@drawable/vector" />
+        android:background="@drawable/friend" />
 
 
 
