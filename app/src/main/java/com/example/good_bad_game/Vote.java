@@ -1,7 +1,5 @@
 package com.example.good_bad_game;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -9,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Vote extends AppCompatActivity {
 
@@ -116,8 +116,6 @@ public class Vote extends AppCompatActivity {
 
 
         // 타이머 코딩 부분 --------------------------------------------------------------------------
-
-
     }
 
     public void CheckOrder(View view){
@@ -132,4 +130,11 @@ public class Vote extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //뒤로가기 막기
+
+
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+    }
 }
