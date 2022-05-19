@@ -34,20 +34,20 @@
         <activity
             android:name=".ReadyGame"
             android:exported="false" />
-         <activity
-         android:name=".Home"
-         android:exported="false" />
+<!--         <activity-->
+<!--         android:name=".Home"-->
+<!--         android:exported="false" />-->
         <activity
             android:name=".SignUp"
             android:exported="false" />
         <activity
             android:name=".PopupActivity"
             android:theme="@android:style/Theme.Dialog" />
-<!--        <activity-->
-<!--            android:name=".SignIn"-->
-<!--            android:exported="false" />-->
         <activity
             android:name=".SignIn"
+            android:exported="false" />
+        <activity
+            android:name=".Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
