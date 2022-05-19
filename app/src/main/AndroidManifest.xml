@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.good_bad_game">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Goodbadgame">
+
         <activity
             android:name=".ReadyRoomFramework"
             android:exported="false" />
@@ -32,20 +33,21 @@
             android:exported="false" />
         <activity
             android:name=".ReadyGame"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".Home" -->
-        <!-- android:exported="false" /> -->
+            android:exported="false" />
+         <activity
+         android:name=".Home"
+         android:exported="false" />
         <activity
             android:name=".SignUp"
             android:exported="false" />
         <activity
             android:name=".PopupActivity"
             android:theme="@android:style/Theme.Dialog" />
+<!--        <activity-->
+<!--            android:name=".SignIn"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".SignIn"
-            android:exported="false" />
-        <activity
-            android:name=".Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

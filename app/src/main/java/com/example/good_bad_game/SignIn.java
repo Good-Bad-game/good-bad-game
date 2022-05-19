@@ -1,7 +1,5 @@
 package com.example.good_bad_game;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +8,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -48,7 +48,7 @@ public class SignIn extends AppCompatActivity {
         //----------------------------------------------22.05.10 (Django <-> Android 로그인)
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8000/")
+                .baseUrl("http://13.125.61.85:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
