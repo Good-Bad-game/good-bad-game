@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="btn_sign_up" type="id" />
+    <item name="recylcerview_row_name" type="id" />
 </resources>

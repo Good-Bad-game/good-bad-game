@@ -86,60 +86,6 @@ public class Home extends AppCompatActivity {
             }
         });
         FragmentView(home);
-//
-//        Button start = findViewById(R.id.btn_start);
-//        start.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(getApplicationContext(), ReadyGame.class);
-//                startActivity(intent);
-//            }
-//        });
-//
-//        Button store = findViewById(R.id.btn_store);
-//        store.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                tts.speak("상점", TextToSpeech.QUEUE_FLUSH, null);
-//                Intent intent = new Intent(getApplicationContext(), Store.class);
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit);
-//            }
-//        });
-//
-//        Button myitem = findViewById(R.id.btn_myItem);
-//        myitem.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                tts.speak("보관함", TextToSpeech.QUEUE_FLUSH, null);
-//                Intent intent = new Intent(getApplicationContext(), MyItem.class);
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.slide_left_enter, R.anim.slide_left_exit);
-//            }
-//        });
-//
-//        Button ranking = findViewById(R.id.btn_ranking);
-//        ranking.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                tts.speak("랭킹", TextToSpeech.QUEUE_FLUSH, null);
-//                Intent intent = new Intent(getApplicationContext(), Ranking.class);
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
-//            }
-//        });
-//
-//        Button friend = findViewById(R.id.btn_friend);
-//        friend.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                tts.speak("친구", TextToSpeech.QUEUE_FLUSH, null);
-//                Intent intent = new Intent(getApplicationContext(), MenuFriend.class);
-//                startActivity(intent);
-//                overridePendingTransition(R.anim.slide_right_enter, R.anim.slide_right_exit);
-//            }
-//        });
-
     }
     private void FragmentView(int fragment){
 

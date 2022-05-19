@@ -23,7 +23,8 @@
         android:layout_marginStart="35dp"
         android:layout_marginTop="35dp"
         android:background="@drawable/btn_sign"
-        android:text="@string/sign_in"
+        android:text="로그인"
+        android:textStyle="bold"
         android:textAppearance="@style/sign_in" />
     <Button
         android:id="@+id/btn_sign_up"
@@ -32,7 +33,8 @@
         android:layout_marginTop="35dp"
         android:layout_marginLeft="185dp"
         android:background="@drawable/rectangle"
-        android:text="@string/sign_up"
+        android:text="회원가입"
+        android:textStyle="bold"
         android:textAppearance="@style/sign_up"
         />
 
@@ -42,9 +44,11 @@
         android:layout_height="60dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="80dp"
-        android:text="@string/sign_in"
+        android:text="로그인"
+
         android:textAppearance="@style/sign_in_text"
-        android:textSize="40dp" />
+        android:textSize="40dp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/email_text"
@@ -52,18 +56,18 @@
         android:layout_height="35dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="160dp"
-        android:text="@string/email"
-        android:textAppearance="@style/email"
-        android:textSize="22sp"
         android:gravity="top"
-        />
+        android:text="이메일"
+        android:textStyle="bold"
+        android:textAppearance="@style/email"
+        android:textSize="22sp" />
     <TextView
         android:id="@+id/sign_in_wit"
         android:layout_width="134dp"
         android:layout_height="22.07dp"
         android:layout_marginStart="210dp"
         android:layout_marginTop="170dp"
-        android:text="@string/sign_in_wit"
+        android:text="핸드폰으로 로그인"
         android:textAppearance="@style/sign_in_wit"
         />
 
@@ -82,7 +86,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="31dp"
         android:layout_marginTop="200dp"
-        android:hint="@string/enter_your_email"
+        android:hint="이메일을 입력하세요."
         android:textAppearance="@style/enter_your_email"
         android:textColor="@color/white"
         android:textColorHint="#777777" />
@@ -93,7 +97,8 @@
         android:layout_height="35dp"
         android:layout_marginStart="25dp"
         android:layout_marginTop="270dp"
-        android:text="@string/password"
+        android:text="비밀번호"
+        android:textStyle="bold"
         android:textAppearance="@style/email"
         android:textSize="22sp" />
 
@@ -114,7 +119,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginStart="31dp"
         android:layout_marginTop="310dp"
-        android:hint="Enter your password"
+        android:hint="비밀번호를 입력하세요."
         android:textAppearance="@style/enter_your_email"
         android:textColor="@color/white"
         android:inputType="textPassword"
@@ -127,7 +132,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="20dp"
         android:layout_marginTop="370dp"
-        android:text="@string/forgot_pass"
+        android:text="비밀번호 찾기"
         android:textAppearance="@style/forgot_pass"
         android:gravity="top"
         />
@@ -139,19 +144,20 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="420dp"
         android:background="@drawable/rectangle_2"
-        android:text="@string/sign_in"
+        android:text="로그인"
+        android:textStyle="bold"
         android:textAppearance="@style/sign_in2"
         android:textSize="24sp" />
-    <TextView
-        android:id="@+id/or_login_wi"
-        android:layout_width="120dp"
-        android:layout_height="20dp"
-        android:layout_marginTop="490dp"
-        android:layout_centerHorizontal="true"
-        android:text="@string/or_login_wi"
-        android:textAppearance="@style/or_login_wi"
-        android:gravity="center_horizontal|top"
-        />
+
+<!--    <TextView-->
+<!--        android:id="@+id/or_login_wi"-->
+<!--        android:layout_width="120dp"-->
+<!--        android:layout_height="20dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="490dp"-->
+<!--        android:gravity="center_horizontal|top"-->
+<!--        android:text="@string/or_login_wi"-->
+<!--        android:textAppearance="@style/or_login_wi" />-->
 
 
 </RelativeLayout>

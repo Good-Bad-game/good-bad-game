@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.16354166666666667" />
         <entry key="app/src/main/res/drawable/btn_sign_in.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/component_1.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/ellipse_441.xml" value="0.1105" />
@@ -20,6 +21,7 @@
         <entry key="app/src/main/res/drawable/store.xml" value="0.133" />
         <entry key="app/src/main/res/drawable/thumb_down.xml" value="0.133" />
         <entry key="app/src/main/res/drawable/vector.xml" value="0.107" />
+        <entry key="app/src/main/res/layout-v31/store_item.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/activity_friend.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/activity_friend_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2301964365837657" />

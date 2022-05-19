@@ -44,6 +44,7 @@
         android:layout_marginTop="50dp"
         android:text="@string/nickname"
         android:textAppearance="@style/user_1234"
+        android:textColor="@color/yellow"
         android:gravity="top"
         />
     <TextView

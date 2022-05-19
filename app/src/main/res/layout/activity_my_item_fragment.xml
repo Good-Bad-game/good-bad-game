@@ -15,7 +15,7 @@
         android:layout_marginTop="140dp"
         android:background="@drawable/iamge"
         android:text="티어"
-        android:textColor="#5ED5A8"
+        android:textColor="@color/yellow"
         android:textSize="40dp" />
 
     <Button
@@ -27,7 +27,7 @@
         android:layout_toEndOf="@+id/Tier"
         android:background="@drawable/iamge"
         android:text="스킨"
-        android:textColor="#5ED5A8"
+        android:textColor="@color/yellow"
         android:textSize="40dp" />
 
     <Button
@@ -39,6 +39,6 @@
         android:background="@drawable/iamge"
         android:layout_marginStart="0dp"
         android:text="게임시작"
-        android:textColor="#5ED5A8"
+        android:textColor="@color/yellow"
         android:textSize="40dp" />
 </RelativeLayout>

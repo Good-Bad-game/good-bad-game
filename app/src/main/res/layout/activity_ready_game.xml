@@ -16,7 +16,7 @@
         android:layout_marginTop="60dp"
         android:background="@drawable/iamge"
         android:text="팀1"
-        android:textColor="#5ED5A8"
+        android:textColor="@color/yellow"
         android:textSize="40dp" />
 
     <Button
@@ -29,7 +29,7 @@
         android:layout_toEndOf="@+id/team1"
         android:background="@drawable/iamge"
         android:text="팀2"
-        android:textColor="#5ED5A8"
+        android:textColor="@color/yellow"
         android:textSize="40dp" />
 
     <Button
@@ -41,7 +41,7 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/iamge"
         android:text="팀3"
-        android:textColor="#5ED5A8"
+        android:textColor="@color/yellow"
         android:textSize="40dp" />
 
     <Button
@@ -52,7 +52,7 @@
         android:layout_marginTop="10dp"
         android:layout_below="@+id/team2"
         android:background="@drawable/iamge"
-        android:textColor="#5ED5A8"
+        android:textColor="@color/yellow"
         android:text="팀4"
         android:textSize="40dp"
         />
@@ -63,7 +63,7 @@
         android:layout_marginStart="35dp"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/team3"
-        android:textColor="#5ED5A8"
+        android:textColor="@color/yellow"
         android:text="팀5"
         android:textSize="40dp"
         android:background="@drawable/iamge" />
@@ -76,7 +76,7 @@
         android:layout_marginTop="10dp"
         android:layout_below="@+id/team4"
         android:background="@drawable/iamge"
-        android:textColor="#5ED5A8"
+        android:textColor="@color/yellow"
         android:text="팀6"
         android:textSize="40dp"
         />
@@ -90,7 +90,7 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/iamge"
         android:text="준비하기/게임시작"
-        android:textColor="#5ED5A8"
+        android:textColor="@color/yellow"
         android:textSize="35dp" />
 
 </RelativeLayout>

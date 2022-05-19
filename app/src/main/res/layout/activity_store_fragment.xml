@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="285dp"
+    android:layout_width="match_parent"
     android:layout_height="408dp"
     android:clipToOutline="true"
     android:background="@drawable/sign_in_ema">
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/grid_recyclerview"
         android:layout_width="285dp"
         android:layout_height="408dp"
+        android:layout_centerHorizontal="true"
         tools:layout_editor_absoluteX="63dp"
         tools:layout_editor_absoluteY="113dp" />
 </RelativeLayout>
