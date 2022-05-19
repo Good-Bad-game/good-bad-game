@@ -21,7 +21,7 @@
         <entry key="app/src/main/res/drawable/thumb_down.xml" value="0.133" />
         <entry key="app/src/main/res/drawable/vector.xml" value="0.107" />
         <entry key="app/src/main/res/layout/activity_friend.xml" value="0.2296195652173913" />
-        <entry key="app/src/main/res/layout/activity_friend_fragment.xml" value="0.165" />
+        <entry key="app/src/main/res/layout/activity_friend_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2301964365837657" />
         <entry key="app/src/main/res/layout/activity_home_fragment.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/activity_in_game.xml" value="0.25853954812754754" />
@@ -30,14 +30,17 @@
         <entry key="app/src/main/res/layout/activity_my_item_fragment.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/activity_ranking.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/activity_ranking_fragment.xml" value="0.13697916666666668" />
+        <entry key="app/src/main/res/layout/activity_read_room.xml" value="0.19402985074626866" />
         <entry key="app/src/main/res/layout/activity_ready_game.xml" value="0.2296195652173913" />
+        <entry key="app/src/main/res/layout/activity_ready_room_framework.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_store.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/activity_store_fragment.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/activity_vote.xml" value="0.2296195652173913" />
-        <entry key="app/src/main/res/layout/item.xml" value="0.2296195652173913" />
+        <entry key="app/src/main/res/layout/item.xml" value="0.1532258064516129" />
         <entry key="app/src/main/res/layout/popup_activity.xml" value="0.17864583333333334" />
+        <entry key="app/src/main/res/layout/room_item.xml" value="0.1" />
       </map>
     </option>
   </component>

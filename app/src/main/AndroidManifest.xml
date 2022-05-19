@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Goodbadgame">
         <activity
+            android:name=".ReadyRoomFramework"
+            android:exported="false" />
+        <activity
             android:name=".MyItem"
             android:exported="false" />
         <activity
@@ -29,19 +32,18 @@
             android:exported="false" />
         <activity
             android:name=".ReadyGame"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".Home"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".Home" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".SignUp"
             android:exported="false" />
-
-        <activity android:name=".PopupActivity" android:theme="@android:style/Theme.Dialog"/>
-        <activity android:name=".SignIn"
-            android:exported="false"
-        />
-
+        <activity
+            android:name=".PopupActivity"
+            android:theme="@android:style/Theme.Dialog" />
+        <activity
+            android:name=".SignIn"
+            android:exported="false" />
         <activity
             android:name=".Home"
             android:exported="true">

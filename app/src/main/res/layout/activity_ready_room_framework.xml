@@ -6,7 +6,7 @@
     android:background="@drawable/sign_in_ema">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rc_view"
+        android:id="@+id/rc_roomView"
         android:layout_width="292dp"
         android:layout_height="256dp"
         android:layout_centerHorizontal="true"

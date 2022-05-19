@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class InGame extends AppCompatActivity {
-
+    private static String TAG = "InGameActivity";
     String type = "";
 
     @Override

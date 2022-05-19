@@ -1,6 +1,7 @@
 package com.example.good_bad_game;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,10 @@ public class FriendFragment extends Fragment {
     private FriendAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    public static FriendFragment newInstance() {
+        return new FriendFragment();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,6 +40,7 @@ public class FriendFragment extends Fragment {
         initDataset(adapter);
 
         rvFriend.setAdapter(adapter);
+        rvFriend.setHasFixedSize(true);
         rvFriend.setItemAnimator(new DefaultItemAnimator());
         return view;
     }
@@ -47,6 +53,7 @@ public class FriendFragment extends Fragment {
     }
 
     private void initDataset(FriendAdapter adapter) {
+        Log.d(TAG,"initDdataset");
         //for Test
         adapter.addItem(new Friend("써니"));
         adapter.addItem(new Friend("완득이"));

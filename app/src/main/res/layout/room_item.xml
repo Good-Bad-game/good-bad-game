@@ -6,16 +6,8 @@
     android:clipToOutline="true"
     android:background="@drawable/sign_in_ema">
 
-<!--    <ImageView-->
-<!--        android:id="@+id/iv_img_resource"-->
-<!--        android:layout_width="60dp"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:src="@drawable/mov01"-->
-<!--        android:layout_alignParentLeft="true"-->
-<!--        android:scaleType="centerCrop"/>-->
-
     <TextView
-        android:id="@+id/tv_title"
+        android:id="@+id/room_number"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="가나다라마바사아자"
@@ -23,11 +15,5 @@
         android:textStyle="bold"
         android:textColor="#FFDA69"
         android:gravity="center"/>
-
-<!--    <View-->
-<!--        android:layout_below="@+id/tv_title"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="1dp"-->
-<!--        android:background="#505050"/>-->
 
 </RelativeLayout>

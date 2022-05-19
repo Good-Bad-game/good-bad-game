@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Vote extends AppCompatActivity {
-
+    private static String TAG = "VoteActivity";
     String type = "";
 
     @Override
