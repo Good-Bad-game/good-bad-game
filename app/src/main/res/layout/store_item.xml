@@ -13,7 +13,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_below="@id/recylcerview_row_image"
-        android:textColor="#3f3f3f"
+        android:textColor="@color/white"
         android:textSize="13dp"
         android:hint="글자입니다."
         android:gravity="center"

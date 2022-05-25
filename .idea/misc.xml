@@ -4,9 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.16354166666666667" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1955" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/drawable/home.xml" value="0.1955" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/drawable/iamge.xml" value="0.1955" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1955" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/drawable/rank.xml" value="0.1955" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/drawable/sign_in_ema.xml" value="0.1955" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_friend_fragment.xml" value="0.1875" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_home_fragment.xml" value="0.25769927536231885" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_in_game.xml" value="0.1875" />
@@ -21,6 +24,7 @@
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/popup_activity.xml" value="0.16893115942028986" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/room_item.xml" value="0.25" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/store_item.xml" value="0.1875" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1955" />
         <entry key="app/src/main/res/drawable/btn_sign_in.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/component_1.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/ellipse_441.xml" value="0.1105" />

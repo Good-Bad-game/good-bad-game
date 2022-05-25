@@ -13,6 +13,10 @@ public class Friend {
         return nickname;
     }
 
+    public String getOnline(){
+        return online;
+    }
+
     public void setOnline(){
         this.online = "온라인";
 
