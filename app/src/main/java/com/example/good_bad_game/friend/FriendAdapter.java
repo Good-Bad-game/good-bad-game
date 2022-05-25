@@ -1,5 +1,6 @@
 package com.example.good_bad_game.friend;
 
+import android.graphics.Color;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,19 +50,28 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.MyViewHold
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         //규칙1
-        private TextView tvTitle;
+        private TextView fri_nick;
+        private TextView online;
 
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             //규칙2
-            tvTitle=itemView.findViewById(R.id.tv_title);
+            fri_nick=itemView.findViewById(R.id.fri_nick);
+            online=itemView.findViewById(R.id.online);
         }
 
         //규칙3
         public void setItem(Friend friend){
             Log.d(TAG, "MyViewHolder: ");
-            tvTitle.setText(friend.getNickname());
+            fri_nick.setText(friend.getNickname());
+            if (friend.getOnline() == "ON"){
+                online.setTextColor(Color.parseColor("#66FFB2"));
+            }
+            else {
+                online.setTextColor(Color.parseColor("#FF3333"));
+            }
+            online.setText(friend.getOnline());
         }
     }
 

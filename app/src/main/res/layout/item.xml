@@ -9,19 +9,23 @@
 
     <TextView
         android:id="@+id/fri_nick"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_width="250dp"
+        android:layout_height="match_parent"
         android:text="nickname"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="10dp"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="#FFDA69"
-        android:gravity="center"/>
+        android:gravity="left"/>
 
     <TextView
         android:id="@+id/online"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:text="온오프라인여부"
+        android:layout_width="120dp"
+        android:layout_height="match_parent"
+        android:text="접속여부"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="275dp"
         android:textSize="30sp"
         android:textStyle="bold"
         android:textColor="#FFDA69"
