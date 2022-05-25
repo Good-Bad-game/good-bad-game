@@ -1,4 +1,4 @@
-package com.example.good_bad_game.score;
+package com.example.good_bad_game.store;
 
 import android.os.Bundle;
 import android.util.Log;

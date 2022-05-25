@@ -16,7 +16,7 @@ import com.example.good_bad_game.R;
 import com.example.good_bad_game.friend.FriendFragment;
 import com.example.good_bad_game.myitem.MyItemFragment;
 import com.example.good_bad_game.ranking.RankingFragment;
-import com.example.good_bad_game.score.StoreFragment;
+import com.example.good_bad_game.store.StoreFragment;
 
 import java.util.Locale;
 

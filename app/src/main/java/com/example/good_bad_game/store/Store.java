@@ -1,4 +1,4 @@
-package com.example.good_bad_game.score;
+package com.example.good_bad_game.store;
 
 public class Store {
     String name;
