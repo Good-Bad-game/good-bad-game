@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.good_bad_game.R;
-import com.example.good_bad_game.friend.Friend;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +30,12 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     public StoreAdapter() {
         super();
     }
-    public void addItem(Store store){
-        items.add(store);
-
-    }
+    public void addItem(Store store){ items.add(store); }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        Log.d(TAG, "MyViewHolder");
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.store_item, parent, false);
         return new MyViewHolder(view);
@@ -46,8 +43,20 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.image.setImageResource(items.get(position).image);
-        holder.name.setText(items.get(position).name);
+        Store store = items.get(position);
+        holder.setItem(store);
+//        holder.image.setImageResource(items.get(position).image);
+//        holder.name.setText(items.get(position).name);
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(v.getContext(), );
+//                intent.putExtra("itemName", store.getName());
+//                ContextCompat.startActivity(v.getContext(), intent, null);
+
+            }
+        });
+
     }
 
     @Override
@@ -58,8 +67,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageView image;
-        TextView name;
+        private ImageView image;
+        private TextView name;
 
         public MyViewHolder(View itemView) {
             super(itemView);
@@ -68,9 +77,10 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         }
 
         //규칙3
-        public void setItem(Friend friend){
+        public void setItem(Store store){
             Log.d(TAG, "MyViewHolder: ");
-            name.setText(friend.getNickname());
+            image.setImageResource(store.getImage());
+            name.setText(store.getName());
         }
     }
 }

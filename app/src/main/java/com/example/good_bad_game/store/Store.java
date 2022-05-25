@@ -10,5 +10,6 @@ public class Store {
         this.image = image;
     }
     public String getName(){return name;}
+    public  int getImage(){return image;}
 
 }
