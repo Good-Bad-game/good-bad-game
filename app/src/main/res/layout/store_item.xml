@@ -5,18 +5,23 @@
 
     <ImageView
         android:id="@+id/recylcerview_row_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
+        android:layout_width="167dp"
+        android:layout_height="168dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="122dp"
+        android:layout_marginEnd="121dp"
+        android:adjustViewBounds="false"
         android:src="@mipmap/ic_launcher_round" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_below="@id/recylcerview_row_image"
         android:textColor="@color/white"
-        android:textSize="13dp"
+        android:textSize="15dp"
         android:hint="글자입니다."
         android:gravity="center"
+        android:textStyle="bold"
         android:id="@+id/recylcerview_row_name"
         android:layout_height="20dp" />
 
