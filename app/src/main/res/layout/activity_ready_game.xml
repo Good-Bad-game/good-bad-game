@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sign_in_ema"
+    tools:context=".ReadyGame">
+
+
+    <Button
+        android:id="@+id/team1"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/iamge"
+        android:text="팀1"
+        android:textColor="@color/yellow"
+        android:textSize="40dp" />
+
+    <Button
+        android:id="@+id/team2"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="60dp"
+        android:layout_toEndOf="@+id/team1"
+        android:background="@drawable/iamge"
+        android:text="팀2"
+        android:textColor="@color/yellow"
+        android:textSize="40dp" />
+
+    <Button
+        android:id="@+id/team3"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_below="@+id/team1"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/iamge"
+        android:text="팀3"
+        android:textColor="@color/yellow"
+        android:textSize="40dp" />
+
+    <Button
+        android:id="@+id/team4"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="185dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/team2"
+        android:background="@drawable/iamge"
+        android:textColor="@color/yellow"
+        android:text="팀4"
+        android:textSize="40dp"
+        />
+    <Button
+        android:id="@+id/team5"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/team3"
+        android:textColor="@color/yellow"
+        android:text="팀5"
+        android:textSize="40dp"
+        android:background="@drawable/iamge" />
+
+    <Button
+        android:id="@+id/team6"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="185dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/team4"
+        android:background="@drawable/iamge"
+        android:textColor="@color/yellow"
+        android:text="팀6"
+        android:textSize="40dp"
+        />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/team6"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/iamge"
+        android:text="준비하기/게임시작"
+        android:textColor="@color/yellow"
+        android:textSize="35dp" />
+
+</RelativeLayout>

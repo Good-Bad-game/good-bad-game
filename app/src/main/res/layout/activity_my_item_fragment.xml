@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToOutline="true"
+    android:background="@drawable/sign_in_ema"
+    >
+
+
+    <Button
+        android:id="@+id/Tier"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="140dp"
+        android:background="@drawable/iamge"
+        android:text="티어"
+        android:textColor="@color/yellow"
+        android:textSize="40dp" />
+
+    <Button
+        android:id="@+id/Skin"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="140dp"
+        android:layout_toEndOf="@+id/Tier"
+        android:background="@drawable/iamge"
+        android:text="스킨"
+        android:textColor="@color/yellow"
+        android:textSize="40dp" />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="330dp"
+        android:layout_height="180dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="320dp"
+        android:background="@drawable/iamge"
+        android:layout_marginStart="0dp"
+        android:text="게임시작"
+        android:textColor="@color/yellow"
+        android:textSize="40dp" />
+</RelativeLayout>
