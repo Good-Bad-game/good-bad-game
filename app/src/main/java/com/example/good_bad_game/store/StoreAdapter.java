@@ -33,6 +33,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     }
     public void addItem(Store store){
         items.add(store);
+
     }
 
     @NonNull
