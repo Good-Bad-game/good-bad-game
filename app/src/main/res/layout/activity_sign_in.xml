@@ -58,9 +58,9 @@
         android:layout_marginTop="160dp"
         android:gravity="top"
         android:text="이메일"
-        android:textStyle="bold"
         android:textAppearance="@style/email"
-        android:textSize="22sp" />
+        android:textSize="22sp"
+        android:textStyle="bold" />
     <TextView
         android:id="@+id/sign_in_wit"
         android:layout_width="134dp"
@@ -120,9 +120,9 @@
         android:layout_marginStart="31dp"
         android:layout_marginTop="310dp"
         android:hint="비밀번호를 입력하세요."
+        android:inputType="textPassword"
         android:textAppearance="@style/enter_your_email"
         android:textColor="@color/white"
-        android:inputType="textPassword"
         android:textColorHint="#777777" />
 
     <TextView

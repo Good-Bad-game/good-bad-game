@@ -1,4 +1,4 @@
-package com.example.good_bad_game.score;
+package com.example.good_bad_game.store;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -33,7 +33,7 @@ public class StoreFragment extends Fragment {
         rvStore = (RecyclerView) view.findViewById(R.id.grid_recyclerview);
         rvStore.setHasFixedSize(true);
 
-        layoutManager = new GridLayoutManager(getActivity(),3);
+        layoutManager = new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false);
         rvStore.setLayoutManager(layoutManager);
         rvStore.scrollToPosition(0);
         adapter = new StoreAdapter();
@@ -47,16 +47,11 @@ public class StoreFragment extends Fragment {
     private void initDataset(StoreAdapter adapter) {
         Log.d(TAG,"initDdataset");
         //for Test
-        adapter.addItem(new Store("image1",R.drawable.thumb_up));
-        adapter.addItem(new Store("image2",R.drawable.thumb_down));
-        adapter.addItem(new Store("image3",R.drawable.thumb_down));
-        adapter.addItem(new Store("image4",R.drawable.thumb_down));
-        adapter.addItem(new Store("image5",R.drawable.thumb_down));
-        adapter.addItem(new Store("image6",R.drawable.thumb_down));
-        adapter.addItem(new Store("image7",R.drawable.thumb_down));
-        adapter.addItem(new Store("image8",R.drawable.thumb_down));
-        adapter.addItem(new Store("image9",R.drawable.thumb_down));
-        adapter.addItem(new Store("image10",R.drawable.thumb_down));
+        adapter.addItem(new Store("상품1",R.drawable.thumb_up));
+        adapter.addItem(new Store("상품2",R.drawable.thumb_down));
+        adapter.addItem(new Store("상품3",R.drawable.thumb_down));
+        adapter.addItem(new Store("상품4",R.drawable.thumb_down));
+        adapter.addItem(new Store("상품5",R.drawable.thumb_down));
     }
 
     @Override
