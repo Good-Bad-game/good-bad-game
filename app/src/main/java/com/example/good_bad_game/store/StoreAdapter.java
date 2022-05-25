@@ -21,6 +21,10 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     private static final String TAG = "StoreAdapter";
     private List<Store> items = new ArrayList<>();
     Context context;
+    private ImageView image;
+    private TextView name;
+    View fragmentView;
+
 
     public StoreAdapter(Context context, ArrayList<Store> list) {
         super();
@@ -38,6 +42,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         Log.d(TAG, "MyViewHolder");
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.store_item, parent, false);
+        fragmentView = inflater.inflate(R.layout.activity_store_fragment,parent,false);
+
         return new MyViewHolder(view);
     }
 
@@ -47,12 +53,18 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         holder.setItem(store);
 //        holder.image.setImageResource(items.get(position).image);
 //        holder.name.setText(items.get(position).name);
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, store.getName());
+                Log.d(TAG, String.valueOf(store.getImage()));
 //                Intent intent = new Intent(v.getContext(), );
 //                intent.putExtra("itemName", store.getName());
 //                ContextCompat.startActivity(v.getContext(), intent, null);
+
+                image = (ImageView) fragmentView.findViewById(R.id.imageView);
+                image.setImageResource(R.drawable.thumb_down);
 
             }
         });
@@ -67,8 +79,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private ImageView image;
-        private TextView name;
 
         public MyViewHolder(View itemView) {
             super(itemView);
