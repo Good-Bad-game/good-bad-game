@@ -7,10 +7,22 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rc_roomView"
-        android:layout_width="292dp"
-        android:layout_height="256dp"
+        android:layout_width="350dp"
+        android:layout_height="280dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/make_room"
+        android:layout_width="330dp"
+        android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:background="@drawable/rectangle_2"
+        android:text="방만들기"
+        android:textAppearance="@style/sign_in2"
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 </RelativeLayout>

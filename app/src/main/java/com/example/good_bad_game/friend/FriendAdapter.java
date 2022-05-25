@@ -61,7 +61,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.MyViewHold
         //규칙3
         public void setItem(Friend friend){
             Log.d(TAG, "MyViewHolder: ");
-            tvTitle.setText(friend.getTitle());
+            tvTitle.setText(friend.getNickname());
         }
     }
 

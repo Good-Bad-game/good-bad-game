@@ -57,18 +57,18 @@ public class FriendFragment extends Fragment {
     private void initDataset(FriendAdapter adapter) {
         Log.d(TAG,"initDdataset");
         //for Test
-        adapter.addItem(new Friend("써니"));
-        adapter.addItem(new Friend("완득이"));
-        adapter.addItem(new Friend("괴물"));
-        adapter.addItem(new Friend("라디오스타"));
-        adapter.addItem(new Friend("비열한 거리"));
-        adapter.addItem(new Friend("왕의 남자"));
-        adapter.addItem(new Friend("아일랜드"));
-        adapter.addItem(new Friend("웰컴 투 동막골"));
-        adapter.addItem(new Friend("헬보이"));
-        adapter.addItem(new Friend("백 투더 퓨처"));
-        adapter.addItem(new Friend("여인의 향기"));
-        adapter.addItem(new Friend("쥬라기 공원"));
+        adapter.addItem(new Friend("써니", "온라인"));
+        adapter.addItem(new Friend("완득이", "온라인"));
+        adapter.addItem(new Friend("괴물", "온라인"));
+        adapter.addItem(new Friend("라디오스타", "온라인"));
+        adapter.addItem(new Friend("비열한 거리", "온라인"));
+        adapter.addItem(new Friend("왕의 남자", "오프라인"));
+        adapter.addItem(new Friend("아일랜드", "오프라인"));
+        adapter.addItem(new Friend("웰컴 투 동막골", "오프라인"));
+        adapter.addItem(new Friend("헬보이", "오프라인"));
+        adapter.addItem(new Friend("백 투더 퓨처", "오프라인"));
+        adapter.addItem(new Friend("여인의 향기","오프라인"));
+        adapter.addItem(new Friend("쥬라기 공원","오프라인"));
     }
 
     @Override

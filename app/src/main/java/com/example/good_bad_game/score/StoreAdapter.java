@@ -69,7 +69,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         //규칙3
         public void setItem(Friend friend){
             Log.d(TAG, "MyViewHolder: ");
-            name.setText(friend.getTitle());
+            name.setText(friend.getNickname());
         }
     }
 }

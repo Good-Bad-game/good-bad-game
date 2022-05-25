@@ -1,6 +1,5 @@
 package com.example.good_bad_game.home;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.view.LayoutInflater;
@@ -13,7 +12,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.good_bad_game.R;
-import com.example.good_bad_game.ReadyGame;
+import com.example.good_bad_game.readyroom.ReadyRoomFramework;
 
 import java.util.Locale;
 
@@ -43,10 +42,8 @@ public class HomeFragment extends Fragment {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                ((Home)getActivity()).replaceFragment(ReadyRoomFramework.newInstance());
-//                tts.speak("게임시작", TextToSpeech.QUEUE_FLUSH, null);
-                Intent intent = new Intent(getActivity(), ReadyGame.class);
-                startActivity(intent);
+                ((Home)getActivity()).replaceFragment(ReadyRoomFramework.newInstance());
+                tts.speak("게임시작", TextToSpeech.QUEUE_FLUSH, null);
 
             }
         });

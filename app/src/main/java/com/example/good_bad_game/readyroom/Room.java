@@ -1,9 +1,12 @@
 package com.example.good_bad_game.readyroom;
 
 public class Room {
-    private  String roomNumber;
+    private  String num;
+    private String title;
 
-    public Room(String name){ this.roomNumber = name;}
+    public Room(String num, String title){ this.num = num; this.title = title;}
 
-    public String getRoomNumber(){return roomNumber;}
+    public String getRoomNumber(){return num;}
+    public String getRoomTitle(){return title;}
+
 }

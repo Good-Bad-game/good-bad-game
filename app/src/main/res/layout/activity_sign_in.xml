@@ -145,9 +145,9 @@
         android:layout_marginTop="420dp"
         android:background="@drawable/rectangle_2"
         android:text="로그인"
-        android:textStyle="bold"
         android:textAppearance="@style/sign_in2"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:textStyle="bold" />
 
 <!--    <TextView-->
 <!--        android:id="@+id/or_login_wi"-->

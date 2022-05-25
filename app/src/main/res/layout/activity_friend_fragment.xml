@@ -7,10 +7,12 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rc_view"
-        android:layout_width="292dp"
-        android:layout_height="256dp"
+        android:layout_width="350dp"
+        android:layout_height="350dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:scrollbars="vertical" />
+
+
 
 </RelativeLayout>
