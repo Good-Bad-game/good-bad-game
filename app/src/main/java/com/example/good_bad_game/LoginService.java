@@ -14,4 +14,7 @@ public interface LoginService {
 
     @POST("users/")
     Call<Post> createPost(@Body Post post);
+
+    @GET("friend/")
+    retrofit2.Call<List<getFriend>> getFriends();
 }

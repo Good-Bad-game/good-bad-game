@@ -36,10 +36,10 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        TextView user_1234 = findViewById(R.id.user_1234);
+        TextView nickname = findViewById(R.id.id_12345678);
         Intent receive_intent = getIntent();
         String move_nick = receive_intent.getStringExtra("nickname");
-        user_1234.setText(move_nick);
+        nickname.setText(move_nick);
 
         tts = new TextToSpeech(Home.this, new TextToSpeech.OnInitListener(){
 
