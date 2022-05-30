@@ -21,6 +21,8 @@ public class StoreFragment extends Fragment {
     private RecyclerView rvStore;
     private StoreAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    private View view;
+
     public static StoreFragment newInstance() {
         return new StoreFragment();
     }
@@ -29,7 +31,7 @@ public class StoreFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
-        View view = inflater.inflate(R.layout.activity_store_fragment, container, false);
+        view = inflater.inflate(R.layout.activity_store_fragment, container, false);
         rvStore = (RecyclerView) view.findViewById(R.id.grid_recyclerview);
         rvStore.setHasFixedSize(true);
 
@@ -40,6 +42,7 @@ public class StoreFragment extends Fragment {
         initDataset(adapter);
 
         rvStore.setAdapter(adapter);
+
         rvStore.setItemAnimator(new DefaultItemAnimator());
         return view;
     }

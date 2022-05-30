@@ -23,13 +23,13 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     Context context;
     private ImageView image;
     private TextView name;
-    View fragmentView;
+    private StoreFragment storeFragment;
 
-
-    public StoreAdapter(Context context, ArrayList<Store> list) {
+    public StoreAdapter(Context context, ArrayList<Store> list, StoreFragment storeFragment) {
         super();
         this.context = context;
         this.items = list;
+        this.storeFragment = storeFragment;
     }
     public StoreAdapter() {
         super();
@@ -42,7 +42,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         Log.d(TAG, "MyViewHolder");
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.store_item, parent, false);
-        fragmentView = inflater.inflate(R.layout.activity_store_fragment,parent,false);
 
         return new MyViewHolder(view);
     }
@@ -51,24 +50,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Store store = items.get(position);
         holder.setItem(store);
-//        holder.image.setImageResource(items.get(position).image);
-//        holder.name.setText(items.get(position).name);
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, store.getName());
-                Log.d(TAG, String.valueOf(store.getImage()));
-//                Intent intent = new Intent(v.getContext(), );
-//                intent.putExtra("itemName", store.getName());
-//                ContextCompat.startActivity(v.getContext(), intent, null);
-
-                image = (ImageView) fragmentView.findViewById(R.id.imageView);
-                image.setImageResource(R.drawable.thumb_down);
-
-            }
-        });
-
     }
 
     @Override
@@ -77,20 +58,34 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         return items.size();
     }
 
-
+    public static int[] LETTER_PAPAER_ARRAY = {
+            R.drawable.thumb_up,
+            R.drawable.thumb_down,
+    };
     public class MyViewHolder extends RecyclerView.ViewHolder {
+
+        private ImageView selectedImage;
 
         public MyViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.recylcerview_row_image);
             name = itemView.findViewById(R.id.recylcerview_row_name);
+
+            selectedImage = itemView.findViewById(R.id.imageView);
+            selectedImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+//                    id = Defind.L
+                }
+            });
         }
 
         //규칙3
         public void setItem(Store store){
-            Log.d(TAG, "MyViewHolder: ");
+            Log.d(TAG, store.getName());
             image.setImageResource(store.getImage());
             name.setText(store.getName());
         }
     }
+
 }
