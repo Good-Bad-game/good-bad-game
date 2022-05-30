@@ -50,7 +50,7 @@ public class SignIn extends AppCompatActivity {
         //----------------------------------------------22.05.10 (Django <-> Android 로그인)
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://13.125.61.85:8080/")
+                .baseUrl("http://54.180.121.58:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 

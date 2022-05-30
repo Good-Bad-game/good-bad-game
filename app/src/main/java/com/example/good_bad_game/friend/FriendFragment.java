@@ -1,6 +1,8 @@
 package com.example.good_bad_game.friend;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +15,19 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.good_bad_game.SignUp;
+import com.example.good_bad_game.getFriend;
+import com.example.good_bad_game.LoginService;
 import com.example.good_bad_game.R;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class FriendFragment extends Fragment {
     private static final String TAG = "FriendFragment";
@@ -41,34 +55,71 @@ public class FriendFragment extends Fragment {
         adapter = new FriendAdapter();
         initDataset(adapter);
 
-        rvFriend.setAdapter(adapter);
-        rvFriend.setHasFixedSize(true);
-        rvFriend.setItemAnimator(new DefaultItemAnimator());
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                rvFriend.setAdapter(adapter);
+                rvFriend.setHasFixedSize(true);
+                rvFriend.setItemAnimator(new DefaultItemAnimator());
+
+            }
+        }, 500);
+
         return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        initDataset();
+
 
     }
 
     private void initDataset(FriendAdapter adapter) {
+
+        ArrayList FriendList = new ArrayList();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://54.180.121.58:8080/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        LoginService LoginService = retrofit.create(LoginService.class);
+        Call<List<getFriend>> call = LoginService.getFriends();
+
+        call.enqueue(new Callback<List<getFriend>>() {
+            @Override
+            public void onResponse(retrofit2.Call<List<getFriend>> call, Response<List<getFriend>> response) {
+                if (!response.isSuccessful())
+                {
+                    Log.d("onResponse 발동","Connection은 성공하였으나 code 에러 발생");
+                    return;
+
+                }
+
+                List<getFriend> Friends = response.body();
+
+                for ( getFriend getFriend : Friends)
+                {
+                    Log.d("onResponse 발동","데이터 가져오기 시작");
+                    Log.d("nick2 : ", getFriend.get_nick2());
+                    adapter.addItem(new Friend(getFriend.get_nick2(), "ON"));
+                }
+
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<List<getFriend>> call, Throwable t) {
+                Log.d("onFailure 발동","Connection Error");
+                return;
+            }
+        });
+
+
         Log.d(TAG,"initDdataset");
-        //for Test
-        adapter.addItem(new Friend("써니", "ON"));
-        adapter.addItem(new Friend("완득이", "ON"));
-        adapter.addItem(new Friend("괴물", "ON"));
-        adapter.addItem(new Friend("라디오스타", "ON"));
-        adapter.addItem(new Friend("비열한 거리", "ON"));
-        adapter.addItem(new Friend("왕의 남자", "OFF"));
-        adapter.addItem(new Friend("아일랜드", "OFF"));
-        adapter.addItem(new Friend("웰컴 투 동막골", "OFF"));
-        adapter.addItem(new Friend("헬보이", "OFF"));
-        adapter.addItem(new Friend("백 투더 퓨처", "OFF"));
-        adapter.addItem(new Friend("여인의 향기","OFF"));
-        adapter.addItem(new Friend("쥬라기 공원","OFF"));
+
+
+
     }
 
     @Override
