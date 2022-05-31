@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
+        android:hardwareAccelerated="false"
+        android:largeHeap="true"
         android:theme="@style/Theme.Goodbadgame">
 
         <activity
@@ -26,20 +28,20 @@
         <activity
             android:name=".ReadyGame"
             android:exported="false" />
-         <activity
-         android:name=".home.Home"
-         android:exported="false" />
+<!--         <activity-->
+<!--         android:name=".home.Home"-->
+<!--         android:exported="false" />-->
         <activity
             android:name=".SignUp"
             android:exported="false" />
         <activity
             android:name=".PopupActivity"
             android:theme="@android:style/Theme.Dialog" />
-<!--        <activity-->
-<!--            android:name=".SignIn"-->
-<!--            android:exported="false" />-->
         <activity
             android:name=".SignIn"
+            android:exported="false" />
+        <activity
+            android:name=".home.Home"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

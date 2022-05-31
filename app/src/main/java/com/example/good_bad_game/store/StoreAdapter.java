@@ -71,13 +71,13 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
             image = itemView.findViewById(R.id.recylcerview_row_image);
             name = itemView.findViewById(R.id.recylcerview_row_name);
 
-            selectedImage = itemView.findViewById(R.id.imageView);
-            selectedImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-//                    id = Defind.L
-                }
-            });
+//            selectedImage = itemView.findViewById(R.id.imageView);
+//            selectedImage.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+////                    id = Defind.L
+//                }
+//            });
         }
 
         //규칙3
