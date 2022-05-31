@@ -1,6 +1,9 @@
 package com.example.good_bad_game.store;
 
+import static android.speech.tts.TextToSpeech.ERROR;
+
 import android.content.Context;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +18,7 @@ import com.example.good_bad_game.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder> {
 
@@ -33,6 +37,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     }
     public StoreAdapter() {
         super();
+
     }
     public void addItem(Store store){ items.add(store); }
 
@@ -58,18 +63,44 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         return items.size();
     }
 
-    public static int[] LETTER_PAPAER_ARRAY = {
-            R.drawable.thumb_up,
-            R.drawable.thumb_down,
-    };
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private ImageView selectedImage;
+        public TextToSpeech tts;
+
 
         public MyViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.recylcerview_row_image);
             name = itemView.findViewById(R.id.recylcerview_row_name);
+
+            tts = new TextToSpeech(itemView.getContext(), new TextToSpeech.OnInitListener() {
+                @Override
+                public void onInit(int status) {
+                    if(status != ERROR) {
+                        // 언어를 선택한다.
+                        tts.setLanguage(Locale.KOREAN);
+                    }
+                }
+            });
+            image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Store item = items.get(getAdapterPosition());
+                    String name = item.getName();
+                    Log.d("onclick",name);
+                    tts.speak(name, TextToSpeech.QUEUE_FLUSH, null);
+                }
+            });
+
+
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    FriendFragment friendFrag = new FriendFragment();
+//                    tts.speak(, TextToSpeech.QUEUE_FLUSH, null);
+//                }
+//            });
 
 //            selectedImage = itemView.findViewById(R.id.imageView);
 //            selectedImage.setOnClickListener(new View.OnClickListener() {

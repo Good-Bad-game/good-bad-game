@@ -109,21 +109,21 @@ public class Home extends AppCompatActivity {
                 tts.speak("보관함", TextToSpeech.QUEUE_FLUSH, null);
                 break;
             case 3:
-                // 첫번 째 프래그먼트 호출
+                // 세번 째 프래그먼트 호출
                 HomeFragment homeFrag = new HomeFragment();
                 transaction.replace(R.id.fragment_container, homeFrag);
                 transaction.commit();
                 tts.speak("메인화면", TextToSpeech.QUEUE_FLUSH, null);
                 break;
             case 4:
-                // 첫번 째 프래그먼트 호출
+                // 네번 째 프래그먼트 호출
                 RankingFragment rankingFrag = new RankingFragment();
                 transaction.replace(R.id.fragment_container, rankingFrag);
                 transaction.commit();
                 tts.speak("랭킹", TextToSpeech.QUEUE_FLUSH, null);
                 break;
             case 5:
-                // 첫번 째 프래그먼트 호출
+                // 다섯번 째 프래그먼트 호출
                 FriendFragment friendFrag = new FriendFragment();
                 transaction.replace(R.id.fragment_container, friendFrag);
                 transaction.commit();
