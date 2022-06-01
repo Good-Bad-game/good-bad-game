@@ -229,15 +229,21 @@ public class InGame extends AppCompatActivity {
     public void StrightVote(View view){
         if (System.currentTimeMillis() > touchPressedTime + resetTime ) {
             // 첫번째 터치
-            tts_speech("투표완료 시 다시 클릭");
-            Toast.makeText(getApplicationContext(), "다시 클릭", Toast.LENGTH_SHORT).show();
-            touchPressedTime = System.currentTimeMillis();
-            return;
+            if(checked_btn == 0){
+                tts_speech("선택 하세요");
+                return;
+            }else {
+                tts_speech("투표완료 시 다시 클릭");
+                Toast.makeText(getApplicationContext(), "다시 클릭", Toast.LENGTH_SHORT).show();
+                touchPressedTime = System.currentTimeMillis();
+                return;
+            }
         }
         // 첫번째 터치후 두번째 터치를 resetTime에 설정된 2초안에 하지 않을시 아래 두번째 터치부분은 실행되지 않음.
         if (System.currentTimeMillis() <= touchPressedTime + resetTime ) {
             // 두번째 터치
             // 동작 수행.
+            if (checked_btn == 0) return;
 
 //        tts.speak("회의 종료를 눌렀습니다.", TextToSpeech.QUEUE_FLUSH, null);
             tts_speech("회의 종료");
@@ -258,61 +264,67 @@ public class InGame extends AppCompatActivity {
         if(checked_btn == 1){
             tts_speech("1번 취소");
             checked_btn = 0;
-        }
+        }else{
         checked_btn = 1;
         tts_speech("1번");
+        }
     }
 
     public void team2(View view) {
         if(checked_btn == 2){
             tts_speech("2번 취소");
             checked_btn = 0;
+        }else{
+            checked_btn = 2;
+            tts_speech("2번");
         }
-        checked_btn = 2;
-        tts_speech("2번");
     }
 
     public void team3(View view) {
-        if(checked_btn == 3){
-            tts_speech("3번 취소");
-            checked_btn = 0;
-        }
         if(player_num >= 3){
-            checked_btn = 3;
-            tts_speech("3번");
+            if(checked_btn == 3){
+                tts_speech("3번 취소");
+                checked_btn = 0;
+            }else{
+                checked_btn = 3;
+                tts_speech("3번");
+            }
         }
     }
 
     public void team4(View view) {
-        if(checked_btn == 4){
-            tts_speech("4번 취소");
-            checked_btn = 0;
-        }
         if(player_num >= 4){
-            checked_btn = 4;
-            tts_speech("4번");
+            if(checked_btn == 4){
+                tts_speech("4번 취소");
+                checked_btn = 0;
+            }else {
+                checked_btn = 4;
+                tts_speech("4번");
+            }
         }
     }
 
     public void team5(View view) {
-        if(checked_btn == 5){
-            tts_speech("5번 취소");
-            checked_btn = 0;
-        }
         if(player_num >= 5){
-            checked_btn = 5;
-            tts_speech("5번");
+            if(checked_btn == 5){
+                tts_speech("5번 취소");
+                checked_btn = 0;
+            }else {
+                checked_btn = 5;
+                tts_speech("5번");
+            }
         }
     }
 
     public void team6(View view) {
-        if(checked_btn == 6){
-            tts_speech("6번 취소");
-            checked_btn = 0;
-        }
         if(player_num >= 6){
-            checked_btn = 6;
-            tts_speech("6번");
+            if(checked_btn == 6){
+                tts_speech("6번 취소");
+                checked_btn = 0;
+            }else{
+                checked_btn = 6;
+                tts_speech("6번");
+            }
         }
     }
 
