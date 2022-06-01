@@ -50,11 +50,12 @@ public class StoreFragment extends Fragment {
     private void initDataset(StoreAdapter adapter) {
         Log.d(TAG,"initDdataset");
         //for Test
-        adapter.addItem(new Store("상품1",R.drawable.thumb_up));
-        adapter.addItem(new Store("상품2",R.drawable.thumb_down));
-        adapter.addItem(new Store("상품3",R.drawable.thumb_down));
-        adapter.addItem(new Store("상품4",R.drawable.thumb_down));
-        adapter.addItem(new Store("상품5",R.drawable.thumb_down));
+        adapter.addItem(new Store("상품1",R.drawable.skin1));
+        adapter.addItem(new Store("상품2",R.drawable.skin2));
+        adapter.addItem(new Store("상품3",R.drawable.skin3));
+        adapter.addItem(new Store("상품4",R.drawable.skin4));
+        adapter.addItem(new Store("상품5",R.drawable.skin5));
+        adapter.addItem(new Store("상품6",R.drawable.skin6));
     }
 
     @Override
