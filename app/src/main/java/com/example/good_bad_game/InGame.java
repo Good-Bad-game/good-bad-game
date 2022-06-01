@@ -24,6 +24,10 @@ public class InGame extends AppCompatActivity {
     // init은 0으로 초기화
     private int checked_btn = 0;
 
+//      뒤로가기
+    private long touchPressedTime = 0;
+    private long resetTime = 2000; // 리셋 타임 설정 - 2초
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +44,6 @@ public class InGame extends AppCompatActivity {
                 if (status == TextToSpeech.SUCCESS){
                     int result = tts.setLanguage(Locale.KOREA);
                     if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-
                         Toast.makeText(InGame.this, "지원하지 않는 언어입니다.",Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -224,12 +227,25 @@ public class InGame extends AppCompatActivity {
     // 투표하기 클릭시 바로 이동
 
     public void StrightVote(View view){
+        if (System.currentTimeMillis() > touchPressedTime + resetTime ) {
+            // 첫번째 터치
+            tts_speech("투표완료 시 다시 클릭");
+            Toast.makeText(getApplicationContext(), "다시 클릭", Toast.LENGTH_SHORT).show();
+            touchPressedTime = System.currentTimeMillis();
+            return;
+        }
+        // 첫번째 터치후 두번째 터치를 resetTime에 설정된 2초안에 하지 않을시 아래 두번째 터치부분은 실행되지 않음.
+        if (System.currentTimeMillis() <= touchPressedTime + resetTime ) {
+            // 두번째 터치
+            // 동작 수행.
+
 //        tts.speak("회의 종료를 눌렀습니다.", TextToSpeech.QUEUE_FLUSH, null);
-        tts_speech("회의 종료");
-        Intent intent = new Intent(getApplicationContext(), Vote.class);
-        intent.putExtra("playerNum", player_num);
-        intent.putExtra("type", type);
-        startActivity(intent);
+            tts_speech("회의 종료");
+            Intent intent = new Intent(getApplicationContext(), Vote.class);
+            intent.putExtra("playerNum", player_num);
+            intent.putExtra("type", type);
+            startActivity(intent);
+        }
     }
 
     // 뒤로가기 막기
