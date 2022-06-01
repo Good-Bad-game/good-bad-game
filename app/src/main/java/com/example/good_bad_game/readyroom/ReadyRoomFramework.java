@@ -1,5 +1,6 @@
 package com.example.good_bad_game.readyroom;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -31,6 +32,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReadyRoomFramework extends Fragment {
+
+
     private static String TAG = "ReadyRoomFramework";
 
     private RecyclerView rvRoom;
@@ -38,8 +41,23 @@ public class ReadyRoomFramework extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private TextToSpeech tts;
 
-    public static ReadyRoomFramework newInstance() {
-        return new ReadyRoomFramework();
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    private String mParam1;
+    private String mParam2;
+
+    public ReadyRoomFramework(){
+
+    }
+
+    public static ReadyRoomFramework newInstance(String param1, String param2) {
+        ReadyRoomFramework ReadyRoomFramework = new ReadyRoomFramework();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        ReadyRoomFramework.setArguments(args);
+        return ReadyRoomFramework;
     }
     @Nullable
     @Override
@@ -47,6 +65,21 @@ public class ReadyRoomFramework extends Fragment {
         setHasOptionsMenu(true);
         Log.d(TAG, "OnCreateView");
 
+        Toast.makeText(getContext(),mParam2.toString(),Toast.LENGTH_SHORT).show();
+
+//      tts 객체 생성
+        tts = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener(){
+
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS){
+                    int result = tts.setLanguage(Locale.KOREA);
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Toast.makeText(getContext(), "지원하지 않는 언어입니다.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
 
 //      tts 객체 생성
         tts = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener(){
@@ -69,6 +102,8 @@ public class ReadyRoomFramework extends Fragment {
             public void onClick(View v) {
                 tts_speech("방만들기");
                 Intent intent = new Intent(getContext(), RoomCreate.class);
+                intent.putExtra("id",mParam1.toString());
+                intent.putExtra("nick",mParam2.toString());
                 startActivity(intent);
 
             }
@@ -150,6 +185,12 @@ public class ReadyRoomFramework extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getArguments() != null){
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+
 
     }
 

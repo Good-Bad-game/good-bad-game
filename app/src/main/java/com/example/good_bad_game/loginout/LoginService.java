@@ -1,5 +1,7 @@
 package com.example.good_bad_game.loginout;
 
+import com.example.good_bad_game.readyroom.Room;
+import com.example.good_bad_game.readyroom.getRoom;
 import com.example.good_bad_game.friend.getFriend;
 import com.example.good_bad_game.readyroom.getRoom;
 
@@ -28,5 +30,7 @@ public interface LoginService {
     @GET("room/")
     retrofit2.Call<List<getRoom>> getRoom();
 
+    @POST("room/")
+    Call<Room>  Room(@Body Room room);
 
 }

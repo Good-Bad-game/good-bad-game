@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +31,12 @@ public class StoreFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
+
+        if(getArguments() != null){
+            String id = getArguments().getString("id");
+            String nick = getArguments().getString("nick");
+            Toast.makeText(getActivity(),id,Toast.LENGTH_SHORT).show();
+        }
 
         view = inflater.inflate(R.layout.activity_store_fragment, container, false);
         rvStore = (RecyclerView) view.findViewById(R.id.grid_recyclerview);
