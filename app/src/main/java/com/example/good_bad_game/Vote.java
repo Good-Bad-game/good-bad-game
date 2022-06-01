@@ -112,6 +112,32 @@ public class Vote extends AppCompatActivity {
                 if (second.length() == 1) {
                     second = "0" + second;
                 }
+                if(min.equals("00") && second.equals("59")){
+                    tts.speak("1분남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
+                }
+                else if(min.equals("00")){
+                    if(second.equals("30")){
+                        tts.speak("30초남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                    else if(second.equals("10")){
+                        tts.speak("10초남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                    else if(second.equals("05")){
+                        tts.speak("5", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                    else if(second.equals("04")){
+                        tts.speak("4", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                    else if(second.equals("03")){
+                        tts.speak("3", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                    else if(second.equals("02")){
+                        tts.speak("2", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                    else if(second.equals("01")){
+                        tts.speak("1", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                }
 
                 count_view.setText(min + ":" + second);
 //                hour + ":" + min + ":" + second
@@ -125,6 +151,7 @@ public class Vote extends AppCompatActivity {
 
                 // 변경 후
                 count_view.setText("토론 시간 종료");
+                tts.speak("투표가 종료돠었습니다.", TextToSpeech.QUEUE_FLUSH, null);
 
                 // TODO : 타이머가 모두 종료될때 어떤 이벤트를 진행할지
 
