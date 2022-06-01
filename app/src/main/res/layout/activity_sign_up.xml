@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/sign_in_ema"
     android:clipToOutline="true"
-    tools:context=".SignUp">
+    tools:context=".loginout.SignUp">
     <View
         android:id="@+id/rectangle"
         android:layout_width="300dp"

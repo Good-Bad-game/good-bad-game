@@ -1,6 +1,6 @@
-package com.example.good_bad_game;
+package com.example.good_bad_game.loginout;
 
-import com.example.good_bad_game.readyroom.getRoom;
+import com.example.good_bad_game.friend.getFriend;
 import com.example.good_bad_game.readyroom.getRoom;
 
 import java.util.List;

@@ -57,6 +57,7 @@
         <entry key="app/src/main/res/layout/activity_my_item_fragment.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/activity_ranking.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/activity_ranking_fragment.xml" value="0.13697916666666668" />
+        <entry key="app/src/main/res/layout/activity_ranking_item.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/activity_read_room.xml" value="0.19402985074626866" />
         <entry key="app/src/main/res/layout/activity_ready_game.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/activity_ready_room_framework.xml" value="0.1" />
@@ -68,7 +69,8 @@
         <entry key="app/src/main/res/layout/activity_vote.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/item.xml" value="0.1532258064516129" />
         <entry key="app/src/main/res/layout/popup_activity.xml" value="0.17864583333333334" />
-        <entry key="app/src/main/res/layout/room_item.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/ranking_item.xml" value="0.30009002685546876" />
+        <entry key="app/src/main/res/layout/room_item.xml" value="0.25101165771484374" />
         <entry key="app/src/main/res/layout/store_item.xml" value="0.13697916666666668" />
       </map>
     </option>

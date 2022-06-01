@@ -1,4 +1,4 @@
-package com.example.good_bad_game;
+package com.example.good_bad_game.loginout;
 
 import com.google.gson.annotations.SerializedName;
 
