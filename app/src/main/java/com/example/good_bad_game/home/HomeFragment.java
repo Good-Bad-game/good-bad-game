@@ -27,7 +27,13 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
+
+        String id = getArguments().getString("id");
+        String nick = getArguments().getString("nick");
+
+
         tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener(){
+
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS){
@@ -44,7 +50,9 @@ public class HomeFragment extends Fragment {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Home)getActivity()).replaceFragment(ReadyRoomFramework.newInstance());
+
+
+                ((Home)getActivity()).replaceFragment(ReadyRoomFramework.newInstance(getArguments().getString("id"),getArguments().getString("nick")));
                 tts.speak("게임시작", TextToSpeech.QUEUE_FLUSH, null);
 
             }
