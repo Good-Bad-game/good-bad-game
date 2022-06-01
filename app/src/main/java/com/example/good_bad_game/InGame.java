@@ -7,7 +7,6 @@ import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,13 +19,17 @@ public class InGame extends AppCompatActivity {
     public TextToSpeech tts;
     private String type = "";
     private int player_num;     //6명 초기값 ( 이후 수정할 것 )
-    Button button[];
+
+    //투표할 사람을 선택했을 때 번호
+    // init은 0으로 초기화
+    private int checked_btn = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_game);
         Intent getintent = getIntent();
+
 
 
 //      tts 객체 생성
@@ -54,7 +57,8 @@ public class InGame extends AppCompatActivity {
             if(type.equals("firstIn")){
                 player_num = 6;  //6명 초기값 ( 이후 수정할 것 )
 
-                tts.speak("굿배드를 선택하세요.", TextToSpeech.QUEUE_FLUSH, null);
+//                tts.speak("굿배드를 선택하세요.", TextToSpeech.QUEUE_FLUSH, null);
+                tts_speech("굿배드를 선택하세요.");
 
                 Intent intent = new Intent(this, PopupActivity.class);
                 startActivityForResult(intent, 1);
@@ -144,29 +148,37 @@ public class InGame extends AppCompatActivity {
                 }
 
                 if(min.equals("00") && second.equals("59")){
-                    tts.speak("1분남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
+//                    tts.speak("1분남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
+                    tts_speech("1분남았습니다.");
                 }
                 else if(min.equals("00")){
                     if(second.equals("30")){
-                        tts.speak("30초남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
+//                        tts.speak("30초 남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
+                        tts_speech("30초 남았습니다.");
                     }
                     else if(second.equals("10")){
-                        tts.speak("10초남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
+//                        tts.speak("10초남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
+                        tts_speech("10초 남았습니다.");
                     }
                     else if(second.equals("05")){
-                        tts.speak("5", TextToSpeech.QUEUE_FLUSH, null);
+//                        tts.speak("5", TextToSpeech.QUEUE_FLUSH, null);
+                        tts_speech("5");
                     }
                     else if(second.equals("04")){
-                        tts.speak("4", TextToSpeech.QUEUE_FLUSH, null);
+//                        tts.speak("4", TextToSpeech.QUEUE_FLUSH, null);
+                        tts_speech("4");
                     }
                     else if(second.equals("03")){
-                        tts.speak("3", TextToSpeech.QUEUE_FLUSH, null);
+//                        tts.speak("3", TextToSpeech.QUEUE_FLUSH, null);
+                        tts_speech("3");
                     }
                     else if(second.equals("02")){
-                        tts.speak("2", TextToSpeech.QUEUE_FLUSH, null);
+//                        tts.speak("2", TextToSpeech.QUEUE_FLUSH, null);
+                        tts_speech("2");
                     }
                     else if(second.equals("01")){
-                        tts.speak("1", TextToSpeech.QUEUE_FLUSH, null);
+//                        tts.speak("1", TextToSpeech.QUEUE_FLUSH, null);
+                        tts_speech("1");
                     }
                 }
 
@@ -182,7 +194,8 @@ public class InGame extends AppCompatActivity {
 
                 // 변경 후
                 count_view.setText("토론 시간 종료");
-                tts.speak("토론이 종료되었습니다.", TextToSpeech.QUEUE_FLUSH, null);
+//                tts.speak("토론이 종료되었습니다.", TextToSpeech.QUEUE_FLUSH, null);
+                tts_speech("토론 종료");
 
                 // TODO : 타이머가 모두 종료될때 어떤 이벤트를 진행할지
                 Intent intent = new Intent(getApplicationContext(), Vote.class);
@@ -192,6 +205,7 @@ public class InGame extends AppCompatActivity {
 
             }
         }.start();
+
 
     }
 
@@ -210,7 +224,8 @@ public class InGame extends AppCompatActivity {
     // 투표하기 클릭시 바로 이동
 
     public void StrightVote(View view){
-        tts.speak("회의 종료를 눌렀습니다.", TextToSpeech.QUEUE_FLUSH, null);
+//        tts.speak("회의 종료를 눌렀습니다.", TextToSpeech.QUEUE_FLUSH, null);
+        tts_speech("회의 종료");
         Intent intent = new Intent(getApplicationContext(), Vote.class);
         intent.putExtra("playerNum", player_num);
         intent.putExtra("type", type);
@@ -220,5 +235,71 @@ public class InGame extends AppCompatActivity {
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
+    }
+
+    public void team1(View view) {
+        if(checked_btn == 1){
+            tts_speech("1번 취소");
+            checked_btn = 0;
+        }
+        checked_btn = 1;
+        tts_speech("1번");
+    }
+
+    public void team2(View view) {
+        if(checked_btn == 2){
+            tts_speech("2번 취소");
+            checked_btn = 0;
+        }
+        checked_btn = 2;
+        tts_speech("2번");
+    }
+
+    public void team3(View view) {
+        if(checked_btn == 3){
+            tts_speech("3번 취소");
+            checked_btn = 0;
+        }
+        if(player_num >= 3){
+            checked_btn = 3;
+            tts_speech("3번");
+        }
+    }
+
+    public void team4(View view) {
+        if(checked_btn == 4){
+            tts_speech("4번 취소");
+            checked_btn = 0;
+        }
+        if(player_num >= 4){
+            checked_btn = 4;
+            tts_speech("4번");
+        }
+    }
+
+    public void team5(View view) {
+        if(checked_btn == 5){
+            tts_speech("5번 취소");
+            checked_btn = 0;
+        }
+        if(player_num >= 5){
+            checked_btn = 5;
+            tts_speech("5번");
+        }
+    }
+
+    public void team6(View view) {
+        if(checked_btn == 6){
+            tts_speech("6번 취소");
+            checked_btn = 0;
+        }
+        if(player_num >= 6){
+            checked_btn = 6;
+            tts_speech("6번");
+        }
+    }
+
+    public void tts_speech(String text){
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
 }
