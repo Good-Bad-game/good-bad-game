@@ -15,6 +15,28 @@ public class ReadyGame extends AppCompatActivity {
         setContentView(R.layout.activity_ready_game);
         Button btn_start = findViewById(R.id.btn_start);
 
+        Thread t = new Thread(){
+            @Override
+            public void run() {
+
+                while(!isInterrupted()){
+                    try {
+                        Thread.sleep(3000);
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+
+
+                            }
+                        });
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
