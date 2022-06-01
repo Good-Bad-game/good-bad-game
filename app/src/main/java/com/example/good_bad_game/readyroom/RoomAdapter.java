@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
@@ -14,8 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.good_bad_game.R;
 import com.example.good_bad_game.ReadyGame;
-import com.example.good_bad_game.SignIn;
-import com.example.good_bad_game.home.Home;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +68,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
             super(itemView);
             roomNumber = itemView.findViewById(R.id.room_number);
             roomTitle = itemView.findViewById(R.id.room_title);
+
 
         }
 

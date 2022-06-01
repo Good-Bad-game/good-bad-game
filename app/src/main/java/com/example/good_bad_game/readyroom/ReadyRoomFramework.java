@@ -10,15 +10,12 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.good_bad_game.R;
-import com.example.good_bad_game.ReadyGame;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class ReadyRoomFramework extends Fragment {
     private static String TAG = "ReadyRoomFramework";
@@ -38,6 +35,16 @@ public class ReadyRoomFramework extends Fragment {
 
 
         View view = inflater.inflate(R.layout.activity_ready_room_framework,container, false);
+        Button create = (Button) view.findViewById(R.id.make_room);
+        create.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), RoomCreate.class);
+                startActivity(intent);
+
+            }
+        });
+
         rvRoom = (RecyclerView) view.findViewById(R.id.rc_roomView);
         rvRoom.setHasFixedSize(true);
 
