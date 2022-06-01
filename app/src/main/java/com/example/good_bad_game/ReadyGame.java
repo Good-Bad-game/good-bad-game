@@ -20,7 +20,10 @@ public class ReadyGame extends AppCompatActivity {
         Intent receive_intent = getIntent();
         String id = receive_intent.getStringExtra("id");
         String nick = receive_intent.getStringExtra("nick");
-        Toast.makeText(getApplicationContext(),nick,Toast.LENGTH_SHORT).show();
+        String room_num = receive_intent.getStringExtra("room_num");
+        Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
+
+
 
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override

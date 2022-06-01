@@ -21,6 +21,8 @@ import com.example.good_bad_game.ReadyGame;
 import com.example.good_bad_game.SignIn;
 import com.example.good_bad_game.SignUp;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,7 +68,7 @@ public class RoomCreate extends AppCompatActivity {
             Log.d(TAG,"room_mane is null");
             Toast.makeText(getApplicationContext(), "방이름을 정하시오.", Toast.LENGTH_SHORT).show();
         } else {//공백이 아닐 때 처리할 내용
-            Log.d(TAG,"room_mane is not null");
+            Log.d(TAG,"room_name is not null");
 
             Log.d(TAG,"POST ROOM INFOMATION START");
 
@@ -77,14 +79,21 @@ public class RoomCreate extends AppCompatActivity {
 
             LoginService LoginService = retrofit.create(LoginService.class);
 
-            Room room = new Room(room_title);
+            String host = id;
+            String match_room = room_title;
+
+
+
+            Room room = new Room(null, match_room, host);
+
+            Log.d("TAG1",room.getHost());
 
             Call<Room> call = LoginService.Room(room);
 
             call.enqueue(new Callback<Room>() {
                 @Override
                 public void onResponse(Call<Room> call, Response<Room> response) {
-                    if (!response.isSuccessful()){
+                        if (!response.isSuccessful()){
                         Log.d("Error Code1 : ", String.valueOf(response.code()));
                         return;
                         }
