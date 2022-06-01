@@ -39,6 +39,10 @@ public class Home extends AppCompatActivity {
         TextView nickname = findViewById(R.id.id_12345678);
         Intent receive_intent = getIntent();
         String move_nick = receive_intent.getStringExtra("nickname");
+        String id = receive_intent.getStringExtra("id");
+
+        Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
+
         nickname.setText(move_nick);
 
         tts = new TextToSpeech(Home.this, new TextToSpeech.OnInitListener(){

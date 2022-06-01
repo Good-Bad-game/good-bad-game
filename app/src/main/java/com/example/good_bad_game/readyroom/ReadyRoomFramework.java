@@ -2,6 +2,7 @@ package com.example.good_bad_game.readyroom;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +11,26 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.good_bad_game.LoginService;
 import com.example.good_bad_game.R;
+import com.example.good_bad_game.ReadyGame;
+import com.example.good_bad_game.friend.Friend;
+import com.example.good_bad_game.getFriend;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReadyRoomFramework extends Fragment {
     private static String TAG = "ReadyRoomFramework";
@@ -54,10 +69,18 @@ public class ReadyRoomFramework extends Fragment {
         adapter = new RoomAdapter();
         initDataset(adapter);
 
-        rvRoom.setAdapter(adapter);
-        rvRoom.setHasFixedSize(true);
-        rvRoom.setItemAnimator(new DefaultItemAnimator());
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                rvRoom.setAdapter(adapter);
+                rvRoom.setHasFixedSize(true);
+                rvRoom.setItemAnimator(new DefaultItemAnimator());
+            }
+        }, 500);
+
+
         return view;
+
     }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -66,16 +89,48 @@ public class ReadyRoomFramework extends Fragment {
 
 
     private void initDataset(RoomAdapter adapter) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://54.180.121.58:8080/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        LoginService LoginService = retrofit.create(LoginService.class);
+        Call<List<getRoom>> call = LoginService.getRoom();
+
+        call.enqueue(new Callback<List<getRoom>>() {
+            @Override
+            public void onResponse(retrofit2.Call<List<getRoom>> call, Response<List<getRoom>> response) {
+                if (!response.isSuccessful())
+                {
+                    Log.d("onResponse 발동","Connection은 성공하였으나 code 에러 발생");
+                    return;
+
+                }
+
+                List<getRoom> Rooms = response.body();
+
+                for ( getRoom Roomitem : Rooms)
+                {
+                    Log.d("onResponse 발동","데이터 가져오기 시작");
+                    Log.d("Room_num : ", Roomitem.getRoomNumber());
+                    Log.d("Room_Title : ", Roomitem.getRoomTitle());
+                    adapter.addItem(new Room (Roomitem.getRoomNumber(), Roomitem.getRoomTitle()));
+                }
+
+            }
+
+            @Override
+            public void onFailure(retrofit2.Call<List<getRoom>> call, Throwable t) {
+                Log.d("onFailure 발동","Connection Error");
+                return;
+            }
+        });
+
+
         //for Test
-        adapter.addItem(new Room("001", "테스트1번방"));
-        adapter.addItem(new Room("002", "테스트2번방"));
-        adapter.addItem(new Room("003", "테스트3번방"));
-        adapter.addItem(new Room("004", "테스트4번방"));
-        adapter.addItem(new Room("005", "테스트5번방"));
-        adapter.addItem(new Room("006", "테스트6번방"));
-        adapter.addItem(new Room("007", "테스트7번방"));
-        adapter.addItem(new Room("008", "테스트8번방"));
-        adapter.addItem(new Room("009", "테스트9번방"));
+
+
     }
 
     @Override

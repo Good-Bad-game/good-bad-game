@@ -97,6 +97,7 @@ public class SignIn extends AppCompatActivity {
 
                                 boolean pass = true;
                                 Intent intent = new Intent(getApplicationContext(), Home.class);
+                                intent.putExtra("id", login_info.get_id());
                                 intent.putExtra("nickname",login_info.get_nickname());
                                 startActivity(intent);
 

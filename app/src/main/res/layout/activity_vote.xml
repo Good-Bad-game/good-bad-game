@@ -37,10 +37,10 @@
         android:layout_height="140dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="60dp"
-        android:background="@drawable/iamge"
-        android:text="팀1"
         android:textColor="@color/yellow"
-        android:textSize="40dp" />
+        android:text="팀1"
+        android:textSize="40dp"
+        android:background="@drawable/iamge" />
 
     <Button
         android:id="@+id/team2"
@@ -106,8 +106,8 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="520dp"
         android:background="@drawable/iamge"
-        android:onClick="PassOrder"
         android:text="기권"
+        android:onClick="PassOrder"
         android:textAlignment="center"
         android:textColor="@color/yellow"
         android:textSize="35dp" />
@@ -119,8 +119,8 @@
         android:layout_marginStart="240dp"
         android:layout_marginTop="520dp"
         android:background="@drawable/iamge"
-        android:onClick="CheckOrder"
         android:text="확인"
+        android:onClick="CheckOrder"
         android:textAlignment="center"
         android:textColor="@color/yellow"
         android:textSize="35dp" />

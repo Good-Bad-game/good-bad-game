@@ -1,26 +1,26 @@
 package com.example.good_bad_game;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import android.os.Handler;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 
 public class SignUp extends AppCompatActivity {
@@ -51,7 +51,7 @@ public class SignUp extends AppCompatActivity {
         });
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://54.180.121.58:8000/")
+                .baseUrl("http://54.180.121.58:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
@@ -99,7 +99,7 @@ public class SignUp extends AppCompatActivity {
                 if (illegal_pw_content == "All Pass" && legal_email){
 
                     Log.d("암호화 전 비밀번호 : ", ipt_password);
-//                ipt_password = passwordHash(ipt_password);
+                    ipt_password = passwordHash(ipt_password);
                     Log.d("암호화 된 비밀번호 : ", ipt_password);
 
                     Log.d("password 인증", illegal_pw_content);

@@ -2,6 +2,8 @@ package com.example.good_bad_game;
 
 public class Login {
 
+    private String id;
+
     private String mail;
 
     private String password;
@@ -15,6 +17,7 @@ public class Login {
     private String userid;
 
 
+    public String get_id(){return id;}
 
     public String get_password(){
         return password;
