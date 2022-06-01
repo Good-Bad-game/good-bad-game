@@ -195,12 +195,11 @@ public class Vote extends AppCompatActivity {
     }
 
     //뒤로가기 막기
-
-
     @Override
     public void onBackPressed() {
 //        super.onBackPressed();
     }
+
     public void tts_speech(String text){
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
     }
