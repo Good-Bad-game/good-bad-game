@@ -45,10 +45,10 @@
             android:name=".PopupActivity"
             android:theme="@android:style/Theme.Dialog" />
         <activity
-            android:name=".SignIn"
+            android:name=".home.Home"
             android:exported="false" />
         <activity
-            android:name=".home.Home"
+            android:name=".SignIn"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

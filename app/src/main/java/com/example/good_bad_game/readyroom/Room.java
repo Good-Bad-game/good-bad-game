@@ -11,4 +11,8 @@ public class Room {
         this.id = num;
         this.match_room = title;
     }
+
+    public Room(String title){
+        this.match_room = title;
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.good_bad_game.readyroom;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,14 +35,31 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ReadyRoomFramework extends Fragment {
+
+
     private static String TAG = "ReadyRoomFramework";
 
     private RecyclerView rvRoom;
     private RoomAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    public static ReadyRoomFramework newInstance() {
-        return new ReadyRoomFramework();
+    private static final String ARG_PARAM1 = "param1";
+    private static final String ARG_PARAM2 = "param2";
+
+    private String mParam1;
+    private String mParam2;
+
+    public ReadyRoomFramework(){
+
+    }
+
+    public static ReadyRoomFramework newInstance(String param1, String param2) {
+        ReadyRoomFramework ReadyRoomFramework = new ReadyRoomFramework();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
+        ReadyRoomFramework.setArguments(args);
+        return ReadyRoomFramework;
     }
     @Nullable
     @Override
@@ -48,6 +67,7 @@ public class ReadyRoomFramework extends Fragment {
         setHasOptionsMenu(true);
         Log.d(TAG, "OnCreateView");
 
+        Toast.makeText(getContext(),mParam2.toString(),Toast.LENGTH_SHORT).show();
 
         View view = inflater.inflate(R.layout.activity_ready_room_framework,container, false);
         Button create = (Button) view.findViewById(R.id.make_room);
@@ -55,6 +75,8 @@ public class ReadyRoomFramework extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), RoomCreate.class);
+                intent.putExtra("id",mParam1.toString());
+                intent.putExtra("nick",mParam2.toString());
                 startActivity(intent);
 
             }
@@ -136,6 +158,12 @@ public class ReadyRoomFramework extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getArguments() != null){
+            mParam1 = getArguments().getString(ARG_PARAM1);
+            mParam2 = getArguments().getString(ARG_PARAM2);
+        }
+
+
 
     }
 
