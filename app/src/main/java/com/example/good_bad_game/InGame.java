@@ -7,6 +7,7 @@ import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,13 +18,18 @@ import java.util.Locale;
 public class InGame extends AppCompatActivity {
     private static String TAG = "InGameActivity";
     public TextToSpeech tts;
-    String type = "";
+    private String type = "";
+    private int player_num;     //6명 초기값 ( 이후 수정할 것 )
+    Button button[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_game);
+        Intent getintent = getIntent();
 
+
+//      tts 객체 생성
         tts = new TextToSpeech(InGame.this, new TextToSpeech.OnInitListener(){
 
             @Override
@@ -41,22 +47,26 @@ public class InGame extends AppCompatActivity {
         // 게임 시작
 
         // GOOD BAD CHOICE ------------------------------------------------------------------------
-        Intent getintent = getIntent();
+
         if(!TextUtils.isEmpty(getintent.getStringExtra("type"))){
             type = getintent.getStringExtra("type");
-            tts.speak("굿배드를 선택하세요.", TextToSpeech.QUEUE_FLUSH, null);
 
             if(type.equals("firstIn")){
+                player_num = 6;  //6명 초기값 ( 이후 수정할 것 )
+
+                tts.speak("굿배드를 선택하세요.", TextToSpeech.QUEUE_FLUSH, null);
+
                 Intent intent = new Intent(this, PopupActivity.class);
                 startActivityForResult(intent, 1);
             }
         }
 
+
+
         // 타이머 코딩 부분 --------------------------------------------------------------------------
 
         TextView count_view = findViewById(R.id.time);
 
-        int player_num = 6;     //6명 초기값 ( 이후 수정할 것 )
         String player_num2 = Integer.toString(player_num);
         String count_num = "040";
 
@@ -200,7 +210,9 @@ public class InGame extends AppCompatActivity {
     // 투표하기 클릭시 바로 이동
 
     public void StrightVote(View view){
+        tts.speak("회의 종료를 눌렀습니다.", TextToSpeech.QUEUE_FLUSH, null);
         Intent intent = new Intent(getApplicationContext(), Vote.class);
+        intent.putExtra("playerNum", player_num);
         intent.putExtra("type", type);
         startActivity(intent);
     }

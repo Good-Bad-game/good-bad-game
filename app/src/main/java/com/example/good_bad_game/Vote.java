@@ -16,7 +16,7 @@ import java.util.Locale;
 public class Vote extends AppCompatActivity {
     private static String TAG = "VoteActivity";
     private TextToSpeech tts;
-    String type = "";
+    private String type = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

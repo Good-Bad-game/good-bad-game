@@ -35,10 +35,10 @@
         android:layout_height="140dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="60dp"
-        android:textColor="@color/yellow"
+        android:background="@drawable/iamge"
         android:text="팀1"
-        android:textSize="40dp"
-        android:background="@drawable/iamge" />
+        android:textColor="@color/yellow"
+        android:textSize="40dp" />
 
     <Button
         android:id="@+id/team2"
@@ -104,8 +104,8 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="520dp"
         android:background="@drawable/iamge"
-        android:text="회의종료"
         android:onClick="StrightVote"
+        android:text="회의종료"
         android:textAlignment="center"
         android:textColor="@color/yellow"
         android:textSize="35dp" />
