@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -20,19 +19,15 @@ import java.util.Locale;
 public class HomeFragment extends Fragment {
 
     public TextToSpeech tts;
+    public String TAG = "HomeFragment";
+    private String id;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
-
-        String id = getArguments().getString("id");
-        String nick = getArguments().getString("nick");
-
-
         tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener(){
-
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS){
@@ -49,9 +44,7 @@ public class HomeFragment extends Fragment {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-                ((Home)getActivity()).replaceFragment(ReadyRoomFramework.newInstance(getArguments().getString("id"),getArguments().getString("nick")));
+                ((Home)getActivity()).replaceFragment(ReadyRoomFramework.newInstance());
                 tts.speak("게임시작", TextToSpeech.QUEUE_FLUSH, null);
 
             }

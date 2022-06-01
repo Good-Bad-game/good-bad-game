@@ -81,6 +81,20 @@ public class ReadyRoomFramework extends Fragment {
             }
         });
 
+//      tts 객체 생성
+        tts = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener(){
+
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS){
+                    int result = tts.setLanguage(Locale.KOREA);
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Toast.makeText(getContext(), "지원하지 않는 언어입니다.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
         View view = inflater.inflate(R.layout.activity_ready_room_framework,container, false);
         Button create = (Button) view.findViewById(R.id.make_room);
         create.setOnClickListener(new View.OnClickListener() {
