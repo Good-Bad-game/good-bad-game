@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,12 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.good_bad_game.LoginService;
 import com.example.good_bad_game.R;
-import com.example.good_bad_game.ReadyGame;
-import com.example.good_bad_game.friend.Friend;
-import com.example.good_bad_game.getFriend;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.List;
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,6 +39,7 @@ public class ReadyRoomFramework extends Fragment {
     private RecyclerView rvRoom;
     private RoomAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    private TextToSpeech tts;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -69,11 +67,26 @@ public class ReadyRoomFramework extends Fragment {
 
         Toast.makeText(getContext(),mParam2.toString(),Toast.LENGTH_SHORT).show();
 
+//      tts 객체 생성
+        tts = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener(){
+
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS){
+                    int result = tts.setLanguage(Locale.KOREA);
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Toast.makeText(getContext(), "지원하지 않는 언어입니다.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
         View view = inflater.inflate(R.layout.activity_ready_room_framework,container, false);
         Button create = (Button) view.findViewById(R.id.make_room);
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tts_speech("방만들기");
                 Intent intent = new Intent(getContext(), RoomCreate.class);
                 intent.putExtra("id",mParam1.toString());
                 intent.putExtra("nick",mParam2.toString());
@@ -167,5 +180,8 @@ public class ReadyRoomFramework extends Fragment {
 
     }
 
+    public void tts_speech(String text){
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    }
 
 }
