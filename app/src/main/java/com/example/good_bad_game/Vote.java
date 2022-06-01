@@ -3,6 +3,7 @@ package com.example.good_bad_game;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -10,14 +11,34 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 public class Vote extends AppCompatActivity {
     private static String TAG = "VoteActivity";
+    private TextToSpeech tts;
     String type = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote);
+
+//      tts객체 생성
+        tts = new TextToSpeech(Vote.this, new TextToSpeech.OnInitListener(){
+
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS){
+                    int result = tts.setLanguage(Locale.KOREA);
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+
+                        Toast.makeText(Vote.this, "지원하지 않는 언어입니다.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+        tts.speak("투표를 시작합니다.", TextToSpeech.QUEUE_FLUSH, null);
+
 
         // 타이머 코딩 부분 --------------------------------------------------------------------------
         Intent intent = getIntent();
