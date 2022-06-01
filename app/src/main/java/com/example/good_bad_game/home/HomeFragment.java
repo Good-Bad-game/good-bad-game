@@ -2,6 +2,7 @@ package com.example.good_bad_game.home;
 
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +20,24 @@ import java.util.Locale;
 public class HomeFragment extends Fragment {
 
     public TextToSpeech tts;
+    public String TAG = "HomeFragment";
+    private String id;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener(){
 
+        Bundle bundle = getArguments();  //번들 받기. getArguments() 메소드로 받음.
+        if(bundle != null){
+            id = bundle.getString("id"); //Name 받기.
+            Log.d(TAG,id);
+        }else{
+            Log.d(TAG,"id not found");
+        }
+
+
+        tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener(){
             @Override
             public void onInit(int status) {
                 if (status == TextToSpeech.SUCCESS){

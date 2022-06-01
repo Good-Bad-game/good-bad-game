@@ -28,7 +28,7 @@ public class RoomCreate extends AppCompatActivity {
         setContentView(R.layout.activity_room_create);
 
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         LayoutInflater inflater = getLayoutInflater();
         View dialoglayout = inflater.inflate(R.layout.activity_room_create, null);
@@ -50,6 +50,7 @@ public class RoomCreate extends AppCompatActivity {
             Log.d(TAG,"room_mane is not null");
             Intent intent = new Intent(getApplicationContext(), ReadyGame.class);
             intent.putExtra("roomname",room_name.toString());
+            setResult(RESULT_OK, intent);
             startActivity(intent);
         }
 
