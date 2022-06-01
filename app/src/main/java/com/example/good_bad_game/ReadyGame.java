@@ -1,11 +1,11 @@
 package com.example.good_bad_game;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ReadyGame extends AppCompatActivity {
 
@@ -19,7 +19,7 @@ public class ReadyGame extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), InGame.class);
-                intent.putExtra("type", "1");
+                intent.putExtra("type", "firstIn");
                 startActivity(intent);
             }
         });

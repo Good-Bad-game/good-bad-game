@@ -3,14 +3,20 @@ package com.example.good_bad_game;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.speech.tts.TextToSpeech;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 public class InGame extends AppCompatActivity {
     private static String TAG = "InGameActivity";
+    public TextToSpeech tts;
     String type = "";
 
     @Override
@@ -18,14 +24,33 @@ public class InGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_game);
 
+        tts = new TextToSpeech(InGame.this, new TextToSpeech.OnInitListener(){
+
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS){
+                    int result = tts.setLanguage(Locale.KOREA);
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+
+                        Toast.makeText(InGame.this, "지원하지 않는 언어입니다.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
         // 게임 시작
 
         // GOOD BAD CHOICE ------------------------------------------------------------------------
         Intent getintent = getIntent();
-        type = getintent.getStringExtra("type");
+        if(!TextUtils.isEmpty(getintent.getStringExtra("type"))){
+            type = getintent.getStringExtra("type");
+            tts.speak("굿배드를 선택하세요.", TextToSpeech.QUEUE_FLUSH, null);
 
-        Intent intent = new Intent(this, PopupActivity.class);
-        startActivityForResult(intent, 1);
+            if(type.equals("firstIn")){
+                Intent intent = new Intent(this, PopupActivity.class);
+                startActivityForResult(intent, 1);
+            }
+        }
 
         // 타이머 코딩 부분 --------------------------------------------------------------------------
 
@@ -108,6 +133,33 @@ public class InGame extends AppCompatActivity {
                     second = "0" + second;
                 }
 
+                if(min.equals("00") && second.equals("59")){
+                    tts.speak("1분남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
+                }
+                else if(min.equals("00")){
+                    if(second.equals("30")){
+                        tts.speak("30초남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                    else if(second.equals("10")){
+                        tts.speak("10초남았습니다.", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                    else if(second.equals("05")){
+                        tts.speak("5", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                    else if(second.equals("04")){
+                        tts.speak("4", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                    else if(second.equals("03")){
+                        tts.speak("3", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                    else if(second.equals("02")){
+                        tts.speak("2", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                    else if(second.equals("01")){
+                        tts.speak("1", TextToSpeech.QUEUE_FLUSH, null);
+                    }
+                }
+
                 count_view.setText(min + ":" + second);
 //                hour + ":" + min + ":" + second
 //                Log.d("시간변경됨", min + ":" + second);
@@ -120,6 +172,7 @@ public class InGame extends AppCompatActivity {
 
                 // 변경 후
                 count_view.setText("토론 시간 종료");
+                tts.speak("토론이 종료되었습니다.", TextToSpeech.QUEUE_FLUSH, null);
 
                 // TODO : 타이머가 모두 종료될때 어떤 이벤트를 진행할지
                 Intent intent = new Intent(getApplicationContext(), Vote.class);
