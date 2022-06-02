@@ -1,6 +1,5 @@
 package com.example.good_bad_game.readyroom;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -19,8 +18,8 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.good_bad_game.loginout.LoginService;
 import com.example.good_bad_game.R;
+import com.example.good_bad_game.loginout.LoginService;
 
 import java.util.List;
 import java.util.Locale;
@@ -66,20 +65,6 @@ public class ReadyRoomFramework extends Fragment {
         Log.d(TAG, "OnCreateView");
 
         Toast.makeText(getContext(),mParam1.toString(),Toast.LENGTH_SHORT).show();
-
-//      tts 객체 생성
-        tts = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener(){
-
-            @Override
-            public void onInit(int status) {
-                if (status == TextToSpeech.SUCCESS){
-                    int result = tts.setLanguage(Locale.KOREA);
-                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                        Toast.makeText(getContext(), "지원하지 않는 언어입니다.",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        });
 
 //      tts 객체 생성
         tts = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener(){

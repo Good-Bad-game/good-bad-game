@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -28,18 +29,15 @@ public class HomeFragment extends Fragment {
         setHasOptionsMenu(true);
 
 
-        String id = getArguments().getString("id");
-        String nick = getArguments().getString("nick");
+//        String id = getArguments().getString("id");
+//        String nick = getArguments().getString("nick");
 
 
-        tts = new TextToSpeech(getActivity(), new TextToSpeech.OnInitListener(){
-
-            @Override
-            public void onInit(int status) {
-                if (status == TextToSpeech.SUCCESS){
-                    int result = tts.setLanguage(Locale.KOREA);
-                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                    }
+        tts = new TextToSpeech(getActivity(), status -> {
+            if (status == TextToSpeech.SUCCESS){
+                int result = tts.setLanguage(Locale.KOREA);
+                if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                    Toast.makeText(getContext(), "지원하지 않는 언어입니다.",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -47,15 +45,10 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_home_fragment, null);
         Button start = view.findViewById(R.id.btn_start);
 
-        start.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        start.setOnClickListener(v -> {
+            ((Home)getActivity()).replaceFragment(ReadyRoomFramework.newInstance(getArguments().getString("id"),getArguments().getString("nick")));
+            tts.speak("게임시작", TextToSpeech.QUEUE_FLUSH, null);
 
-
-                ((Home)getActivity()).replaceFragment(ReadyRoomFramework.newInstance(getArguments().getString("id"),getArguments().getString("nick")));
-                tts.speak("게임시작", TextToSpeech.QUEUE_FLUSH, null);
-
-            }
         });
 
         return view;
