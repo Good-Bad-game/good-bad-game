@@ -1,5 +1,6 @@
 package com.example.good_bad_game;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,8 +12,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
+import com.example.good_bad_game.home.Home;
+import com.example.good_bad_game.loginout.Login;
 import com.example.good_bad_game.loginout.LoginService;
+import com.example.good_bad_game.loginout.SignIn;
 import com.example.good_bad_game.readyroom.Room;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -24,6 +30,8 @@ public class ReadyGame extends AppCompatActivity {
 
     private String id;
     private String v_type;
+    private String room_num;
+    private int num = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +43,10 @@ public class ReadyGame extends AppCompatActivity {
         Intent receive_intent = getIntent();
         id = receive_intent.getStringExtra("id");
         v_type = receive_intent.getStringExtra("v_type"); // 방문 타입
+        room_num = receive_intent.getStringExtra("room_num");
         String nick = receive_intent.getStringExtra("nick");
-        String room_num = receive_intent.getStringExtra("room_num");
+
+
         Toast.makeText(getApplicationContext(),v_type,Toast.LENGTH_SHORT).show();
         Log.d("v_type : ", v_type);
 
@@ -101,14 +111,71 @@ public class ReadyGame extends AppCompatActivity {
 
         LoginService LoginService = retrofit.create(LoginService.class);
 
-        LoginService.deleteMatching(1).enqueue(new Callback<Void>() {
+        LoginService.deleteMatching(Integer.parseInt(id)).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if (response.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), "삭제 성공", Toast.LENGTH_SHORT).show();
+                    Log.d("Matching 삭제 성공!", "Matching 삭제 성공!");
+
+                    Call<List<getMatching>> call2 = LoginService.getMatching();
+
+                    call2.enqueue(new Callback<List<getMatching>>() {
+                        @Override
+                        public void onResponse(retrofit2.Call<List<getMatching>> call, Response<List<getMatching>> response) {
+                            if (!response.isSuccessful())
+                            {
+                                Log.d("onResponse 발동","Connection은 성공하였으나 code 에러 발생");
+                                return;
+                            }
+
+                            List<getMatching> Matching_infos = response.body();
+
+                            for ( getMatching matching_info : Matching_infos)
+                            {
+                                if ( matching_info.getMatchIdx().equals(room_num)){
+                                    num = num + 1;
+                                }
+                            }
+
+                            Log.d("num : ", Integer.toString(num));
+
+                            if (num == 0){
+
+                                Log.d("room_num : ", room_num);
+
+                                LoginService.deleteRoom(Integer.parseInt(room_num)).enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
+                                        if (response.isSuccessful()){
+                                            Log.d("방 삭제 성공!", "방 삭제 성공!");
+                                        }
+                                        else{
+                                            Log.d("방 삭제 실패!", "방 삭제 실패!");
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
+
+                                    }
+                                });
+
+                            }
+                            else{
+                                finish();
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(retrofit2.Call<List<getMatching>> call, Throwable t) {
+                            Log.d("onFailure 발동","Connection 실패");
+                        }
+                    });
+
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "삭제 실패" , Toast.LENGTH_SHORT).show();
+                    Log.d("Matching 삭제 실패!", "Matching 삭제 실패!");
                 }
             }
 

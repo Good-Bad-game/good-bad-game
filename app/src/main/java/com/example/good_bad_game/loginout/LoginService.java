@@ -2,6 +2,7 @@ package com.example.good_bad_game.loginout;
 
 import com.example.good_bad_game.Matching;
 import com.example.good_bad_game.friend.getFriend;
+import com.example.good_bad_game.getMatching;
 import com.example.good_bad_game.readyroom.Room;
 import com.example.good_bad_game.readyroom.getRoom;
 import com.example.good_bad_game.friend.getFriend;
@@ -33,6 +34,12 @@ public interface LoginService {
 
     @POST("room/")
     Call<Room>  Room(@Body Room room);
+
+    @DELETE("room/{id}")
+    Call<Void> deleteRoom(@Path("id") int id);
+
+    @GET("user-matching/")
+    retrofit2.Call<List<getMatching>> getMatching();
 
     @POST("user-matching/")
     Call<Matching>  Matching(@Body Matching matching);
