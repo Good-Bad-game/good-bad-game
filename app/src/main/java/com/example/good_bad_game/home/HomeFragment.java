@@ -29,8 +29,8 @@ public class HomeFragment extends Fragment {
         setHasOptionsMenu(true);
 
 
-//        String id = getArguments().getString("id");
-//        String nick = getArguments().getString("nick");
+        String id = getArguments().getString("id");
+        String nick = getArguments().getString("nick");
 
 
         tts = new TextToSpeech(getActivity(), status -> {
