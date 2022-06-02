@@ -1,6 +1,7 @@
 package com.example.good_bad_game.readyroom;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,14 +12,30 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.good_bad_game.LoginService;
+import com.example.good_bad_game.Matching;
 import com.example.good_bad_game.R;
 import com.example.good_bad_game.ReadyGame;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> {
     private static final String TAG = "RoomAdapter";
+
+    private String mParam1;
+    private String mParam2;
+
+    public RoomAdapter(String mParam1, String mParam2){
+        this.mParam1 = mParam1;
+        this.mParam2 = mParam2;
+    }
 
     //리스트는 무조건 데이터를 필요로함
     private List<Room> items = new ArrayList<>();
@@ -43,9 +60,58 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), ReadyGame.class);
-                intent.putExtra("room_num", room.getRoomNumber());
-                ContextCompat.startActivity(v.getContext(), intent, null);
+                // room_num ->  matchIdx
+                // id -> userId
+                String userId = mParam1;
+                String matchIdx = room.getRoomNumber();
+                String nick = mParam2;
+
+                Log.d("id : ", userId);
+                Log.d("matchIdx : ", matchIdx);
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("http://54.180.121.58:8080/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                Matching matching = new Matching(null, userId, matchIdx);
+
+                LoginService LoginService = retrofit.create(LoginService.class);
+
+                Call<Matching> call = LoginService.Matching(matching);
+
+                call.enqueue(new Callback<Matching>() {
+                    @Override
+                    public void onResponse(Call<Matching> call, Response<Matching> response) {
+                        if (!response.isSuccessful()){
+                            Log.d("Error Code1 : ", String.valueOf(response.code()));
+                            return;
+                        }
+
+                        Matching MatchingResponse = response.body();
+
+                        Log.d("Success Code : ", "Post 성공");
+
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent(v.getContext(), ReadyGame.class);
+                                intent.putExtra("room_num", room.getRoomNumber());
+                                ContextCompat.startActivity(v.getContext(), intent, null);;
+                            }
+                        }, 500);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Matching> call, Throwable t) {
+                        Log.d("Error Code2",t.getMessage());
+                    }
+                });
+
+
+
+
             }
         });
     }
