@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.good_bad_game.LoginService;
+import com.example.good_bad_game.loginout.LoginService;
 import com.example.good_bad_game.Matching;
 import com.example.good_bad_game.R;
 import com.example.good_bad_game.ReadyGame;

@@ -14,14 +14,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.good_bad_game.LoginService;
-import com.example.good_bad_game.Post;
 import com.example.good_bad_game.R;
 import com.example.good_bad_game.ReadyGame;
-import com.example.good_bad_game.SignIn;
-import com.example.good_bad_game.SignUp;
-
-import java.util.List;
+import com.example.good_bad_game.loginout.LoginService;
 
 import retrofit2.Call;
 import retrofit2.Callback;

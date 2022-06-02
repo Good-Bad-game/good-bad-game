@@ -16,9 +16,6 @@
         android:theme="@style/Theme.Goodbadgame"
         android:usesCleartextTraffic="true" >
         <activity
-            android:name=".RankingItem"
-            android:exported="false" />
-        <activity
             android:name=".readyroom.getRoom"
             android:exported="false" />
         <activity
@@ -38,20 +35,21 @@
             android:exported="false" />
         <activity
             android:name=".ReadyGame"
-            android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".home.Home" -->
-        <!-- android:exported="false" /> -->
+            android:exported="false" />
+         <activity
+         android:name=".home.Home"
+         android:exported="false" />
         <activity
             android:name=".loginout.SignUp"
             android:exported="false" />
         <activity
             android:name=".PopupActivity"
             android:theme="@android:style/Theme.Dialog" />
+<!--        <activity-->
+<!--            android:name=".loginout.SignIn"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".loginout.SignIn"
-            android:exported="false" />
-        <activity
-            android:name=".home.Home"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
