@@ -65,7 +65,7 @@ public class ReadyRoomFramework extends Fragment {
         setHasOptionsMenu(true);
         Log.d(TAG, "OnCreateView");
 
-        Toast.makeText(getContext(),mParam2.toString(),Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(),mParam1.toString(),Toast.LENGTH_SHORT).show();
 
 //      tts 객체 생성
         tts = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener(){
@@ -115,7 +115,7 @@ public class ReadyRoomFramework extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         rvRoom.setLayoutManager(layoutManager);
         rvRoom.scrollToPosition(0);
-        adapter = new RoomAdapter();
+        adapter = new RoomAdapter(mParam1,mParam2);
         initDataset(adapter);
 
         new Handler().postDelayed(new Runnable() {
@@ -164,7 +164,7 @@ public class ReadyRoomFramework extends Fragment {
                     Log.d("onResponse 발동","데이터 가져오기 시작");
                     Log.d("Room_num : ", Roomitem.getRoomNumber());
                     Log.d("Room_Title : ", Roomitem.getRoomTitle());
-                    adapter.addItem(new Room (Roomitem.getRoomNumber(), Roomitem.getRoomTitle()));
+                    adapter.addItem(new Room (Roomitem.getRoomNumber(), Roomitem.getRoomTitle(), Roomitem.getHost()));
                 }
 
             }
