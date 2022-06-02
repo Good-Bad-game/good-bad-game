@@ -7,7 +7,7 @@
     tools:context=".ReadyGame">
 
 
-    <Button
+    <TextView
         android:id="@+id/team1"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -16,10 +16,11 @@
         android:layout_marginTop="60dp"
         android:background="@drawable/iamge"
         android:text="팀1"
+        android:gravity="center"
         android:textColor="@color/yellow"
         android:textSize="40dp" />
 
-    <Button
+    <TextView
         android:id="@+id/team2"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -29,10 +30,11 @@
         android:layout_toEndOf="@+id/team1"
         android:background="@drawable/iamge"
         android:text="팀2"
+        android:gravity="center"
         android:textColor="@color/yellow"
         android:textSize="40dp" />
 
-    <Button
+    <TextView
         android:id="@+id/team3"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -41,10 +43,11 @@
         android:layout_marginTop="10dp"
         android:background="@drawable/iamge"
         android:text="팀3"
+        android:gravity="center"
         android:textColor="@color/yellow"
         android:textSize="40dp" />
 
-    <Button
+    <TextView
         android:id="@+id/team4"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -54,9 +57,10 @@
         android:background="@drawable/iamge"
         android:textColor="@color/yellow"
         android:text="팀4"
+        android:gravity="center"
         android:textSize="40dp"
         />
-    <Button
+    <TextView
         android:id="@+id/team5"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -65,10 +69,11 @@
         android:layout_below="@+id/team3"
         android:textColor="@color/yellow"
         android:text="팀5"
+        android:gravity="center"
         android:textSize="40dp"
         android:background="@drawable/iamge" />
 
-    <Button
+    <TextView
         android:id="@+id/team6"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -78,6 +83,7 @@
         android:background="@drawable/iamge"
         android:textColor="@color/yellow"
         android:text="팀6"
+        android:gravity="center"
         android:textSize="40dp"
         />
 
