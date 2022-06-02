@@ -18,9 +18,6 @@ public interface LoginService {
     @GET("user/")
     retrofit2.Call<List<Login>> getPosts();
 
-    @PUT("user/")
-    retrofit2.Call<List<Login>> PutPosts();
-
     @POST("user/")
     Call<Post> createPost(@Body Post post);
 
@@ -32,5 +29,8 @@ public interface LoginService {
 
     @POST("room/")
     Call<Room>  Room(@Body Room room);
+
+    @POST("user-matching/")
+    Call<Matching>  Matching(@Body Matching matching);
 
 }
