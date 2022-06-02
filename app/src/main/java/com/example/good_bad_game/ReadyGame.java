@@ -23,7 +23,7 @@ public class ReadyGame extends AppCompatActivity {
         String room_num = receive_intent.getStringExtra("room_num");
         Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
 
-
+//asdasd?
 
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
