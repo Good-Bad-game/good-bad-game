@@ -22,6 +22,20 @@ import java.util.Locale;
 
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder> {
 
+    // OnClickListener Custom from yohan--------------------
+
+    public interface OnItemClickListener {
+        void onItemClick(int pos);
+    }
+
+    private OnItemClickListener onItemClickListener = null;
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+        this.onItemClickListener = listener;
+    }
+
+    //-----------------------------------------------------
+
     private static final String TAG = "StoreAdapter";
     private List<Store> items = new ArrayList<>();
     Context context;
@@ -44,6 +58,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Store store = items.get(position);
+
         holder.setItem(store);
 
     }
@@ -65,6 +80,21 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
             image = itemView.findViewById(R.id.recylcerview_row_image);
             name = itemView.findViewById(R.id.recylcerview_row_name);
 
+            image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        if (onItemClickListener != null){
+                            onItemClickListener.onItemClick(position);
+                        }
+                    }
+                    Store item = items.get(getAdapterPosition());
+                    String name = item.getName();
+                    tts.speak(name, TextToSpeech.QUEUE_FLUSH, null);
+                }
+            });
+
             tts = new TextToSpeech(itemView.getContext(), new TextToSpeech.OnInitListener() {
                 @Override
                 public void onInit(int status) {
@@ -74,33 +104,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
                     }
                 }
             });
-            image.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Store item = items.get(getAdapterPosition());
-                    String name = item.getName();
-                    Log.d("onclick",name);
 
-                    tts.speak(name, TextToSpeech.QUEUE_FLUSH, null);
-                }
-            });
-
-
-//            itemView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    FriendFragment friendFrag = new FriendFragment();
-//                    tts.speak(, TextToSpeech.QUEUE_FLUSH, null);
-//                }
-//            });
-
-//            selectedImage = itemView.findViewById(R.id.imageView);
-//            selectedImage.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-////                    id = Defind.L
-//                }
-//            });
         }
 
         //규칙3
@@ -110,5 +114,9 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
             name.setText(store.getName());
         }
     }
+
+
+
+
 
 }

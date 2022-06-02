@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,11 +22,16 @@ public class StoreFragment extends Fragment {
 
     private RecyclerView rvStore;
     private StoreAdapter adapter;
+
+
     private RecyclerView.LayoutManager layoutManager;
     private View view;
 
     private String mParam1;
     private String mParam2;
+
+    int[] skinId = {R.drawable.skin1, R.drawable.skin2, R.drawable.skin3, R.drawable.skin4, R.drawable.skin5, R.drawable.skin6};
+
 
     public static StoreFragment newInstance() {
         return new StoreFragment();
@@ -51,26 +57,36 @@ public class StoreFragment extends Fragment {
         adapter = new StoreAdapter();
         initDataset(adapter);
 
-        rvStore.setAdapter(adapter);
+        ImageView main_view = view.findViewById(R.id.main_view);
 
+        adapter.setOnItemClickListener(new StoreAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int pos) {
+                main_view.setImageResource(skinId[pos]);
+            }
+        });
+
+
+        rvStore.setAdapter(adapter);
         rvStore.setItemAnimator(new DefaultItemAnimator());
         return view;
     }
 
     private void initDataset(StoreAdapter adapter) {
         Log.d(TAG,"initDataset");
-        //for Test
         adapter.addItem(new Store("상품1",R.drawable.skin1));
         adapter.addItem(new Store("상품2",R.drawable.skin2));
         adapter.addItem(new Store("상품3",R.drawable.skin3));
         adapter.addItem(new Store("상품4",R.drawable.skin4));
         adapter.addItem(new Store("상품5",R.drawable.skin5));
         adapter.addItem(new Store("상품6",R.drawable.skin6));
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
     }
 
 }
