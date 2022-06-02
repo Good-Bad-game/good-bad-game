@@ -29,16 +29,6 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     private TextView name;
     private StoreFragment storeFragment;
 
-    public StoreAdapter(Context context, ArrayList<Store> list, StoreFragment storeFragment) {
-        super();
-        this.context = context;
-        this.items = list;
-        this.storeFragment = storeFragment;
-    }
-    public StoreAdapter() {
-        super();
-
-    }
     public void addItem(Store store){ items.add(store); }
 
     @NonNull
@@ -55,6 +45,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Store store = items.get(position);
         holder.setItem(store);
+
     }
 
     @Override
@@ -89,6 +80,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
                     Store item = items.get(getAdapterPosition());
                     String name = item.getName();
                     Log.d("onclick",name);
+
                     tts.speak(name, TextToSpeech.QUEUE_FLUSH, null);
                 }
             });

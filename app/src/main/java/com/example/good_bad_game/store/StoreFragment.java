@@ -24,6 +24,9 @@ public class StoreFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private View view;
 
+    private String mParam1;
+    private String mParam2;
+
     public static StoreFragment newInstance() {
         return new StoreFragment();
     }
@@ -55,7 +58,7 @@ public class StoreFragment extends Fragment {
     }
 
     private void initDataset(StoreAdapter adapter) {
-        Log.d(TAG,"initDdataset");
+        Log.d(TAG,"initDataset");
         //for Test
         adapter.addItem(new Store("상품1",R.drawable.skin1));
         adapter.addItem(new Store("상품2",R.drawable.skin2));

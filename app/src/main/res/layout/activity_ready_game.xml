@@ -89,7 +89,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/iamge"
-        android:text="준비하기/게임시작"
+        android:text="준비하기"
         android:textColor="@color/yellow"
         android:textSize="35dp" />
 

@@ -32,6 +32,7 @@ public class ReadyGame extends AppCompatActivity {
     private String v_type;
     private String room_num;
     private int num = 0;
+    private int ready_num = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +54,14 @@ public class ReadyGame extends AppCompatActivity {
         btn_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // 6명 정원찰 때 시작할 것.
+
                 Intent intent = new Intent(getApplicationContext(), InGame.class);
                 intent.putExtra("type", "firstIn");
                 startActivity(intent);
+
+
             }
         });
 
