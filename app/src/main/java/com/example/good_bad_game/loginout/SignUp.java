@@ -2,12 +2,17 @@ package com.example.good_bad_game.loginout;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,6 +20,7 @@ import com.example.good_bad_game.R;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -29,11 +35,28 @@ public class SignUp extends AppCompatActivity {
 
     private String illegal_pw_content = "";
     private Boolean legal_email = false;
+    private TextToSpeech tts;
+    private String TAG = "SignUp";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+//      tts 객체 생성
+        tts = new TextToSpeech(this, new TextToSpeech.OnInitListener(){
+
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS){
+                    int result = tts.setLanguage(Locale.KOREA);
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                        Log.d(TAG,"tts error");
+                        Toast.makeText(SignUp.this, "지원하지 않는 언어입니다.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
 
         illegal_pw_content = "";
         legal_email = false;
@@ -47,6 +70,7 @@ public class SignUp extends AppCompatActivity {
         signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                tts_speech("로그인");
                 Intent intent = new Intent(getApplicationContext(), SignIn.class);
                 startActivity(intent);
             }
@@ -88,6 +112,7 @@ public class SignUp extends AppCompatActivity {
                     ad.setTitle("이메일 형식 위반!");
                     ad.setMessage("이메일을 올바르게 입력해주시기 바랍니다.");
                     ad.show();
+                    tts_speech("이메일을 올바르게 입력해주세요.");
 
                     new Handler().postDelayed(new Runnable() {
                         @Override
@@ -295,4 +320,24 @@ public class SignUp extends AppCompatActivity {
         return matcher.matches();
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        View focusView = getCurrentFocus();
+        if (focusView != null) {
+            Rect rect = new Rect();
+            focusView.getGlobalVisibleRect(rect);
+            int x = (int) ev.getX(), y = (int) ev.getY();
+            if (!rect.contains(x, y)) {
+                InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+                if (imm != null)
+                    imm.hideSoftInputFromWindow(focusView.getWindowToken(), 0);
+                focusView.clearFocus();
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    public void tts_speech(String text){
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    }
 }

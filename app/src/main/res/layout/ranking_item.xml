@@ -27,7 +27,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/room_title"
+        android:id="@+id/ranking_nickname"
         android:layout_width="200dp"
         android:layout_height="match_parent"
         android:layout_toEndOf="@+id/user_skin"
