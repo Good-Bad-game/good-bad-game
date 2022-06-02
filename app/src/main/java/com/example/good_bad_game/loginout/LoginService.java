@@ -4,6 +4,7 @@ import com.example.good_bad_game.Matching;
 import com.example.good_bad_game.friend.getFriend;
 import com.example.good_bad_game.getMatching;
 import com.example.good_bad_game.readyroom.Room;
+import com.example.good_bad_game.ranking.Ranking;
 import com.example.good_bad_game.readyroom.getRoom;
 import com.example.good_bad_game.friend.getFriend;
 import com.example.good_bad_game.readyroom.getRoom;
@@ -46,5 +47,11 @@ public interface LoginService {
 
     @DELETE("user-matching/{userId}/")
     Call<Void> deleteMatching(@Path("userId") int userId);
+
+    @GET("ranking/")
+    retrofit2.Call<List<Ranking>> Ranking();
+
+    @POST("ranking/")
+    Call<Ranking>  Ranking(@Body Ranking ranking);
 
 }
