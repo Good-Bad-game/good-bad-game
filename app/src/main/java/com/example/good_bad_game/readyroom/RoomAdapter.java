@@ -96,6 +96,8 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
                             @Override
                             public void run() {
                                 Intent intent = new Intent(v.getContext(), ReadyGame.class);
+                                intent.putExtra("id", userId);
+                                intent.putExtra("nick", nick);
                                 intent.putExtra("room_num", room.getRoomNumber());
                                 ContextCompat.startActivity(v.getContext(), intent, null);;
                             }

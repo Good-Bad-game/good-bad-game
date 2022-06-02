@@ -4,13 +4,18 @@ import com.example.good_bad_game.Matching;
 import com.example.good_bad_game.friend.getFriend;
 import com.example.good_bad_game.readyroom.Room;
 import com.example.good_bad_game.readyroom.getRoom;
+import com.example.good_bad_game.friend.getFriend;
+import com.example.good_bad_game.readyroom.getRoom;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface LoginService {
 
@@ -31,5 +36,8 @@ public interface LoginService {
 
     @POST("user-matching/")
     Call<Matching>  Matching(@Body Matching matching);
+
+    @DELETE("user-matching/{userId}/")
+    Call<Void> deleteMatching(@Path("userId") int userId);
 
 }
