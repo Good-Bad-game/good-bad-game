@@ -1,4 +1,4 @@
-package com.example.good_bad_game;
+package com.example.good_bad_game.loginout;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -11,6 +11,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.good_bad_game.R;
 import com.example.good_bad_game.home.Home;
 
 import java.security.MessageDigest;

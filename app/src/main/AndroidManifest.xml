@@ -14,7 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Goodbadgame"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true" >
+        <activity
+            android:name=".RankingItem"
+            android:exported="false" />
         <activity
             android:name=".readyroom.getRoom"
             android:exported="false" />
@@ -39,17 +42,17 @@
         <!-- android:name=".home.Home" -->
         <!-- android:exported="false" /> -->
         <activity
-            android:name=".SignUp"
+            android:name=".loginout.SignUp"
             android:exported="false" />
         <activity
             android:name=".PopupActivity"
             android:theme="@android:style/Theme.Dialog" />
         <activity
-            android:name=".home.Home"
+            android:name=".loginout.SignIn"
             android:exported="false" />
         <activity
-            android:name=".SignIn"
-            android:exported="true">
+            android:name=".home.Home"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

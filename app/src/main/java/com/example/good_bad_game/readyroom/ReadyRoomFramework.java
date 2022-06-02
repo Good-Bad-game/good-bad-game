@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.good_bad_game.LoginService;
+import com.example.good_bad_game.loginout.LoginService;
 import com.example.good_bad_game.R;
 
 import java.util.List;

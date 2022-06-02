@@ -1,4 +1,4 @@
-package com.example.good_bad_game;
+package com.example.good_bad_game.loginout;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.good_bad_game.R;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

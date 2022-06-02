@@ -1,4 +1,4 @@
-package com.example.good_bad_game;
+package com.example.good_bad_game.friend;
 
 public class getFriend {
     private String user1;
