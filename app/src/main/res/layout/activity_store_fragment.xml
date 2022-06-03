@@ -19,6 +19,6 @@
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="200dp"
-        android:src="@drawable/thumb_up" />
+        android:src="@drawable/skin1" />
 
 </RelativeLayout>

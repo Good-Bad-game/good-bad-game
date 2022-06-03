@@ -15,7 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.good_bad_game.R;
 import com.example.good_bad_game.friend.FriendFragment;
-import com.example.good_bad_game.myitem.MyItemFragment;
+import com.example.good_bad_game.myitem.ItemFragment;
 import com.example.good_bad_game.ranking.RankingFragment;
 import com.example.good_bad_game.store.StoreFragment;
 
@@ -112,7 +112,7 @@ public class Home extends AppCompatActivity {
 
             case 2:
                 // 두번 째 프래그먼트 호출
-                MyItemFragment myitemFrag = new MyItemFragment();
+                ItemFragment myitemFrag = new ItemFragment();
                 myitemFrag.setArguments(bundle);
                 transaction.replace(R.id.fragment_container, myitemFrag);
                 transaction.commit();
