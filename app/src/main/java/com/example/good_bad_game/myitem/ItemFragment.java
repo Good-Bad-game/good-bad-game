@@ -56,27 +56,22 @@ public class ItemFragment extends Fragment {
         rvItem.scrollToPosition(0);
         adapter = new ItemAdapter();
         initDataset(adapter);
-
-        ImageView main_view = view.findViewById(R.id.main_view);
-
-        adapter.setOnItemClickListener(new ItemAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(int pos) {
-
-            }
-        });
-
         rvItem.setAdapter(adapter);
         rvItem.setItemAnimator(new DefaultItemAnimator());
-
-        return inflater.inflate(R.layout.activity_my_item_fragment, container, false);
+        return view;
     }
 
     private void initDataset(ItemAdapter adapter) {
         Log.d(TAG,"initDataset");
-        adapter.addItem(new Item("상품1",R.drawable.skin1));
-        adapter.addItem(new Item("상품2",R.drawable.skin2));
-        adapter.addItem(new Item("상품3",R.drawable.skin3));
+        adapter.addItem(new Item("아이템1",R.drawable.skin1));
+        adapter.addItem(new Item("아이템2",R.drawable.skin2));
+        adapter.addItem(new Item("아이템3",R.drawable.skin3));
+        adapter.addItem(new Item("아이템4",R.drawable.skin4));
+        adapter.addItem(new Item("아이템5",R.drawable.skin5));
+        adapter.addItem(new Item("아이템6",R.drawable.skin6));
+        adapter.addItem(new Item("아이템7",R.drawable.skin1));
+        adapter.addItem(new Item("아이템8",R.drawable.skin2));
+        adapter.addItem(new Item("아이템9",R.drawable.skin3));
 
     }
 

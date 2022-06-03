@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,23 +23,9 @@ import java.util.Locale;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> {
 
-    // OnClickListener Custom from yohan--------------------
-
-    public interface OnItemClickListener {
-        void onItemClick(int pos);
-    }
-
-    private ItemAdapter.OnItemClickListener onItemClickListener = null;
-
-    public void setOnItemClickListener(ItemAdapter.OnItemClickListener listener){
-        this.onItemClickListener = listener;
-    }
-
-    //-----------------------------------------------------
 
     private static final String TAG = "ItemAdapter";
     private List<Item> items = new ArrayList<>();
-    Context context;
     private ImageView image;
     private TextView name;
     private ItemFragment itemFragment;
@@ -60,6 +47,13 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
         Item item = items.get(position);
         holder.setItem(item);
 
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(v.getContext(),item.getName() + "로 스킨이 변경되었습니다.",Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
@@ -79,21 +73,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
             image = itemView.findViewById(R.id.rc_row_image);
             name = itemView.findViewById(R.id.rc_row_name);
 
-            image.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION){
-                        if (onItemClickListener != null){
-                            onItemClickListener.onItemClick(position);
-                        }
-                    }
-                    Item item = items.get(getAdapterPosition());
-                    String name = item.getName();
-                    tts.speak(name, TextToSpeech.QUEUE_FLUSH, null);
-                }
-            });
-
             tts = new TextToSpeech(itemView.getContext(), new TextToSpeech.OnInitListener() {
                 @Override
                 public void onInit(int status) {
@@ -108,8 +87,8 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
 
         //규칙3
         public void setItem(Item item){
-            image.setImageResource(Item.getImage());
-            name.setText(Item.getName());
+            image.setImageResource(item.getImage());
+            name.setText(item.getName());
         }
     }
 
