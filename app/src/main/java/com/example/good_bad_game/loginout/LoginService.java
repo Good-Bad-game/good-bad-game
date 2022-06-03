@@ -2,6 +2,8 @@ package com.example.good_bad_game.loginout;
 
 import com.example.good_bad_game.Matching;
 import com.example.good_bad_game.friend.getFriend;
+import com.example.good_bad_game.getItem;
+import com.example.good_bad_game.getMatching;
 import com.example.good_bad_game.readyroom.Room;
 import com.example.good_bad_game.readyroom.getRoom;
 
@@ -27,9 +29,15 @@ public interface LoginService {
     retrofit2.Call<List<getRoom>> getRoom();
 
     @POST("room/")
-    Call<Room>  Room(@Body Room room);
+    Call<Room> Room(@Body Room room);
 
     @POST("user-matching/")
-    Call<Matching>  Matching(@Body Matching matching);
+    Call<Matching> Matching(@Body Matching matching);
+
+    @GET("user-matching/")
+    retrofit2.Call<List<getMatching>> getMatching();
+
+    @GET("item/")
+    retrofit2.Call<List<getItem>> getItems();
 
 }

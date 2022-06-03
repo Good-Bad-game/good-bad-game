@@ -7,7 +7,7 @@
     tools:context=".ReadyGame">
 
 
-    <TextView
+    <ImageView
         android:id="@+id/team1"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -20,7 +20,7 @@
         android:textColor="@color/yellow"
         android:textSize="40dp" />
 
-    <TextView
+    <ImageView
         android:id="@+id/team2"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -34,7 +34,7 @@
         android:textColor="@color/yellow"
         android:textSize="40dp" />
 
-    <TextView
+    <ImageView
         android:id="@+id/team3"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -47,7 +47,7 @@
         android:textColor="@color/yellow"
         android:textSize="40dp" />
 
-    <TextView
+    <ImageView
         android:id="@+id/team4"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -60,7 +60,7 @@
         android:gravity="center"
         android:textSize="40dp"
         />
-    <TextView
+    <ImageView
         android:id="@+id/team5"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -73,7 +73,7 @@
         android:textSize="40dp"
         android:background="@drawable/iamge" />
 
-    <TextView
+    <ImageView
         android:id="@+id/team6"
         android:layout_width="140dp"
         android:layout_height="140dp"
