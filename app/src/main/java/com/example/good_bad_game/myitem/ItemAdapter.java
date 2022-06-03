@@ -47,13 +47,12 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
         Item item = items.get(position);
         holder.setItem(item);
 
-/*        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(),item.getName(),Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(v.getContext(),item.getName() + "로 스킨이 변경되었습니다.",Toast.LENGTH_SHORT).show();
             }
-        });*/
+        });
 
     }
 
