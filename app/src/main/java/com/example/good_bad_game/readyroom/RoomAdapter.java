@@ -90,13 +90,14 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
 
                         Matching MatchingResponse = response.body();
 
-                        Log.d("Success Code : ", "Post 성공");
-
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run() {
                                 Intent intent = new Intent(v.getContext(), ReadyGame.class);
+                                intent.putExtra("id", userId);
+                                intent.putExtra("nick", nick);
                                 intent.putExtra("room_num", room.getRoomNumber());
+                                intent.putExtra("v_type", "visiter");
                                 ContextCompat.startActivity(v.getContext(), intent, null);;
                             }
                         }, 500);

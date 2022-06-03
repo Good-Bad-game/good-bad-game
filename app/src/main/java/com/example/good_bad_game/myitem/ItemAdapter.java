@@ -1,4 +1,4 @@
-package com.example.good_bad_game.store;
+package com.example.good_bad_game.myitem;
 
 import static android.speech.tts.TextToSpeech.ERROR;
 
@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder> {
+public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> {
 
     // OnClickListener Custom from yohan--------------------
 
@@ -28,38 +28,37 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         void onItemClick(int pos);
     }
 
-    private OnItemClickListener onItemClickListener = null;
+    private ItemAdapter.OnItemClickListener onItemClickListener = null;
 
-    public void setOnItemClickListener(OnItemClickListener listener){
+    public void setOnItemClickListener(ItemAdapter.OnItemClickListener listener){
         this.onItemClickListener = listener;
     }
 
     //-----------------------------------------------------
 
-    private static final String TAG = "StoreAdapter";
-    private List<Store> items = new ArrayList<>();
+    private static final String TAG = "ItemAdapter";
+    private List<Item> items = new ArrayList<>();
     Context context;
     private ImageView image;
     private TextView name;
-    private StoreFragment storeFragment;
+    private ItemFragment itemFragment;
 
-    public void addItem(Store store){ items.add(store); }
+    public void addItem(Item item){ items.add(item); }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ItemAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.d(TAG, "MyViewHolder");
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.store_item, parent, false);
+        View view = inflater.inflate(R.layout.my_item, parent, false);
 
-        return new MyViewHolder(view);
+        return new ItemAdapter.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Store store = items.get(position);
-
-        holder.setItem(store);
+    public void onBindViewHolder(@NonNull ItemAdapter.MyViewHolder holder, int position) {
+        Item item = items.get(position);
+        holder.setItem(item);
 
     }
 
@@ -77,8 +76,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
         public MyViewHolder(View itemView) {
             super(itemView);
-            image = itemView.findViewById(R.id.recylcerview_row_image);
-            name = itemView.findViewById(R.id.recylcerview_row_name);
+            image = itemView.findViewById(R.id.rc_row_image);
+            name = itemView.findViewById(R.id.rc_row_name);
 
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -89,7 +88,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
                             onItemClickListener.onItemClick(position);
                         }
                     }
-                    Store item = items.get(getAdapterPosition());
+                    Item item = items.get(getAdapterPosition());
                     String name = item.getName();
                     tts.speak(name, TextToSpeech.QUEUE_FLUSH, null);
                 }
@@ -108,15 +107,13 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         }
 
         //규칙3
-        public void setItem(Store store){
-            Log.d(TAG, store.getName());
-            image.setImageResource(store.getImage());
-            name.setText(store.getName());
+        public void setItem(Item item){
+            image.setImageResource(Item.getImage());
+            name.setText(Item.getName());
         }
     }
 
-
-
-
-
 }
+
+
+

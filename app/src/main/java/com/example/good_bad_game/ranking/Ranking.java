@@ -1,24 +1,27 @@
 package com.example.good_bad_game.ranking;
 
 public class Ranking {
-    private String nickname;
-    private String skin;
+    private int id;
+    private int uid;
+    private int sid;
     private String rank;
 
-    public Ranking(String nickname, String skin){
-        this.nickname = nickname;
-        this.skin = skin;
+    public Ranking(int uid, int sid){
+        this.uid = uid;
+        this.sid = sid;
     }
+
     public Ranking(){
-
     }
 
-    public String getNickname(){return this.nickname;}
-    public String getSkin(){return this.skin;}
+    public int getId(){return this.id;}
+    public int getUid(){return this.uid;}
+    public int getSid(){return this.sid;}
     public String getRank(){return this.rank;}
 
-    public void setNickname(String nickname){this.nickname = nickname;}
-    public void setSkin(String skin){this.skin = skin;}
+    public void setId(int id){this.id = id;}
+    public void setUid(int uid){this.uid = uid;}
+    public void setSkin(int Sid){this.sid = Sid;}
     public void setRank(String rank){this.rank = rank;}
 
 }

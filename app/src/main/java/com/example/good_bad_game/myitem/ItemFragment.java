@@ -1,4 +1,4 @@
-package com.example.good_bad_game.store;
+package com.example.good_bad_game.myitem;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -16,26 +16,26 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.good_bad_game.R;
+import com.example.good_bad_game.store.Store;
+import com.example.good_bad_game.store.StoreAdapter;
+import com.example.good_bad_game.store.StoreFragment;
 
-public class StoreFragment extends Fragment {
-    private static String TAG = "StoreFragment";
+public class ItemFragment extends Fragment {
 
-    private RecyclerView rvStore;
-    private StoreAdapter adapter;
+    private static String TAG = "ItemFragment";
 
+    private RecyclerView rvItem;
+    private ItemAdapter adapter;
 
     private RecyclerView.LayoutManager layoutManager;
     private View view;
 
-    private String mParam1;
-    private String mParam2;
-
     int[] skinId = {R.drawable.skin1, R.drawable.skin2, R.drawable.skin3, R.drawable.skin4, R.drawable.skin5, R.drawable.skin6};
 
-
-    public static StoreFragment newInstance() {
-        return new StoreFragment();
+    public static ItemFragment newInstance() {
+        return new ItemFragment();
     }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,39 +47,36 @@ public class StoreFragment extends Fragment {
             Toast.makeText(getActivity(),id,Toast.LENGTH_SHORT).show();
         }
 
-        view = inflater.inflate(R.layout.activity_store_fragment, container, false);
-        rvStore = (RecyclerView) view.findViewById(R.id.grid_recyclerview);
-        rvStore.setHasFixedSize(true);
+        view = inflater.inflate(R.layout.activity_my_item_fragment, container, false);
+        rvItem = (RecyclerView) view.findViewById(R.id.item_rc_view);
+        rvItem.setHasFixedSize(true);
 
-        layoutManager = new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false);
-        rvStore.setLayoutManager(layoutManager);
-        rvStore.scrollToPosition(0);
-        adapter = new StoreAdapter();
+        layoutManager = new GridLayoutManager(getActivity(),3,GridLayoutManager.VERTICAL,false);
+        rvItem.setLayoutManager(layoutManager);
+        rvItem.scrollToPosition(0);
+        adapter = new ItemAdapter();
         initDataset(adapter);
 
         ImageView main_view = view.findViewById(R.id.main_view);
 
-        adapter.setOnItemClickListener(new StoreAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new ItemAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int pos) {
-                main_view.setImageResource(skinId[pos]);
+
             }
         });
 
+        rvItem.setAdapter(adapter);
+        rvItem.setItemAnimator(new DefaultItemAnimator());
 
-        rvStore.setAdapter(adapter);
-        rvStore.setItemAnimator(new DefaultItemAnimator());
-        return view;
+        return inflater.inflate(R.layout.activity_my_item_fragment, container, false);
     }
 
-    private void initDataset(StoreAdapter adapter) {
+    private void initDataset(ItemAdapter adapter) {
         Log.d(TAG,"initDataset");
-        adapter.addItem(new Store("상품1",R.drawable.skin1));
-        adapter.addItem(new Store("상품2",R.drawable.skin2));
-        adapter.addItem(new Store("상품3",R.drawable.skin3));
-        adapter.addItem(new Store("상품4",R.drawable.skin4));
-        adapter.addItem(new Store("상품5",R.drawable.skin5));
-        adapter.addItem(new Store("상품6",R.drawable.skin6));
+        adapter.addItem(new Item("상품1",R.drawable.skin1));
+        adapter.addItem(new Item("상품2",R.drawable.skin2));
+        adapter.addItem(new Item("상품3",R.drawable.skin3));
 
     }
 
@@ -87,6 +84,6 @@ public class StoreFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-    }
 
+    }
 }

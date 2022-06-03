@@ -95,6 +95,7 @@ public class RoomCreate extends AppCompatActivity {
 
                         Room RoomResponse = response.body();
 
+                        Log.d("room_num : ", RoomResponse.getRoomNumber());
                         Log.d("Success Code : ", "Post 성공");
 
                         new Handler().postDelayed(new Runnable() {
@@ -103,6 +104,8 @@ public class RoomCreate extends AppCompatActivity {
                                 Intent intent = new Intent(getApplicationContext(), ReadyGame.class);
                                 intent.putExtra("id", id);
                                 intent.putExtra("nick", nick);
+                                intent.putExtra("v_type", "creator");
+                                intent.putExtra("room_num", RoomResponse.getRoomNumber());
                                 startActivity(intent);
                             }
                         }, 500);

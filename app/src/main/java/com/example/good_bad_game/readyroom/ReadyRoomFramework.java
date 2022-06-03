@@ -82,6 +82,7 @@ public class ReadyRoomFramework extends Fragment {
 
         View view = inflater.inflate(R.layout.activity_ready_room_framework,container, false);
         Button create = (Button) view.findViewById(R.id.make_room);
+
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,7 +101,7 @@ public class ReadyRoomFramework extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         rvRoom.setLayoutManager(layoutManager);
         rvRoom.scrollToPosition(0);
-        adapter = new RoomAdapter(mParam1,mParam2);
+        adapter = new RoomAdapter(mParam1,mParam2); // mParam1 : id, mParam2 : nick
         initDataset(adapter);
 
         new Handler().postDelayed(new Runnable() {
