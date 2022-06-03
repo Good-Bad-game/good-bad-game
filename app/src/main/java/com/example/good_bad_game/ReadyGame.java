@@ -1,11 +1,7 @@
 package com.example.good_bad_game;
 
-import android.app.AlertDialog;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,14 +9,10 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
 
-import com.example.good_bad_game.home.Home;
-import com.example.good_bad_game.loginout.Login;
 import com.example.good_bad_game.loginout.LoginService;
-import com.example.good_bad_game.loginout.SignIn;
-import com.example.good_bad_game.readyroom.Room;
 
+import java.util.Collections;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,13 +21,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import com.example.good_bad_game.loginout.LoginService;
-import com.example.good_bad_game.readyroom.Room;
-import com.example.good_bad_game.readyroom.getRoom;
-
 import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,9 +46,10 @@ public class ReadyGame extends AppCompatActivity {
     int[] skinId = {R.drawable.skin1, R.drawable.skin2, R.drawable.skin3,
             R.drawable.skin4, R.drawable.skin5, R.drawable.skin6};
 
-    List<String> userList = new ArrayList<>();
-    List<String> newUserList = new ArrayList<>();
+    List<String> list = new ArrayList<>();
+    List<String> userList = Collections.synchronizedList(list);
     ImageView img;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +63,7 @@ public class ReadyGame extends AppCompatActivity {
         v_type = receive_intent.getStringExtra("v_type"); // 방문 타입
         room_num = receive_intent.getStringExtra("room_num");
         String nick = receive_intent.getStringExtra("nick");
-        String room_num = receive_intent.getStringExtra("room_num");
+//        String room_num = receive_intent.getStringExtra("room_num");
 //        Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -84,6 +72,44 @@ public class ReadyGame extends AppCompatActivity {
                 .build();
 
         LoginService LoginService = retrofit.create(LoginService.class);
+
+        if (v_type.equals("creator")){
+
+            Log.d("v_type : ","감지 후 if문 실행됨.");
+//            Retrofit retrofit = new Retrofit.Builder()
+//                    .baseUrl("http://54.180.121.58:8080/")
+//                    .addConverterFactory(GsonConverterFactory.create())
+//                    .build();
+            Log.d("ID : ", id);
+            Log.d("Room_num : ", room_num);
+
+            Matching matching = new Matching(null, id, room_num);
+
+//            LoginService LoginService = retrofit.create(LoginService.class);
+
+            Call<Matching> call = LoginService.Matching(matching);
+
+            call.enqueue(new Callback<Matching>() {
+                @Override
+                public void onResponse(Call<Matching> call, Response<Matching> response) {
+                    if (!response.isSuccessful()){
+                        Log.d("Error Code1 : ", String.valueOf(response.code()));
+                        return;
+                    }
+
+                    Matching MatchingResponse = response.body();
+
+                    Log.d("Success Code : ", "Post 성공1");
+
+                }
+
+                @Override
+                public void onFailure(Call<Matching> call, Throwable t) {
+                    Log.d("Error Code2",t.getMessage());
+                }
+            });
+
+        }
 
 
         Thread t = new Thread(){
@@ -98,11 +124,11 @@ public class ReadyGame extends AppCompatActivity {
                             @Override
                             public void run() {
 
-                                Call<List<getMatching>> calls = LoginService.getMatching();
+                                Call<List<getMatching>> calle = LoginService.getMatching();
 
-                                calls.enqueue(new Callback<List<getMatching>>() {
+                                calle.enqueue(new Callback<List<getMatching>>() {
                                     @Override
-                                    public void onResponse(Call<List<getMatching>> calls, Response<List<getMatching>> response) {
+                                    public void onResponse(Call<List<getMatching>> calle, Response<List<getMatching>> response) {
                                         if (!response.isSuccessful())
                                         {
                                             Log.d("onResponse 발동","Connection은 성공하였으나 code 에러 발생");
@@ -155,7 +181,7 @@ public class ReadyGame extends AppCompatActivity {
                                     }
 
                                     @Override
-                                    public void onFailure(Call<List<getMatching>> calls, Throwable t) {
+                                    public void onFailure(Call<List<getMatching>> calle, Throwable t) {
                                         Log.d("onFailure 발동","Connection Error");
                                         return;
                                     }
@@ -190,43 +216,7 @@ public class ReadyGame extends AppCompatActivity {
 
         t.start();
 
-        if (v_type.equals("creator")){
-
-            Log.d("v_type : ","감지 후 if문 실행됨.");
-
-            Log.d("ID : ", id);
-            Log.d("Room_num : ", room_num);
-
-            Matching matching = new Matching(null, id, room_num);
-
-//            LoginService LoginService = retrofit.create(LoginService.class);
-
-            Call<Matching> call = LoginService.Matching(matching);
-
-            call.enqueue(new Callback<Matching>() {
-                @Override
-                public void onResponse(Call<Matching> call, Response<Matching> response) {
-                    if (!response.isSuccessful()){
-                        Log.d("Error Code1 : ", String.valueOf(response.code()));
-                        return;
-                    }
-
-                    Matching MatchingResponse = response.body();
-
-                    Log.d("Success Code : ", "Post 성공1");
-
-                }
-
-                @Override
-                public void onFailure(Call<Matching> call, Throwable t) {
-                    Log.d("Error Code2",t.getMessage());
-                }
-            });
-
-        }
-
     }
-
     @Override
     public void onBackPressed() {
 
@@ -255,6 +245,34 @@ public class ReadyGame extends AppCompatActivity {
                             }
 
                             List<getMatching> Matching_infos = response.body();
+
+                            Thread t = new Thread() {
+                                @Override
+                                public void run() {
+
+                                    while (!isInterrupted()) {
+                                        try {
+                                            Thread.sleep(3000);
+
+                                            runOnUiThread(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    for( getMatching items : Matching_infos)
+                                                    {
+                                                        userList.remove(items.getUserId());
+                                                    }
+                                                    Log.d("userListRemove : ", userList.toString());
+
+                                                }
+                                            });
+                                        } catch (InterruptedException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+                                }
+                            };
+                            t.start();
+
 
                             for ( getMatching matching_info : Matching_infos)
                             {
@@ -310,8 +328,10 @@ public class ReadyGame extends AppCompatActivity {
 
             }
         });
-
         finish();
 
     }
+
+
+
 }
