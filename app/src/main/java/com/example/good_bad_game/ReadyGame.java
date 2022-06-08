@@ -36,7 +36,6 @@ public class ReadyGame extends AppCompatActivity {
     private String v_type;
     private String room_num;
     private int num = 0;
-    private int ready_num = 0;
 
     int imgId[] = {
             R.id.team1, R.id.team2, R.id.team3,
@@ -61,9 +60,6 @@ public class ReadyGame extends AppCompatActivity {
         id = receive_intent.getStringExtra("id");
         v_type = receive_intent.getStringExtra("v_type"); // 방문 타입
         room_num = receive_intent.getStringExtra("room_num");
-        String nick = receive_intent.getStringExtra("nick");
-//        String room_num = receive_intent.getStringExtra("room_num");
-//        Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://54.180.121.58:8080/")
@@ -79,7 +75,6 @@ public class ReadyGame extends AppCompatActivity {
             Log.d("Room_num : ", room_num);
 
             Matching matching = new Matching(null, id, room_num);
-
             Call<Matching> call = LoginService.Matching(matching);
 
             call.enqueue(new Callback<Matching>() {
