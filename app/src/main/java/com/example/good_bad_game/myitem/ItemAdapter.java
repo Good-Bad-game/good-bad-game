@@ -3,6 +3,7 @@ package com.example.good_bad_game.myitem;
 import static android.speech.tts.TextToSpeech.ERROR;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,6 +17,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.good_bad_game.R;
+import com.example.good_bad_game.store.Store;
+import com.example.good_bad_game.store.StoreAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,32 @@ import java.util.Locale;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> {
 
+    // OnClickListener Custom from yohan--------------------
+
+    private int selected_idx = 1;
+
+    private int cnt = 0;
+
+    public interface OnItemClickListener {
+        void onItemClick(int pos);
+    }
+
+    private ItemAdapter.OnItemClickListener onItemClickListener = null;
+
+    public void setOnItemClickListener(ItemAdapter.OnItemClickListener listener){
+        this.onItemClickListener = listener;
+    }
+
+    public void setNum(int i){
+        selected_idx = i;
+        Log.d("TAG", "selected_idx가 " + selected_idx + "로 변경되었습니다.");
+    }
+
+    public void Cnt_init(){
+        cnt = 0;
+    }
+
+    //-----------------------------------------------------
 
     private static final String TAG = "ItemAdapter";
     private List<Item> items = new ArrayList<>();
@@ -47,12 +76,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
         Item item = items.get(position);
         holder.setItem(item);
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(v.getContext(),item.getName() + "로 스킨이 변경되었습니다.",Toast.LENGTH_SHORT).show();
-            }
-        });
 
     }
 
@@ -64,7 +87,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView selectedImage;
         public TextToSpeech tts;
 
 
@@ -73,13 +95,16 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
             image = itemView.findViewById(R.id.rc_row_image);
             name = itemView.findViewById(R.id.rc_row_name);
 
-            tts = new TextToSpeech(itemView.getContext(), new TextToSpeech.OnInitListener() {
+            image.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onInit(int status) {
-                    if(status != ERROR) {
-                        // 언어를 선택한다.
-                        tts.setLanguage(Locale.KOREAN);
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION){
+                        if (onItemClickListener != null){
+                            onItemClickListener.onItemClick(position);
+                        }
                     }
+
                 }
             });
 
@@ -87,8 +112,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
 
         //규칙3
         public void setItem(Item item){
+            Log.d("selected_idx : ", Integer.toString(selected_idx));
+            Log.d("cnt : ", Integer.toString(cnt));
+            if(cnt == selected_idx){
+                name.setTextColor(Color.GREEN);
+                Log.d("setTextColor : ", "Green 발동");
+            }
             image.setImageResource(item.getImage());
             name.setText(item.getName());
+            cnt++;
         }
     }
 

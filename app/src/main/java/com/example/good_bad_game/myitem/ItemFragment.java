@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,6 +42,8 @@ public class ItemFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
 
+        Fragment it = this;
+
         if(getArguments() != null){
             String id = getArguments().getString("id");
             String nick = getArguments().getString("nick");
@@ -56,6 +59,17 @@ public class ItemFragment extends Fragment {
         rvItem.scrollToPosition(0);
         adapter = new ItemAdapter();
         initDataset(adapter);
+
+        adapter.setOnItemClickListener(new ItemAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int pos) {
+                Log.d("selected idx : ", Integer.toString(pos));
+                adapter.Cnt_init();
+                adapter.setNum(pos);
+                fragmentRefresh();
+            }
+        });
+
         rvItem.setAdapter(adapter);
         rvItem.setItemAnimator(new DefaultItemAnimator());
         return view;
@@ -80,5 +94,17 @@ public class ItemFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
+    }
+
+    public void reload(){
+        Log.d("TAG", "reload가 실행되었습니다.");
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.detach(this).attach(this).commit();
+    }
+
+    private void fragmentRefresh(){
+        FragmentTransaction fragmentTransaction = getParentFragmentManager().beginTransaction();
+        fragmentTransaction.detach(this).attach(this).commit();
+        rvItem.setAdapter(rvItem.getAdapter());
     }
 }

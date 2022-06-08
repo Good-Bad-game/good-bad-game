@@ -13,11 +13,11 @@
     <TextView
         android:id="@+id/rc_row_name"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:layout_below="@id/rc_row_image"
+        android:layout_marginTop="10dp"
         android:gravity="center"
         android:hint="글자입니다."
-        android:background="@drawable/edge"
         android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold" />
