@@ -60,7 +60,7 @@
         <entry key="app/src/main/res/layout/activity_ranking_fragment.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/activity_ranking_item.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/activity_read_room.xml" value="0.19402985074626866" />
-        <entry key="app/src/main/res/layout/activity_ready_game.xml" value="0.14573822021484376" />
+        <entry key="app/src/main/res/layout/activity_ready_game.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_ready_room_framework.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_room_create.xml" value="0.13728470111448834" />
         <entry key="app/src/main/res/layout/activity_sign_in.xml" value="0.2296195652173913" />

@@ -11,11 +11,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
+import com.example.good_bad_game.databinding.ActivityInGameBinding;
+import com.remotemonster.sdk.Config;
+import com.remotemonster.sdk.RemonConference;
+import com.remotemonster.sdk.RemonException;
+
+import org.webrtc.SurfaceViewRenderer;
+
+import java.util.Arrays;
 import java.util.Locale;
 
-public class
-InGame extends AppCompatActivity {
+public class InGame extends AppCompatActivity {
     private static String TAG = "InGameActivity";
     public TextToSpeech tts;
     private String type = "";
@@ -29,12 +37,114 @@ InGame extends AppCompatActivity {
     private long touchPressedTime = 0;
     private long resetTime = 2000; // 리셋 타임 설정 - 2초
 
+    // 음성 통신 관련 코드
+    ActivityInGameBinding binding;
+    private boolean[] availableView;
+    private String roomName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_game);
         Intent getintent = getIntent();
 
+
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_in_game);
+
+        SurfaceViewRenderer[] surfaceRendererArray = {
+                binding.surfRendererRemote1,
+                binding.surfRendererRemote2,
+                binding.surfRendererRemote3,
+                binding.surfRendererRemote4,
+                binding.surfRendererRemote5,
+                binding.surfRendererRemote6
+        };
+
+
+//... // 비어있는 View를 처리하기 위한 배열로, 각 서비스에 따라 구현 필요
+        availableView = new boolean[surfaceRendererArray.length];
+        Arrays.fill(availableView, false);
+
+
+//        RemonConference 클래스를 생성하고, 자신의 영상을 송출하기 위한 설정을 합니다.
+        RemonConference remonConference = new RemonConference();
+
+        Config config = new Config();
+        config.context = this;
+        config.serviceId = "a9553294-aa66-45de-8b07-6b1b922ef105";
+        config.key = "e3d66ede5091133201de590d62275a55b93ce6b0d5dc0322cf0360c10329eb71";
+
+        Intent receive_intent = getIntent();
+        roomName = receive_intent.getStringExtra("room_num");
+
+        remonConference.create(roomName, config, participant -> {
+            // 자신의 View를 초기화
+//             얼굴을 보이게 한다
+            participant.setLocalView(null);
+            Log.d(TAG, roomName);
+
+            // View 설정
+            availableView[0] = true; // boolean : 할당된 미디어가 있는지 여부
+        }).close(() -> {
+            // 클라이언트의 사용자(참여자)가 연결된 채널이 종료되면 호출됨
+            // 송출이 중단되면 그룹 통화에서 연결이 끊어진 것이며, 다른 사용자와의 연결도 모두 끊어짐
+        }).error(e -> {
+            // 클라이언트의 사용자(참여자)가 연결된 채널에서 오류 발생 시 호출됨
+            // 오류로 연결이 종료되면 error -> close 순으로 호출됨
+        });
+
+
+        // 만들어진 방에 들어가는 건가?
+        remonConference.create(roomName, config, (participant) -> {
+
+//            participant.setLocalView(surfaceRendererArray[0]);
+//            room_name = "1";
+            Log.d(TAG, roomName);
+
+        }).on("onRoomCreated", (participant) -> {
+
+
+            // 방에 입장 이후에 호출, 자신의 미디어 송출 시작
+            // TODO: 실제 사용자 정보는 각 서비스에서 관리하므로, 서비스에서 채널과 실제 사용자 매핑 작업 진행
+
+            // tag 객체에 holder 패턴 형태로 객체를 지정하여 사용
+            // 예제에서는 View 설정을 위해 단순히 View의 index를 저장함
+            participant.tag = 0;
+
+        }).on("onUserJoined", (participant) -> {
+
+            Log.d(TAG, "Joined new user");
+            // 그룹 통화에 새로운 참여자가 입장했을 때 호출됨
+            // 다른 사용자가 입장한 경우 초기화를 위해 호출됨
+            // TODO: 실제 사용자 매핑 : it.id 값으로 연결된 실제 사용자와 매핑
+
+
+            // 뷰(View) 설정
+            int index = getAvailableView();
+            if (index > 0) {
+                participant.getConfig().localView = null;
+                participant.getConfig().remoteView = surfaceRendererArray[index];
+                participant.tag = index;
+            }
+
+            // 해당 참여자가 연결이 완되었을 때 처리할 작업이 있는 경우
+            participant.on("onComplete", (participant2) -> {
+                // updateView()
+            });
+        }).on("onUserStreamConnected", (participant) -> {
+
+            // 새로운 참여자의 영상을 성공적으로 수신하기 시작하면 호출
+
+        }).on("onUserLeft", (participant) -> {
+            // 참여자가 그룹 통화에서 퇴장하거나 연결이 종료된 경우 호출됨
+            // id와 tag를 참조하여 어떤 사용자가 퇴장했는지 확인 후 퇴장 처리를 진행
+            int index = (Integer) participant.tag;
+            availableView[index] = false;
+        }).close(() -> {
+            // 그룹 통화 종료 시 호출됨
+        }).error((RemonException error) -> {
+            // 오류 발생시 호출됨
+        });
 
 
 //      tts 객체 생성
@@ -72,6 +182,57 @@ InGame extends AppCompatActivity {
 
 
         // 타이머 코딩 부분 --------------------------------------------------------------------------
+        Timer();
+
+    }
+
+    // Good-Bad 선택 후에 Good인지 Bad인지 데이터를 받아오는 곳
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            if (resultCode == RESULT_OK) {
+               type = data.getStringExtra("type");
+            }
+        }
+    }
+
+    // 투표하기 클릭시 바로 이동
+    public void StrightVote(View view){
+        if (System.currentTimeMillis() > touchPressedTime + resetTime ) {
+            // 첫번째 터치
+            if(checked_btn == 0){
+                tts_speech("선택 하세요");
+                return;
+            }else {
+                tts_speech("투표완료 시 다시 클릭");
+                Toast.makeText(getApplicationContext(), "다시 클릭", Toast.LENGTH_SHORT).show();
+                touchPressedTime = System.currentTimeMillis();
+                return;
+            }
+        }
+        // 첫번째 터치후 두번째 터치를 resetTime에 설정된 2초안에 하지 않을시 아래 두번째 터치부분은 실행되지 않음.
+        if (System.currentTimeMillis() <= touchPressedTime + resetTime ) {
+            // 두번째 터치
+            // 동작 수행.
+            if (checked_btn == 0) return;
+
+//        tts.speak("회의 종료를 눌렀습니다.", TextToSpeech.QUEUE_FLUSH, null);
+            tts_speech("회의 종료");
+            Intent intent = new Intent(getApplicationContext(), Vote.class);
+            intent.putExtra("playerNum", player_num);
+            intent.putExtra("type", type);
+            startActivity(intent);
+        }
+    }
+
+    // 뒤로가기 막기
+    @Override
+    public void onBackPressed() {
+//        super.onBackPressed();
+    }
+
+    private void Timer(){
 
         TextView count_view = findViewById(R.id.time);
 
@@ -210,126 +371,20 @@ InGame extends AppCompatActivity {
             }
         }.start();
 
-
     }
-
-    // Good-Bad 선택 후에 Good인지 Bad인지 데이터를 받아오는 곳
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            if (resultCode == RESULT_OK) {
-               type = data.getStringExtra("type");
-            }
-        }
-    }
-
-    // 투표하기 클릭시 바로 이동
-
-    public void StrightVote(View view){
-        if (System.currentTimeMillis() > touchPressedTime + resetTime ) {
-            // 첫번째 터치
-            if(checked_btn == 0){
-                tts_speech("선택 하세요");
-                return;
-            }else {
-                tts_speech("투표완료 시 다시 클릭");
-                Toast.makeText(getApplicationContext(), "다시 클릭", Toast.LENGTH_SHORT).show();
-                touchPressedTime = System.currentTimeMillis();
-                return;
-            }
-        }
-        // 첫번째 터치후 두번째 터치를 resetTime에 설정된 2초안에 하지 않을시 아래 두번째 터치부분은 실행되지 않음.
-        if (System.currentTimeMillis() <= touchPressedTime + resetTime ) {
-            // 두번째 터치
-            // 동작 수행.
-            if (checked_btn == 0) return;
-
-//        tts.speak("회의 종료를 눌렀습니다.", TextToSpeech.QUEUE_FLUSH, null);
-            tts_speech("회의 종료");
-            Intent intent = new Intent(getApplicationContext(), Vote.class);
-            intent.putExtra("playerNum", player_num);
-            intent.putExtra("type", type);
-            startActivity(intent);
-        }
-    }
-
-    // 뒤로가기 막기
-    @Override
-    public void onBackPressed() {
-//        super.onBackPressed();
-    }
-
-    public void team1(View view) {
-        if(checked_btn == 1){
-            tts_speech("1번 취소");
-            checked_btn = 0;
-        }else{
-        checked_btn = 1;
-        tts_speech("1번");
-        }
-    }
-
-    public void team2(View view) {
-        if(checked_btn == 2){
-            tts_speech("2번 취소");
-            checked_btn = 0;
-        }else{
-            checked_btn = 2;
-            tts_speech("2번");
-        }
-    }
-
-    public void team3(View view) {
-        if(player_num >= 3){
-            if(checked_btn == 3){
-                tts_speech("3번 취소");
-                checked_btn = 0;
-            }else{
-                checked_btn = 3;
-                tts_speech("3번");
-            }
-        }
-    }
-
-    public void team4(View view) {
-        if(player_num >= 4){
-            if(checked_btn == 4){
-                tts_speech("4번 취소");
-                checked_btn = 0;
-            }else {
-                checked_btn = 4;
-                tts_speech("4번");
-            }
-        }
-    }
-
-    public void team5(View view) {
-        if(player_num >= 5){
-            if(checked_btn == 5){
-                tts_speech("5번 취소");
-                checked_btn = 0;
-            }else {
-                checked_btn = 5;
-                tts_speech("5번");
-            }
-        }
-    }
-
-    public void team6(View view) {
-        if(player_num >= 6){
-            if(checked_btn == 6){
-                tts_speech("6번 취소");
-                checked_btn = 0;
-            }else{
-                checked_btn = 6;
-                tts_speech("6번");
-            }
-        }
-    }
-
     public void tts_speech(String text){
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    }
+
+    // 비어있는 View는 아래처럼 얻어올 수 있음
+    // 서비스에 해당하는 부분이므로 각 서비스 UI에 맞게 구성 필요
+    private int getAvailableView() {
+        for (int i = 0; i < availableView.length; i++) {
+            if (!availableView[i]) {
+                availableView[i] = true;
+                return i;
+            }
+        }
+        return -1;
     }
 }

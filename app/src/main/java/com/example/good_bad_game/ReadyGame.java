@@ -200,6 +200,7 @@ public class ReadyGame extends AppCompatActivity {
                 // 6명 정원찰 때 시작할 것.
                 Intent intent = new Intent(getApplicationContext(), InGame.class);
                 intent.putExtra("type", "firstIn");
+                intent.putExtra("room_num",room_num);
                 startActivity(intent);
 
             }

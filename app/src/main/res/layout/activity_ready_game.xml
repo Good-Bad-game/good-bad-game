@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+
 <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sign_in_ema"
@@ -19,11 +20,6 @@
         android:text="팀1"
         android:textColor="@color/yellow"
         android:textSize="40dp" />
-        <org.webrtc.SurfaceViewRenderer
-            android:id="@+id/surfRendererLocal"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="visible" />
 
     <ImageView
         android:id="@+id/team2"
@@ -105,4 +101,3 @@
         android:textSize="35dp" />
 
 </RelativeLayout>
-</layout>
