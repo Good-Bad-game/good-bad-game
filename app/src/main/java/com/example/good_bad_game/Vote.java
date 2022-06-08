@@ -19,11 +19,17 @@ public class Vote extends AppCompatActivity {
     private TextToSpeech tts;
     private String type = "";
     private int player_num = 6;
+    private String room_num;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote);
+        Intent getintent = getIntent();
+
+        room_num = getintent.getStringExtra("room_num");
+        Toast.makeText(getApplicationContext(),room_num,Toast.LENGTH_SHORT).show();
+
 
 //      tts 객체 생성
         tts = new TextToSpeech(Vote.this, new TextToSpeech.OnInitListener(){
