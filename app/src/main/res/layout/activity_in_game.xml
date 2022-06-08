@@ -68,6 +68,13 @@
                     android:text="팀1"
                     android:textColor="@color/yellow"
                     android:textSize="40dp" />
+
+                <org.webrtc.SurfaceViewRenderer
+                    android:id="@+id/surfRendererRemote1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="visible" />
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -90,6 +97,12 @@
                     android:onClick="team2"
                     android:textSize="40dp"
                     />
+
+                <org.webrtc.SurfaceViewRenderer
+                    android:id="@+id/surfRendererRemote2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -111,6 +124,12 @@
                     android:text="팀3"
                     android:textColor="@color/yellow"
                     android:textSize="40dp" />
+
+                <org.webrtc.SurfaceViewRenderer
+                    android:id="@+id/surfRendererRemote3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -132,6 +151,12 @@
                 android:onClick="team4"
                 android:textSize="40dp"
                 />
+
+                <org.webrtc.SurfaceViewRenderer
+                    android:id="@+id/surfRendererRemote4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -152,6 +177,12 @@
                 android:onClick="team5"
                 android:textSize="40dp"
                 android:background="@drawable/iamge" />
+
+                <org.webrtc.SurfaceViewRenderer
+                    android:id="@+id/surfRendererRemote5"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -171,8 +202,12 @@
                 android:textColor="@color/yellow"
                 android:text="팀6"
                 android:onClick="team6"
-                android:textSize="40dp"
-                />
+                android:textSize="40dp" />
+                <org.webrtc.SurfaceViewRenderer
+                    android:id="@+id/surfRendererRemote6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="invisible" />
             </RelativeLayout>
 
             <RelativeLayout

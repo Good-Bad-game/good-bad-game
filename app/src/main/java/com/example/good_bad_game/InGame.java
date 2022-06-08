@@ -14,7 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Locale;
 
-public class InGame extends AppCompatActivity {
+public class
+InGame extends AppCompatActivity {
     private static String TAG = "InGameActivity";
     public TextToSpeech tts;
     private String type = "";
