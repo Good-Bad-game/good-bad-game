@@ -46,8 +46,7 @@ public class ReadyGame extends AppCompatActivity {
     int[] skinId = {R.drawable.skin1, R.drawable.skin2, R.drawable.skin3,
             R.drawable.skin4, R.drawable.skin5, R.drawable.skin6};
 
-    List<String> list = new ArrayList<>();
-    List<String> userList = Collections.synchronizedList(list);
+    List<String> userList = Collections.synchronizedList(new ArrayList<String>());
     ImageView img;
 
 

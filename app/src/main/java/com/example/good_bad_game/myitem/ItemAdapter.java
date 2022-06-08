@@ -28,8 +28,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
 
     // OnClickListener Custom from yohan--------------------
 
-    private int selected_idx = 1;
-
+    private int selected_idx = 0;
     private int cnt = 0;
 
     public interface OnItemClickListener {

@@ -23,7 +23,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="40dp"
         android:layout_toEndOf="@+id/Tier"
-        android:background="@drawable/skin2" />
+         />
 
     <Button
         android:id="@+id/btn_start"

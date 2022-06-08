@@ -15,6 +15,7 @@ import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface LoginService {
@@ -54,4 +55,7 @@ public interface LoginService {
 
     @GET("item/")
     retrofit2.Call<List<getItem>> getItems();
+
+    @PUT("ranking/{uid}/")
+    Call<Ranking> putRanking(@Path("uid") int uid, @Body Ranking post);
 }
