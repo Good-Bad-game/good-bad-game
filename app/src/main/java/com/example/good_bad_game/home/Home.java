@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.good_bad_game.R;
+import com.example.good_bad_game.databinding.ActivityHomeBinding;
 import com.example.good_bad_game.friend.FriendFragment;
 import com.example.good_bad_game.myitem.ItemFragment;
 import com.example.good_bad_game.ranking.RankingFragment;

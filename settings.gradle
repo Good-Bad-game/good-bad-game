@@ -11,6 +11,14 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+    repositories {
+        maven { url 'https://icl.jfrog.io/artifactory/kakaoenterprise' }
+    }
+    repositories {
+        google()
+        mavenCentral()
+        jcenter() // Warning: this repository is going to shut down soon
+    }
 }
 rootProject.name = "good-bad-game"
 include ':app'

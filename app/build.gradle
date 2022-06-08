@@ -3,12 +3,12 @@ plugins {
 }
 
 android {
-    compileSdk 31
+    compileSdk 32
 
     defaultConfig {
         applicationId "com.example.good_bad_game"
         minSdk 21
-        targetSdk 31
+        targetSdk 32
         versionCode 1
         versionName "1.0"
 
@@ -25,6 +25,11 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        dataBinding true
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -40,7 +45,13 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.squareup.retrofit2:retrofit:2.6.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.0'
-    
 
+    //web RTC
+    implementation files('libs/autobanh.jar')
+    implementation 'org.webrtc:google-webrtc:1.0.32006'
+    implementation fileTree(dir: "libs", include: ["*.aar"])
+
+    /* SDK 설치 */
+    implementation 'com.kakaoenterprise:kakao-i-connect-live:2.9.13'
 
 }
