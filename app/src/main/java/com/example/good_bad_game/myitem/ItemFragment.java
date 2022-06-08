@@ -171,11 +171,11 @@ public class ItemFragment extends Fragment {
 
     private void initDataset(ItemAdapter adapter) {
         Log.d(TAG,"initDataset");
-        adapter.addItem(new Item("아이템1",R.drawable.skin1));
-        adapter.addItem(new Item("아이템2",R.drawable.skin2));
-        adapter.addItem(new Item("아이템3",R.drawable.skin3));
-        adapter.addItem(new Item("아이템4",R.drawable.skin4));
-        adapter.addItem(new Item("아이템5",R.drawable.skin5));
+        adapter.addItem(new Item("회색악마",R.drawable.skin1));
+        adapter.addItem(new Item("프랑켄",R.drawable.skin2));
+        adapter.addItem(new Item("아수라",R.drawable.skin3));
+        adapter.addItem(new Item("터미넴",R.drawable.skin4));
+        adapter.addItem(new Item("로봇",R.drawable.skin5));
 /*        adapter.addItem(new Item("아이템6",R.drawable.skin6));*/
     }
 
