@@ -30,7 +30,6 @@
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/room_item.xml" value="0.25" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/store_item.xml" value="0.22" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1955" />
-        <entry key="..\:/Users/pmhlj/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_ready_game.xml" value="0.17274569402228976" />
         <entry key="app/src/main/res/drawable/btn_sign_in.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/component_1.xml" value="0.2045" />
         <entry key="app/src/main/res/drawable/ellipse_441.xml" value="0.1105" />
@@ -53,7 +52,7 @@
         <entry key="app/src/main/res/layout/activity_friend_fragment.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.2301964365837657" />
         <entry key="app/src/main/res/layout/activity_home_fragment.xml" value="0.2296195652173913" />
-        <entry key="app/src/main/res/layout/activity_in_game.xml" value="0.25853954812754754" />
+        <entry key="app/src/main/res/layout/activity_in_game.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_my_item.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/activity_my_item_fragment.xml" value="0.2296195652173913" />
