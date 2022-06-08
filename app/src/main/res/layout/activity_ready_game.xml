@@ -15,8 +15,8 @@
         android:layout_marginStart="35dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/iamge"
-        android:text="팀1"
         android:gravity="center"
+        android:text="팀1"
         android:textColor="@color/yellow"
         android:textSize="40dp" />
         <org.webrtc.SurfaceViewRenderer

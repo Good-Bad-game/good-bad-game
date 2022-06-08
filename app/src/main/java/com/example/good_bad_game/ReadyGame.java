@@ -1,6 +1,7 @@
 package com.example.good_bad_game;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +44,8 @@ public class ReadyGame extends AppCompatActivity {
     private String v_type;
     private String room_num;
     private int num = 0;
+    private int ready_num = 0;
+    private static Thread t, t1;
 
     int imgId[] = {
             R.id.team1, R.id.team2, R.id.team3,
@@ -100,11 +103,13 @@ public class ReadyGame extends AppCompatActivity {
             });
 
         }
-        Thread t = new Thread(){
+
+
+        t = new Thread(){
             @Override
             public void run() {
 
-                while(!isInterrupted()){
+                while(!t.currentThread().isInterrupted()){
                     try {
                         Thread.sleep(3000);
 
@@ -141,17 +146,17 @@ public class ReadyGame extends AppCompatActivity {
                                                         }
                                                         List<getItem> Items = response.body();
                                                         int i = 0;
+                                                        Log.d("userList1 : ", userList.toString());
+
                                                         for ( getItem item : Items)
                                                         {
                                                             if(userList.contains(item.getUserid())){
                                                                 img = (ImageView)findViewById(imgId[i]);
-
-                                                                Log.d("imuid", img.toString());
-                                                                img.setImageResource(skinId[Integer.parseInt(item.getShopid())-1]);
+                                                                img.setImageResource(skinId[(Integer.parseInt(item.getShopid()))-1]);
                                                                 i++;
-
                                                             }
                                                         }
+                                                        userList.clear();
                                                     }
                                                     @Override
                                                     public void onFailure(retrofit2.Call<List<getItem>> call, Throwable t) {
@@ -164,7 +169,6 @@ public class ReadyGame extends AppCompatActivity {
                                             }
 
                                         }
-                                        Log.d("userList : ", userList.toString());
 
                                     }
 
@@ -179,6 +183,7 @@ public class ReadyGame extends AppCompatActivity {
                             }
                         });
                     } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
                         e.printStackTrace();
                     }
                 }
@@ -203,6 +208,14 @@ public class ReadyGame extends AppCompatActivity {
         t.start();
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        t.interrupt();
+        //t1.interrupt();
+    }
+
     @Override
     public void onBackPressed() {
 
@@ -230,7 +243,7 @@ public class ReadyGame extends AppCompatActivity {
                             }
                             List<getMatching> Matching_infos = response.body();
 
-                            Thread t = new Thread() {
+                            t1 = new Thread() {
                                 @Override
                                 public void run() {
 
@@ -250,12 +263,13 @@ public class ReadyGame extends AppCompatActivity {
                                                 }
                                             });
                                         } catch (InterruptedException e) {
+                                            Thread.currentThread().interrupt();
                                             e.printStackTrace();
                                         }
                                     }
                                 }
                             };
-                            t.start();
+                            t1.start();
 
                             for ( getMatching matching_info : Matching_infos) {
                                 if ( matching_info.getMatchIdx().equals(room_num)){
@@ -278,6 +292,9 @@ public class ReadyGame extends AppCompatActivity {
                                 });
                             }
                             else finish();
+
+                            Log.d("interrupt ","interrupt 발생");
+
                         }
 
                         @Override
