@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sign_in_ema"
-    tools:context=".Bad">
+    tools:context=".Good">
 
     <ImageView
         android:id="@+id/good_pick"
@@ -12,27 +12,26 @@
         android:layout_height="match_parent"
         android:layout_marginStart="0dp"
         android:layout_marginTop="0dp"
-        android:src="@drawable/bad_win"
+        android:src="@drawable/good_win"
         android:textColor="@color/yellow"
         android:textSize="40dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="70dp"
         android:gravity="center"
-        android:text="Bad 승리!"
+        android:text="Good 승리!"
         android:textColor="@color/white"
         android:textSize="80dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:textColor="@color/white"
-        android:layout_marginTop="300dp"
-        android:text="Point : +15"
-        android:textSize="50dp"
+        android:layout_marginTop="550dp"
         android:gravity="center"
-        />
+        android:text="Point : +12"
+        android:textColor="@color/white"
+        android:textSize="50dp" />
 
 </RelativeLayout>
