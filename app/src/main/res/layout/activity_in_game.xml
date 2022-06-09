@@ -91,7 +91,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/iamge"
-                    android:onClick="team2"
                     android:text="팀2"
                     android:textColor="@color/yellow"
                     android:textSize="40dp" />
@@ -119,7 +118,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/iamge"
-                    android:onClick="team3"
                     android:text="팀3"
                     android:textColor="@color/yellow"
                     android:textSize="40dp" />
@@ -146,7 +144,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/iamge"
-                    android:onClick="team4"
                     android:text="팀4"
                     android:textColor="@color/yellow"
                     android:textSize="40dp" />
@@ -173,7 +170,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/iamge"
-                    android:onClick="team5"
                     android:text="팀5"
                     android:textColor="@color/yellow"
                     android:textSize="40dp" />
@@ -200,7 +196,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/iamge"
-                    android:onClick="team6"
                     android:text="팀6"
                     android:textColor="@color/yellow"
                     android:textSize="40dp" />
@@ -223,28 +218,27 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.90">
 
-                <TextView
-                    android:id="@+id/end_meeting"
-                    android:layout_width="230dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="80dp"
-                    android:background="@drawable/iamge"
-                    android:onClick="StrightVote"
-                    android:text="선택완료"
-                    android:textAlignment="center"
-                    android:textColor="@color/yellow"
-                    android:textSize="35dp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/end_meeting"-->
+<!--                    android:layout_width="230dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginStart="80dp"-->
+<!--                    android:background="@drawable/iamge"-->
+<!--                    android:text="선택완료"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/yellow"-->
+<!--                    android:textSize="35dp" />-->
 
-                <TextView
-                    android:id="@+id/end_number"
-                    android:layout_width="60dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="20dp"
-                    android:background="@drawable/iamge"
-                    android:text="1"
-                    android:textAlignment="center"
-                    android:textColor="@color/yellow"
-                    android:textSize="35dp" />
+<!--                <TextView-->
+<!--                    android:id="@+id/end_number"-->
+<!--                    android:layout_width="60dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginStart="20dp"-->
+<!--                    android:background="@drawable/iamge"-->
+<!--                    android:text="1"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/yellow"-->
+<!--                    android:textSize="35dp" />-->
 
             </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

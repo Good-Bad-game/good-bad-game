@@ -404,9 +404,9 @@ public class InGame extends AppCompatActivity {
                 break;
             case "4": count_num = "120";
                 break;*/
-            case "3": count_num = "010";
+            case "3": count_num = "040";
                 break;
-            case "2": count_num = "050";
+            case "2": count_num = "030";
                 break;
         }
 
