@@ -11,6 +11,12 @@ public class Ranking {
         this.sid = sid;
     }
 
+    public Ranking(int uid, int sid, String rank){
+        this.uid = uid;
+        this.sid = sid;
+        this.rank = rank;
+    }
+
     public Ranking(){
     }
 

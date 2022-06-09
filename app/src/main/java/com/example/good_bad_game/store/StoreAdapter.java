@@ -3,6 +3,7 @@ package com.example.good_bad_game.store;
 import static android.speech.tts.TextToSpeech.ERROR;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.LayoutInflater;

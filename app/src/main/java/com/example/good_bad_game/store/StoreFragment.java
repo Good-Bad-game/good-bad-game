@@ -1,11 +1,13 @@
 package com.example.good_bad_game.store;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -74,12 +76,12 @@ public class StoreFragment extends Fragment {
 
     private void initDataset(StoreAdapter adapter) {
         Log.d(TAG,"initDataset");
-        adapter.addItem(new Store("상품1",R.drawable.skin1));
-        adapter.addItem(new Store("상품2",R.drawable.skin2));
-        adapter.addItem(new Store("상품3",R.drawable.skin3));
-        adapter.addItem(new Store("상품4",R.drawable.skin4));
-        adapter.addItem(new Store("상품5",R.drawable.skin5));
-        adapter.addItem(new Store("상품6",R.drawable.skin6));
+        adapter.addItem(new Store("회색악마",R.drawable.skin1));
+        adapter.addItem(new Store("크랑켄",R.drawable.skin2));
+        adapter.addItem(new Store("아수라",R.drawable.skin3));
+        adapter.addItem(new Store("터미넴",R.drawable.skin4));
+        adapter.addItem(new Store("로봇",R.drawable.skin5));
+        adapter.addItem(new Store("슬라임",R.drawable.skin6));
 
     }
 

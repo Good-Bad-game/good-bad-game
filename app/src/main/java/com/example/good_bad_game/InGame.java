@@ -19,6 +19,7 @@ public class InGame extends AppCompatActivity {
     public TextToSpeech tts;
     private String type = "";
     private int player_num;     //6명 초기값 ( 이후 수정할 것 )
+    private String room_num;
 
     //투표할 사람을 선택했을 때 번호
     // init은 0으로 초기화
@@ -34,7 +35,8 @@ public class InGame extends AppCompatActivity {
         setContentView(R.layout.activity_in_game);
         Intent getintent = getIntent();
 
-
+        room_num = getintent.getStringExtra("room_num");
+        Toast.makeText(getApplicationContext(),room_num,Toast.LENGTH_SHORT).show();
 
 //      tts 객체 생성
         tts = new TextToSpeech(InGame.this, new TextToSpeech.OnInitListener(){
@@ -202,6 +204,7 @@ public class InGame extends AppCompatActivity {
 
                 // TODO : 타이머가 모두 종료될때 어떤 이벤트를 진행할지
                 Intent intent = new Intent(getApplicationContext(), Vote.class);
+                intent.putExtra("room_num", room_num);
                 intent.putExtra("type", type);
                 startActivity(intent);
 
@@ -250,6 +253,7 @@ public class InGame extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(), Vote.class);
             intent.putExtra("playerNum", player_num);
             intent.putExtra("type", type);
+            intent.putExtra("room_num", room_num);
             startActivity(intent);
         }
     }
