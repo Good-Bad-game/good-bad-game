@@ -62,4 +62,7 @@ public interface LoginService {
 
     @PUT("target/{uid}/")
     Call<Target> putTarget(@Path("uid") int uid, @Body Target target);
+
+    @GET("target/")
+    retrofit2.Call<List<Target>> getTarget();
 }
