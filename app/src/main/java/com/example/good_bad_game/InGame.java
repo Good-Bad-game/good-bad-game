@@ -1,25 +1,16 @@
 package com.example.good_bad_game;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.webkit.PermissionRequest;
-import android.webkit.WebChromeClient;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.good_bad_game.databinding.ActivityInGameBinding;
@@ -30,7 +21,6 @@ import com.remotemonster.sdk.RemonException;
 
 import org.webrtc.SurfaceViewRenderer;
 
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -59,7 +49,6 @@ public class InGame extends AppCompatActivity {
     // 음성 통신 관련 코드
     ActivityInGameBinding binding;
     private boolean[] availableView;
-    private String roomName;
     RemonConference remonConference;
 
     @Override
@@ -67,17 +56,6 @@ public class InGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_game);
         Intent getintent = getIntent();
-
-//        checkCameraPermissions(getApplicationContext());
-//        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
-//                != PackageManager.PERMISSION_GRANTED)
-//        {
-//            // Permission is not granted
-//            Log.d("checkCameraPermissions", "No Camera Permissions");
-//            ActivityCompat.requestPermissions((Activity) getApplicationContext(),
-//                    new String[] { Manifest.permission.CAMERA },
-//                    100);
-//        }
 
         room_num = getintent.getStringExtra("room_num");
         id = getintent.getStringExtra("id");
@@ -116,15 +94,15 @@ public class InGame extends AppCompatActivity {
         config.serviceId = "a9553294-aa66-45de-8b07-6b1b922ef105";
         config.key = "e3d66ede5091133201de590d62275a55b93ce6b0d5dc0322cf0360c10329eb71";
 
-        roomName = getintent.getStringExtra("room_num");
-        roomName += "room";
-        Log.d(TAG, roomName);
 
-        remonConference.create(roomName, config, participant -> {
+        room_num += "room";
+        Log.d(TAG, room_num);
+
+        remonConference.create(room_num, config, participant -> {
             // 자신의 View를 초기화
 //             얼굴을 보이게 한다
             participant.setLocalView(null);
-            Log.d(TAG, roomName);
+            Log.d(TAG, room_num);
 
             // View 설정
             availableView[0] = true; // boolean : 할당된 미디어가 있는지 여부
@@ -139,11 +117,11 @@ public class InGame extends AppCompatActivity {
 
 
         // 만들어진 방에 들어가는 건가?
-        remonConference.create(roomName, config, (participant) -> {
+        remonConference.create(room_num, config, (participant) -> {
 
 //            participant.setLocalView(surfaceRendererArray[0]);
 //            room_name = "1";
-            Log.d(TAG, roomName);
+            Log.d(TAG, room_num);
 
         }).on("onRoomCreated", (participant) -> {
 
@@ -227,7 +205,7 @@ public class InGame extends AppCompatActivity {
 
 
         // 타이머 코딩 부분 --------------------------------------------------------------------------
-//        Timer();
+        Timer();
 
     }
 
@@ -513,16 +491,5 @@ public class InGame extends AppCompatActivity {
         remonConference.leave();
         Log.d(TAG, "destroy");
         super.onDestroy();
-    }
-    public static void checkCameraPermissions(Context context){
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED)
-        {
-            // Permission is not granted
-            Log.d("checkCameraPermissions", "No Camera Permissions");
-            ActivityCompat.requestPermissions((Activity) context,
-                    new String[] { Manifest.permission.CAMERA },
-                    100);
-        }
     }
 }
