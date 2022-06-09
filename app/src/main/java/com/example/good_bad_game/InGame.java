@@ -12,7 +12,12 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.good_bad_game.loginout.LoginService;
+
 import java.util.Locale;
+
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class InGame extends AppCompatActivity {
     private static String TAG = "InGameActivity";
@@ -20,6 +25,10 @@ public class InGame extends AppCompatActivity {
     private String type = "";
     private int player_num;     //6명 초기값 ( 이후 수정할 것 )
     private String room_num;
+    private String id;
+    private int userList[] = {-1, -1, -1};
+    private int targetUid[] = {-1, -1, -1};
+    private int cnt = 0;
 
     //투표할 사람을 선택했을 때 번호
     // init은 0으로 초기화
@@ -36,7 +45,17 @@ public class InGame extends AppCompatActivity {
         Intent getintent = getIntent();
 
         room_num = getintent.getStringExtra("room_num");
+        id = getintent.getStringExtra("id");
         Toast.makeText(getApplicationContext(),room_num,Toast.LENGTH_SHORT).show();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://54.180.121.58:8080/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        LoginService LoginService = retrofit.create(LoginService.class);
+
+
 
 //      tts 객체 생성
         tts = new TextToSpeech(InGame.this, new TextToSpeech.OnInitListener(){
@@ -60,7 +79,7 @@ public class InGame extends AppCompatActivity {
             type = getintent.getStringExtra("type");
 
             if(type.equals("firstIn")){
-                player_num = 6;  //6명 초기값 ( 이후 수정할 것 )
+                player_num = 3;  //6명 초기값 ( 이후 수정할 것 )
 
 //                tts.speak("굿배드를 선택하세요.", TextToSpeech.QUEUE_FLUSH, null);
                 tts_speech("굿배드를 선택하세요.");
@@ -77,18 +96,18 @@ public class InGame extends AppCompatActivity {
         TextView count_view = findViewById(R.id.time);
 
         String player_num2 = Integer.toString(player_num);
-        String count_num = "040";
+        String count_num = "010";
 
         switch(player_num2){
-            case "6": count_num = "200";
+/*            case "6": count_num = "200";
                 break;
             case "5": count_num = "140";
                 break;
             case "4": count_num = "120";
+                break;*/
+            case "3": count_num = "010";
                 break;
-            case "3": count_num = "100";
-                break;
-            case "2": count_num = "040";
+            case "2": count_num = "005";
                 break;
         }
 
@@ -205,6 +224,7 @@ public class InGame extends AppCompatActivity {
                 // TODO : 타이머가 모두 종료될때 어떤 이벤트를 진행할지
                 Intent intent = new Intent(getApplicationContext(), Vote.class);
                 intent.putExtra("room_num", room_num);
+                intent.putExtra("id",id);
                 intent.putExtra("type", type);
                 startActivity(intent);
 

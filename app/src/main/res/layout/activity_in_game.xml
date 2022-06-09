@@ -29,19 +29,19 @@
         android:textSize="20dp" />
 
 
-    <Button
+    <ImageView
         android:id="@+id/team1"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="60dp"
         android:background="@drawable/iamge"
-        android:text="팀1"
         android:onClick="team1"
+        android:text="팀1"
         android:textColor="@color/yellow"
         android:textSize="40dp" />
 
-    <Button
+    <ImageView
         android:id="@+id/team2"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -53,7 +53,7 @@
         android:onClick="team2"
         android:textSize="40dp"
         />
-    <Button
+    <ImageView
         android:id="@+id/team3"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -66,7 +66,7 @@
         android:background="@drawable/iamge"
         />
 
-    <Button
+    <ImageView
         android:id="@+id/team4"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -78,7 +78,7 @@
         android:onClick="team4"
         android:textSize="40dp"
         />
-    <Button
+    <ImageView
         android:id="@+id/team5"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -90,7 +90,7 @@
         android:textSize="40dp"
         android:background="@drawable/iamge" />
 
-    <Button
+    <ImageView
         android:id="@+id/team6"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -111,7 +111,7 @@
         android:layout_marginTop="520dp"
         android:background="@drawable/iamge"
         android:onClick="StrightVote"
-        android:text="선택완료"
+        android:text="투표하기"
         android:textAlignment="center"
         android:textColor="@color/yellow"
         android:textSize="35dp" />

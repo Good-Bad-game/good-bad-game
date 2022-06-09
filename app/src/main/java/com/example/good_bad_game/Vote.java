@@ -7,12 +7,26 @@ import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.good_bad_game.loginout.Login;
+import com.example.good_bad_game.loginout.LoginService;
+import com.example.good_bad_game.ranking.Ranking;
+
+import org.w3c.dom.Text;
+
+import java.util.List;
 import java.util.Locale;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Vote extends AppCompatActivity {
     private static String TAG = "VoteActivity";
@@ -20,14 +34,25 @@ public class Vote extends AppCompatActivity {
     private String type = "";
     private int player_num = 6;
     private String room_num;
+    private String id;
+    private int choice = -1;
+    private String vote_confirm = "false";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote);
-        Intent getintent = getIntent();
+        Intent intent = getIntent();
 
-        room_num = getintent.getStringExtra("room_num");
+        ImageView team1 = findViewById(R.id.team1);
+        ImageView team2 = findViewById(R.id.team2);
+        ImageView team3 = findViewById(R.id.team3);
+
+        TextView pass = findViewById(R.id.end_number);
+        TextView confirm = findViewById(R.id.end_meeting);
+
+        room_num = intent.getStringExtra("room_num");
+        id = intent.getStringExtra("id");
         Toast.makeText(getApplicationContext(),room_num,Toast.LENGTH_SHORT).show();
 
 
@@ -50,7 +75,7 @@ public class Vote extends AppCompatActivity {
 
 
         // 타이머 코딩 부분 --------------------------------------------------------------------------
-        Intent intent = getIntent();
+
         if(!TextUtils.isEmpty(getIntent().getStringExtra("type"))){
             type = intent.getStringExtra("type");
             Toast.makeText(getApplicationContext(), type, Toast.LENGTH_SHORT).show();
@@ -60,11 +85,7 @@ public class Vote extends AppCompatActivity {
 
         TextView count_view = findViewById(R.id.time);
 
-//        int player_num = 6;     //6명 초기값 ( 이후 수정할 것 )
-        String player_num2 = Integer.toString(player_num);
-        String count_num = "040";
-
-        count_num = "030";
+        String count_num = "010";
 
         String time = "000" + count_num;
         Log.d("입력값 :", time);
@@ -178,11 +199,124 @@ public class Vote extends AppCompatActivity {
                 // TODO : 타이머가 모두 종료될때 어떤 이벤트를 진행할지
 
                 Intent intent = new Intent(getApplicationContext(), InGame.class);
+                intent.putExtra("id", id);
+                intent.putExtra("room_num", room_num);
+                intent.putExtra("die","true");
                 startActivity(intent);
 
 
             }
         }.start();
+
+        team1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(vote_confirm == "false"){
+                    choice = 0;
+                    team1.setBackgroundResource(R.drawable.vote_select);
+                    team2.setBackgroundResource(R.drawable.iamge);
+                    team3.setBackgroundResource(R.drawable.iamge);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"이미 투표권을 행사했습니다",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        team2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(vote_confirm == "false"){
+                    choice = 1;
+                    team1.setBackgroundResource(R.drawable.iamge);
+                    team2.setBackgroundResource(R.drawable.vote_select);
+                    team3.setBackgroundResource(R.drawable.iamge);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"이미 투표권을 행사했습니다",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        team3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(vote_confirm == "false"){
+                    choice = 2;
+                    team1.setBackgroundResource(R.drawable.iamge);
+                    team2.setBackgroundResource(R.drawable.iamge);
+                    team3.setBackgroundResource(R.drawable.vote_select);
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"이미 투표권을 행사했습니다",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(vote_confirm == "false"){
+                    vote_confirm = "true";
+                    team1.setBackgroundResource(R.drawable.iamge);
+                    team2.setBackgroundResource(R.drawable.iamge);
+                    team3.setBackgroundResource(R.drawable.iamge);
+                    Toast.makeText(getApplicationContext(),"기권하였습니다.",Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"이미 투표권을 행사했습니다",Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(vote_confirm == "false"){
+                    if(choice == -1){
+                        Toast.makeText(getApplicationContext(),"투표할 대상자를 클릭하세요",Toast.LENGTH_SHORT).show();
+                    }
+                    else{
+                        vote_confirm = "true";
+                        Toast.makeText(getApplicationContext(),choice + " 에게 투표하였습니다.",Toast.LENGTH_SHORT).show();
+
+                        Retrofit retrofit = new Retrofit.Builder()
+                                .baseUrl("http://54.180.121.58:8080/")
+                                .addConverterFactory(GsonConverterFactory.create())
+                                .build();
+
+                        LoginService LoginService = retrofit.create(LoginService.class);
+
+                        Target target = new Target(Integer.parseInt(id), choice);
+
+                        LoginService.putTarget(Integer.parseInt(id), target).enqueue(new Callback<Target>() {
+                            @Override
+                            public void onResponse(Call<Target> call, Response<Target> response) {
+                                if(response.isSuccessful()){
+                                    Log.d("putTarget 성공!","");
+                                }
+                                else{
+
+                                }
+                            }
+
+                            @Override
+                            public void onFailure(Call<Target> call, Throwable t) {
+
+                            }
+                        });
+
+                    }
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"이미 투표권을 행사했습니다",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
 
 
         // 타이머 코딩 부분 --------------------------------------------------------------------------

@@ -209,6 +209,7 @@ public class ReadyGame extends AppCompatActivity {
 
                 Intent intent = new Intent(getApplicationContext(), InGame.class);
                 intent.putExtra("room_num", room_num);
+                intent.putExtra("id", id);
                 intent.putExtra("type", "firstIn");
                 startActivity(intent);
 
