@@ -144,7 +144,7 @@ public class InGame extends AppCompatActivity {
                                    team1.setImageResource(skinId[ranking.getSid()]);
                                 }
                                 else if(ranking.getUid() == userList[1]){
-                                   ImageView team2 = findViewById(R.id.team3);
+                                   ImageView team2 = findViewById(R.id.team2);
                                    team2.setImageResource(skinId[ranking.getSid()]);
                                 }
                                 else if(ranking.getUid() == userList[2]){
