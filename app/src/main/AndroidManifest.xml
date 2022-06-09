@@ -70,6 +70,9 @@
             android:name=".Good"
             android:exported="false" />
         <activity
+            android:name=".Bad"
+            android:exported="false" />
+        <activity
             android:name=".ReadyGame"
             android:exported="false" />
          <activity
@@ -78,9 +81,9 @@
         <activity
             android:name=".final_pick"
             android:exported="false" />
-        <activity
-            android:name=".loginout.SignIn"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".loginout.SignIn"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".loginout.SignUp"
             android:exported="false" />
@@ -91,7 +94,7 @@
 <!--            android:name=".loginout.SignIn"-->
 <!--            android:exported="false" />-->
         <activity
-            android:name=".Bad"
+            android:name=".loginout.SignIn"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
