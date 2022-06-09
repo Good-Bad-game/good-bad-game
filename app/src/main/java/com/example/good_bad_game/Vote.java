@@ -256,6 +256,7 @@ public class Vote extends AppCompatActivity {
                 intent.putExtra("id", id);
                 intent.putExtra("room_num", room_num);
                 intent.putExtra("die","true");
+                intent.putExtra("userList",userList);
                 startActivity(intent);
 
 

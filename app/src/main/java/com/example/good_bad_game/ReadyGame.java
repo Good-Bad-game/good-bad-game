@@ -58,6 +58,8 @@ public class ReadyGame extends AppCompatActivity {
     List<String> userList = Collections.synchronizedList(new ArrayList<String>());
     ImageView img;
 
+    public int userList2[] = {-1, -1, -1};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -200,6 +202,7 @@ public class ReadyGame extends AppCompatActivity {
 
                 // 6명 정원찰 때 시작할 것.
                 Intent intent = new Intent(getApplicationContext(), InGame.class);
+                intent.putExtra("userList", userList2);
                 intent.putExtra("room_num", room_num);
                 intent.putExtra("id", id);
                 intent.putExtra("type", "firstIn");
