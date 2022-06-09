@@ -49,6 +49,7 @@ public class InGame extends AppCompatActivity {
     private String die;
     private int vote_num[] = {0, 0, 0};
     private int max_idx = -1;
+    private int tmp_userList[];
     int[] skinId = {R.drawable.skin1, R.drawable.skin2, R.drawable.skin3, R.drawable.skin4, R.drawable.skin5, R.drawable.skin6};
 
     //투표할 사람을 선택했을 때 번호
@@ -77,10 +78,6 @@ public class InGame extends AppCompatActivity {
 
         player_num = 3;
 
-        ImageView team1 = findViewById(R.id.team1);
-        ImageView team2 = findViewById(R.id.team2);
-        ImageView team3 = findViewById(R.id.team3);
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://54.180.121.58:8080/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -89,6 +86,8 @@ public class InGame extends AppCompatActivity {
         LoginService LoginService = retrofit.create(LoginService.class);
 
         Call<List<getMatching>> call = LoginService.getMatching();
+
+        Log.d("In game 시작! ","");
 
         call.enqueue(new Callback<List<getMatching>>() {
             @Override
@@ -108,13 +107,13 @@ public class InGame extends AppCompatActivity {
                     }
                 }
                 else{
-
+                    Log.d("데이터 접근 실패!","");
                 }
             }
 
             @Override
             public void onFailure(Call<List<getMatching>> call, Throwable t) {
-
+                Log.d("데이터 접근 실패2!","");
             }
         });
 
@@ -131,17 +130,26 @@ public class InGame extends AppCompatActivity {
                     @Override
                     public void onResponse(Call<List<Ranking>> call, Response<List<Ranking>> response) {
                         if(response.isSuccessful()){
-                            Log.d("Raking 가져오기 성공!","");
+                            Log.d("Raking 가져오기 성공!!!!!!!!!","");
                             List<Ranking> rankings = response.body();
+                            Log.d("비교!!!!! userList[0] : ", Integer.toString(userList[0]));
+                            Log.d("비교!!!!! userList[1] : ", Integer.toString(userList[1]));
+                            Log.d("비교!!!!! userList[2] : ", Integer.toString(userList[2]));
                             for( Ranking ranking : rankings){
-                               if(ranking.getUid() == userList[0]){
+                                Log.d("비교!!! ranking.getUid : ", Integer.toString(ranking.getUid()));
+                               if(ranking.getUid() ==userList[0]){
+                                   Log.d("비교!!! if문 첫번째발동123","");
+                                   Log.d("비교!!! ranking.getSid : ", Integer.toString(ranking.getUid()));
+                                   ImageView team1 = findViewById(R.id.team1);
                                    team1.setImageResource(skinId[ranking.getSid()]);
                                 }
                                 else if(ranking.getUid() == userList[1]){
-                                    team2.setImageResource(skinId[ranking.getSid()]);
+                                   ImageView team2 = findViewById(R.id.team3);
+                                   team2.setImageResource(skinId[ranking.getSid()]);
                                 }
                                 else if(ranking.getUid() == userList[2]){
-                                    team3.setImageResource(skinId[ranking.getSid()]);
+                                   ImageView team3 = findViewById(R.id.team3);
+                                   team3.setImageResource(skinId[ranking.getSid()]);
                                 }
                             }
                         }
@@ -157,7 +165,7 @@ public class InGame extends AppCompatActivity {
                 });
 
             }
-        }, 500);
+        }, 1000);
 
 
         if( die != null ){
@@ -195,7 +203,7 @@ public class InGame extends AppCompatActivity {
                     });
 
                 }
-            }, 500);
+            }, 1000);
 
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -222,13 +230,16 @@ public class InGame extends AppCompatActivity {
                     }
 
                     if(max_idx == 0){
-                        team1.setImageResource(R.drawable.bullet);
+                        ImageView team2 = findViewById(R.id.team2);
+                        team2.setImageResource(R.drawable.bullet);
                     }
                     else if(max_idx == 1){
+                        ImageView team2 = findViewById(R.id.team2);
                         team2.setImageResource(R.drawable.bullet);
                     }
                     else{
-                        team3.setImageResource(R.drawable.bullet);
+                        ImageView team2 = findViewById(R.id.team2);
+                        team2.setImageResource(R.drawable.bullet);
                     }
 
 
@@ -393,9 +404,9 @@ public class InGame extends AppCompatActivity {
                 break;
             case "4": count_num = "120";
                 break;*/
-            case "3": count_num = "020";
+            case "3": count_num = "010";
                 break;
-            case "2": count_num = "010";
+            case "2": count_num = "050";
                 break;
         }
 

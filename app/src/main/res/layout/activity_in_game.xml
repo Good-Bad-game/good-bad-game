@@ -65,10 +65,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/iamge"
-                    android:onClick="team1"
-                    android:text="팀1"
                     android:textColor="@color/yellow"
-                    android:textSize="40dp" />
+                    />
 
                 <org.webrtc.SurfaceViewRenderer
                     android:id="@+id/surfRendererRemote1"
