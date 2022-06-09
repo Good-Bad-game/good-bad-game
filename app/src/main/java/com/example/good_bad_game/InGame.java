@@ -1,16 +1,25 @@
 package com.example.good_bad_game;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.webkit.PermissionRequest;
+import android.webkit.WebChromeClient;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.example.good_bad_game.databinding.ActivityInGameBinding;
@@ -20,6 +29,7 @@ import com.remotemonster.sdk.RemonException;
 
 import org.webrtc.SurfaceViewRenderer;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Locale;
 
@@ -41,6 +51,7 @@ public class InGame extends AppCompatActivity {
     ActivityInGameBinding binding;
     private boolean[] availableView;
     private String roomName;
+    RemonConference remonConference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +59,16 @@ public class InGame extends AppCompatActivity {
         setContentView(R.layout.activity_in_game);
         Intent getintent = getIntent();
 
+//        checkCameraPermissions(getApplicationContext());
+//        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA)
+//                != PackageManager.PERMISSION_GRANTED)
+//        {
+//            // Permission is not granted
+//            Log.d("checkCameraPermissions", "No Camera Permissions");
+//            ActivityCompat.requestPermissions((Activity) getApplicationContext(),
+//                    new String[] { Manifest.permission.CAMERA },
+//                    100);
+//        }
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_in_game);
 
@@ -67,15 +88,16 @@ public class InGame extends AppCompatActivity {
 
 
 //        RemonConference 클래스를 생성하고, 자신의 영상을 송출하기 위한 설정을 합니다.
-        RemonConference remonConference = new RemonConference();
+        remonConference = new RemonConference();
 
         Config config = new Config();
         config.context = this;
         config.serviceId = "a9553294-aa66-45de-8b07-6b1b922ef105";
         config.key = "e3d66ede5091133201de590d62275a55b93ce6b0d5dc0322cf0360c10329eb71";
 
-        Intent receive_intent = getIntent();
-        roomName = receive_intent.getStringExtra("room_num");
+        roomName = getintent.getStringExtra("room_num");
+        roomName += "room";
+        Log.d(TAG, roomName);
 
         remonConference.create(roomName, config, participant -> {
             // 자신의 View를 초기화
@@ -91,6 +113,7 @@ public class InGame extends AppCompatActivity {
         }).error(e -> {
             // 클라이언트의 사용자(참여자)가 연결된 채널에서 오류 발생 시 호출됨
             // 오류로 연결이 종료되면 error -> close 순으로 호출됨
+            Log.d(TAG, "error!!!");
         });
 
 
@@ -144,6 +167,7 @@ public class InGame extends AppCompatActivity {
             // 그룹 통화 종료 시 호출됨
         }).error((RemonException error) -> {
             // 오류 발생시 호출됨
+            Log.d(TAG, "error2!!!");
         });
 
 
@@ -165,24 +189,24 @@ public class InGame extends AppCompatActivity {
 
         // GOOD BAD CHOICE ------------------------------------------------------------------------
 
-        if(!TextUtils.isEmpty(getintent.getStringExtra("type"))){
-            type = getintent.getStringExtra("type");
-
-            if(type.equals("firstIn")){
-                player_num = 6;  //6명 초기값 ( 이후 수정할 것 )
-
-//                tts.speak("굿배드를 선택하세요.", TextToSpeech.QUEUE_FLUSH, null);
-                tts_speech("굿배드를 선택하세요.");
-
-                Intent intent = new Intent(this, PopupActivity.class);
-                startActivityForResult(intent, 1);
-            }
-        }
+//        if(!TextUtils.isEmpty(getintent.getStringExtra("type"))){
+//            type = getintent.getStringExtra("type");
+//
+//            if(type.equals("firstIn")){
+//                player_num = 6;  //6명 초기값 ( 이후 수정할 것 )
+//
+////                tts.speak("굿배드를 선택하세요.", TextToSpeech.QUEUE_FLUSH, null);
+//                tts_speech("굿배드를 선택하세요.");
+//
+//                Intent intent = new Intent(this, PopupActivity.class);
+//                startActivityForResult(intent, 1);
+//            }
+//        }
 
 
 
         // 타이머 코딩 부분 --------------------------------------------------------------------------
-        Timer();
+//        Timer();
 
     }
 
@@ -386,5 +410,23 @@ public class InGame extends AppCompatActivity {
             }
         }
         return -1;
+    }
+
+    @Override
+    protected void onDestroy() {
+        remonConference.leave();
+        Log.d(TAG, "destroy");
+        super.onDestroy();
+    }
+    public static void checkCameraPermissions(Context context){
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED)
+        {
+            // Permission is not granted
+            Log.d("checkCameraPermissions", "No Camera Permissions");
+            ActivityCompat.requestPermissions((Activity) context,
+                    new String[] { Manifest.permission.CAMERA },
+                    100);
+        }
     }
 }

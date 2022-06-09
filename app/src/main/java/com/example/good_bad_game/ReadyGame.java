@@ -109,7 +109,7 @@ public class ReadyGame extends AppCompatActivity {
             @Override
             public void run() {
 
-                while(!t.currentThread().isInterrupted()){
+                while(!isInterrupted()){
                     try {
                         Thread.sleep(3000);
 
@@ -197,11 +197,14 @@ public class ReadyGame extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+
                 // 6명 정원찰 때 시작할 것.
                 Intent intent = new Intent(getApplicationContext(), InGame.class);
                 intent.putExtra("type", "firstIn");
                 intent.putExtra("room_num",room_num);
                 startActivity(intent);
+                t.interrupt();
+
 
             }
         });
