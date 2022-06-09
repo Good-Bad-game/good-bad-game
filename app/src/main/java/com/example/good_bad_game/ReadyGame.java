@@ -190,7 +190,7 @@ public class ReadyGame extends AppCompatActivity {
             }
         };
 
-        Toast.makeText(getApplicationContext(),v_type,Toast.LENGTH_SHORT).show();
+        Toast.makeText(getApplicationContext(),"방 번호 : " + room_num,Toast.LENGTH_SHORT).show();
         Log.d("v_type : ", v_type);
 
         btn_start.setOnClickListener(new View.OnClickListener() {
@@ -200,6 +200,8 @@ public class ReadyGame extends AppCompatActivity {
 
                 // 6명 정원찰 때 시작할 것.
                 Intent intent = new Intent(getApplicationContext(), InGame.class);
+                intent.putExtra("room_num", room_num);
+                intent.putExtra("id", id);
                 intent.putExtra("type", "firstIn");
                 intent.putExtra("room_num",room_num);
                 startActivity(intent);

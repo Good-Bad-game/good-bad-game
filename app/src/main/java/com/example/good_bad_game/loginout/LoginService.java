@@ -7,6 +7,7 @@ import com.example.good_bad_game.getMatching;
 import com.example.good_bad_game.readyroom.Room;
 import com.example.good_bad_game.ranking.Ranking;
 import com.example.good_bad_game.readyroom.getRoom;
+import com.example.good_bad_game.Target;
 
 import java.util.List;
 
@@ -58,4 +59,7 @@ public interface LoginService {
 
     @PUT("ranking/{uid}/")
     Call<Ranking> putRanking(@Path("uid") int uid, @Body Ranking post);
+
+    @PUT("target/{uid}/")
+    Call<Target> putTarget(@Path("uid") int uid, @Body Target target);
 }

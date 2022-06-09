@@ -50,7 +50,6 @@ public class PopupActivity extends Activity {
     }
 
     public void UpOrder(View view){
-        Toast.makeText(getApplicationContext(), "Good이 클릭되었습니다.", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent();
         intent.putExtra("type","up");
         setResult(RESULT_OK, intent);
@@ -58,7 +57,6 @@ public class PopupActivity extends Activity {
     }
 
     public void DownOrder(View view){
-        Toast.makeText(getApplicationContext(), "Bad이 클릭되었습니다.", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent();
         intent.putExtra("type","down");
         setResult(RESULT_OK, intent);

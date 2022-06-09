@@ -31,18 +31,18 @@
         android:textSize="20dp" />
 
 
-    <Button
+    <ImageView
         android:id="@+id/team1"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="60dp"
-        android:textColor="@color/yellow"
+        android:background="@drawable/iamge"
         android:text="팀1"
-        android:textSize="40dp"
-        android:background="@drawable/iamge" />
+        android:textColor="@color/yellow"
+        android:textSize="40dp" />
 
-    <Button
+    <ImageView
         android:id="@+id/team2"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -53,7 +53,7 @@
         android:text="팀2"
         android:textSize="40dp"
         />
-    <Button
+    <ImageView
         android:id="@+id/team3"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -65,7 +65,7 @@
         android:background="@drawable/iamge"
         />
 
-    <Button
+    <ImageView
         android:id="@+id/team4"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -76,18 +76,19 @@
         android:text="팀4"
         android:textSize="40dp"
         />
-    <Button
+
+    <ImageView
         android:id="@+id/team5"
         android:layout_width="140dp"
         android:layout_height="140dp"
         android:layout_marginStart="35dp"
         android:layout_marginTop="360dp"
-        android:textColor="@color/yellow"
+        android:background="@drawable/iamge"
         android:text="팀5"
-        android:textSize="40dp"
-        android:background="@drawable/iamge" />
+        android:textColor="@color/yellow"
+        android:textSize="40dp" />
 
-    <Button
+    <ImageView
         android:id="@+id/team6"
         android:layout_width="140dp"
         android:layout_height="140dp"
@@ -101,26 +102,26 @@
 
     <TextView
         android:id="@+id/end_number"
-        android:layout_width="180dp"
+        android:layout_width="140dp"
         android:layout_height="50dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="520dp"
         android:background="@drawable/iamge"
-        android:text="기권"
         android:onClick="PassOrder"
+        android:text="기권"
         android:textAlignment="center"
         android:textColor="@color/yellow"
         android:textSize="35dp" />
 
     <TextView
         android:id="@+id/end_meeting"
-        android:layout_width="80dp"
+        android:layout_width="140dp"
         android:layout_height="50dp"
-        android:layout_marginStart="240dp"
+        android:layout_marginStart="185dp"
         android:layout_marginTop="520dp"
         android:background="@drawable/iamge"
-        android:text="확인"
         android:onClick="CheckOrder"
+        android:text="투표하기"
         android:textAlignment="center"
         android:textColor="@color/yellow"
         android:textSize="35dp" />
