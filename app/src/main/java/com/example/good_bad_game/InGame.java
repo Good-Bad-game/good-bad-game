@@ -222,12 +222,26 @@ public class InGame extends AppCompatActivity {
 
                     int max_num = 0;
 
+                    Log.d("!!userList[0] : ", Integer.toString(userList[0]));
+                    Log.d("!!userList[1] : ", Integer.toString(userList[1]));
+                    Log.d("!!userList[2] : ", Integer.toString(userList[2]));
+
+                    Log.d("!!targetList[0] : ", Integer.toString(targetList[0]));
+                    Log.d("!!targetList[1] : ", Integer.toString(targetList[1]));
+                    Log.d("!!targetList[2] : ", Integer.toString(targetList[2]));
+
+                    Log.d("!!vote_num[0] : ", Integer.toString(vote_num[0]));
+                    Log.d("!!vote_num[1] : ", Integer.toString(vote_num[1]));
+                    Log.d("!!vote_num[2] : ", Integer.toString(vote_num[2]));
+
                     for(int i = 0 ; i < 3 ; i++){
                         if(vote_num[i] > max_num){
                             max_num = vote_num[i];
                             max_idx = i;
                         }
                     }
+
+                    Log.d("!!max_idx : ", Integer.toString(max_idx));
 
                     if(max_idx == 0){
                         ImageView team2 = findViewById(R.id.team2);

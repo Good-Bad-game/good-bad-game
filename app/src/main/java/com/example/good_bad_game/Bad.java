@@ -38,7 +38,7 @@ public class Bad extends AppCompatActivity  {
                 intent.putExtra("userList",userList);
                 startActivity(intent);
             }
-        }, 4000);
+        }, 10000);
 
 
     }

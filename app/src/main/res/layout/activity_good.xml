@@ -19,16 +19,16 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:text="Good 승리!"
         android:textColor="@color/white"
-        android:textSize="80dp" />
+        android:textSize="60dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginTop="400dp"
         android:gravity="center"
         android:text="Point : +12"
         android:textColor="@color/white"

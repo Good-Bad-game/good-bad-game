@@ -67,7 +67,7 @@
             android:name=".InGame"
             android:exported="false" />
         <activity
-            android:name=".final_pick"
+            android:name=".Good"
             android:exported="false" />
         <activity
             android:name=".ReadyGame"
@@ -76,10 +76,10 @@
          android:name=".home.Home"
          android:exported="false" />
         <activity
-            android:name=".Bad"
+            android:name=".final_pick"
             android:exported="false" />
         <activity
-            android:name=".Good"
+            android:name=".loginout.SignIn"
             android:exported="false" />
         <activity
             android:name=".loginout.SignUp"
@@ -91,7 +91,7 @@
 <!--            android:name=".loginout.SignIn"-->
 <!--            android:exported="false" />-->
         <activity
-            android:name=".loginout.SignIn"
+            android:name=".Bad"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

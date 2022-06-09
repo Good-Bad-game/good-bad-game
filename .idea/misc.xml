@@ -19,18 +19,16 @@
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/drawable/vote_check.xml" value="0.1095" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/drawable/vote_select.xml" value="0.1" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_bad.xml" value="0.2015625" />
-        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_final_pick.xml" value="0.17119565217391305" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_final_pick.xml" value="0.18" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_friend_fragment.xml" value="0.1875" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_good.xml" value="0.17119565217391305" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_home.xml" value="0.33" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_home_fragment.xml" value="0.1" />
-        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_home.xml" value="0.1875" />
-        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_home_fragment.xml" value="0.25769927536231885" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_in_game.xml" value="0.1875" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_last_pick.xml" value="0.2015625" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_my_item_fragment.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_ranking_fragment.xml" value="0.1875" />
-        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_ready_game.xml" value="0.1875" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_ready_game.xml" value="0.1" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_ready_room_framework.xml" value="0.16893115942028986" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_room_create.xml" value="0.1408514492753623" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_sign_in.xml" value="0.1875" />
@@ -38,7 +36,9 @@
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_store_fragment.xml" value="0.1875" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/activity_vote.xml" value="0.16893115942028986" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/item.xml" value="0.1875" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/my_item.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/popup_activity.xml" value="0.16893115942028986" />
+        <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/ranking_item.xml" value="0.1644021739130435" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/room_item.xml" value="0.25" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/layout/store_item.xml" value="0.22" />
         <entry key="..\:/Users/dygks/AndroidStudioProjects/good-bad-game/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1955" />
@@ -81,8 +81,6 @@
         <entry key="app/src/main/res/layout/activity_store_fragment.xml" value="0.13697916666666668" />
         <entry key="app/src/main/res/layout/activity_vote.xml" value="0.2296195652173913" />
         <entry key="app/src/main/res/layout/item.xml" value="0.1532258064516129" />
-        <entry key="app/src/main/res/layout/layout.xml" value="0.13229166666666667" />
-        <entry key="app/src/main/res/layout/my_item.xml" value="0.21784420289855072" />
         <entry key="app/src/main/res/layout/popup_activity.xml" value="0.17864583333333334" />
         <entry key="app/src/main/res/layout/ranking_item.xml" value="0.30009002685546876" />
         <entry key="app/src/main/res/layout/room_item.xml" value="0.25101165771484374" />
