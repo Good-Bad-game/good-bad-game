@@ -3,6 +3,7 @@ package com.example.good_bad_game;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
@@ -38,6 +39,7 @@ public class Vote extends AppCompatActivity {
     private int choice = -1;
     private String vote_confirm = "false";
     private int userList[];
+    int[] skinId = {R.drawable.skin1, R.drawable.skin2, R.drawable.skin3, R.drawable.skin4, R.drawable.skin5, R.drawable.skin6};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +59,55 @@ public class Vote extends AppCompatActivity {
         userList = intent.getIntArrayExtra("userList");
 
         Toast.makeText(getApplicationContext(),room_num,Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                Log.d("userList[0] : ", Integer.toString(userList[0]));
+                Log.d("userList[1] : ", Integer.toString(userList[1]));
+                Log.d("userList[2] : ", Integer.toString(userList[2]));
+
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl("http://54.180.121.58:8080/")
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                LoginService LoginService = retrofit.create(LoginService.class);
+
+                Call<List<Ranking>> call3 = LoginService.Ranking();
+
+                call3.enqueue(new Callback<List<Ranking>>() {
+                    @Override
+                    public void onResponse(Call<List<Ranking>> call, Response<List<Ranking>> response) {
+                        if(response.isSuccessful()){
+                            Log.d("Raking 가져오기 성공!","");
+                            List<Ranking> rankings = response.body();
+                            for( Ranking ranking : rankings){
+                                if(ranking.getUid() == userList[0]){
+                                    team1.setImageResource(skinId[ranking.getSid()]);
+                                }
+                                else if(ranking.getUid() == userList[1]){
+                                    team2.setImageResource(skinId[ranking.getSid()]);
+                                }
+                                else if(ranking.getUid() == userList[2]){
+                                    team3.setImageResource(skinId[ranking.getSid()]);
+                                }
+                            }
+                        }
+                        else{
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Ranking>> call, Throwable t) {
+
+                    }
+                });
+
+            }
+        }, 500);
 
 
 //      tts 객체 생성

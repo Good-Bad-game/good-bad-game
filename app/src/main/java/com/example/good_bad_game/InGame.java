@@ -15,7 +15,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 
+import com.example.good_bad_game.home.Home;
 import com.example.good_bad_game.loginout.LoginService;
+import com.example.good_bad_game.ranking.Ranking;
 
 import java.util.List;
 import java.util.Locale;
@@ -39,6 +41,7 @@ public class InGame extends AppCompatActivity {
     private String die;
     private int vote_num[] = {0, 0, 0};
     private int max_idx = -1;
+    int[] skinId = {R.drawable.skin1, R.drawable.skin2, R.drawable.skin3, R.drawable.skin4, R.drawable.skin5, R.drawable.skin6};
 
     //투표할 사람을 선택했을 때 번호
     // init은 0으로 초기화
@@ -58,6 +61,8 @@ public class InGame extends AppCompatActivity {
         id = getintent.getStringExtra("id");
         die = getintent.getStringExtra("die");
         Toast.makeText(getApplicationContext(),room_num,Toast.LENGTH_SHORT).show();
+
+        player_num = 3;
 
         ImageView team1 = findViewById(R.id.team1);
         ImageView team2 = findViewById(R.id.team2);
@@ -106,11 +111,45 @@ public class InGame extends AppCompatActivity {
                 Log.d("userList[0] : ", Integer.toString(userList[0]));
                 Log.d("userList[1] : ", Integer.toString(userList[1]));
                 Log.d("userList[2] : ", Integer.toString(userList[2]));
+
+                Call<List<Ranking>> call3 = LoginService.Ranking();
+
+                call3.enqueue(new Callback<List<Ranking>>() {
+                    @Override
+                    public void onResponse(Call<List<Ranking>> call, Response<List<Ranking>> response) {
+                        if(response.isSuccessful()){
+                            Log.d("Raking 가져오기 성공!","");
+                            List<Ranking> rankings = response.body();
+                            for( Ranking ranking : rankings){
+                                if(ranking.getUid() == userList[0]){
+                                    team1.setImageResource(skinId[ranking.getSid()]);
+                                }
+                                else if(ranking.getUid() == userList[1]){
+                                    team2.setImageResource(skinId[ranking.getSid()]);
+                                }
+                                else if(ranking.getUid() == userList[2]){
+                                    team3.setImageResource(skinId[ranking.getSid()]);
+                                }
+                            }
+                        }
+                        else{
+
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<Ranking>> call, Throwable t) {
+
+                    }
+                });
+
             }
         }, 500);
 
 
         if( die != null ){
+
+            player_num = 2;
 
             new Handler().postDelayed(new Runnable() {
                 @Override
@@ -210,7 +249,6 @@ public class InGame extends AppCompatActivity {
             type = getintent.getStringExtra("type");
 
             if(type.equals("firstIn")){
-                player_num = 3;  //6명 초기값 ( 이후 수정할 것 )
 
 //                tts.speak("굿배드를 선택하세요.", TextToSpeech.QUEUE_FLUSH, null);
                 tts_speech("굿배드를 선택하세요.");
@@ -227,7 +265,7 @@ public class InGame extends AppCompatActivity {
         TextView count_view = findViewById(R.id.time);
 
         String player_num2 = Integer.toString(player_num);
-        String count_num = "010";
+        String count_num = "030";
 
         switch(player_num2){
 /*            case "6": count_num = "200";
@@ -236,9 +274,9 @@ public class InGame extends AppCompatActivity {
                 break;
             case "4": count_num = "120";
                 break;*/
-            case "3": count_num = "010";
+            case "3": count_num = "020";
                 break;
-            case "2": count_num = "005";
+            case "2": count_num = "010";
                 break;
         }
 
@@ -353,13 +391,20 @@ public class InGame extends AppCompatActivity {
                 tts_speech("토론 종료");
 
                 // TODO : 타이머가 모두 종료될때 어떤 이벤트를 진행할지
-                Intent intent = new Intent(getApplicationContext(), Vote.class);
-                intent.putExtra("room_num", room_num);
-                intent.putExtra("id",id);
-                intent.putExtra("type", type);
-                intent.putExtra("userList",userList);
-                startActivity(intent);
+                Log.d("player_num : ", Integer.toString(player_num));
 
+                if(player_num > 2){
+                    Intent intent = new Intent(getApplicationContext(), Vote.class);
+                    intent.putExtra("room_num", room_num);
+                    intent.putExtra("id",id);
+                    intent.putExtra("type", type);
+                    intent.putExtra("userList",userList);
+                    startActivity(intent);
+                }
+                else{
+                    Intent intent = new Intent(getApplicationContext(), final_pick.class);
+                    startActivity(intent);
+                }
 
             }
         }.start();

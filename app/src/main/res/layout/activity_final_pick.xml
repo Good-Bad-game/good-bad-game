@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sign_in_ema"
+    tools:context=".Vote">
+
+    <TextView
+        android:layout_width="280dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="160dp"
+        android:gravity="center"
+        android:text="마지막 선택"
+        android:background="@drawable/iamge"
+        android:textColor="@color/yellow"
+        android:textSize="50dp" />
+
+    <ImageView
+        android:id="@+id/good_pick"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="300dp"
+        android:src="@drawable/gun"
+        android:background="@drawable/iamge"
+        android:textColor="@color/yellow"
+        android:textSize="40dp" />
+
+    <ImageView
+        android:id="@+id/bad_pick"
+        android:layout_width="140dp"
+        android:layout_height="140dp"
+        android:layout_marginStart="185dp"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/iamge"
+        android:src="@drawable/friend2"
+        android:textColor="@color/white"
+        android:textSize="40dp" />
+
+</RelativeLayout>

@@ -21,7 +21,6 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_toEndOf="@+id/ranking"
-        android:background="@drawable/skin1"
         android:gravity="center"
         android:textStyle="bold" />
 
