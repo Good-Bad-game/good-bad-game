@@ -8,6 +8,7 @@ import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,9 +34,11 @@ public class InGame extends AppCompatActivity {
     private String room_num;
     private String id;
     private int userList[] = {-1, -1, -1};
-    private int targetList[] = {-1, -1, -1};
+    private int targetList[] = {-2, -2, -2};
     private int cnt = 0;
     private String die;
+    private int vote_num[] = {0, 0, 0};
+    private int max_idx = -1;
 
     //투표할 사람을 선택했을 때 번호
     // init은 0으로 초기화
@@ -55,6 +58,10 @@ public class InGame extends AppCompatActivity {
         id = getintent.getStringExtra("id");
         die = getintent.getStringExtra("die");
         Toast.makeText(getApplicationContext(),room_num,Toast.LENGTH_SHORT).show();
+
+        ImageView team1 = findViewById(R.id.team1);
+        ImageView team2 = findViewById(R.id.team2);
+        ImageView team3 = findViewById(R.id.team3);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://54.180.121.58:8080/")
@@ -146,8 +153,33 @@ public class InGame extends AppCompatActivity {
                     Log.d("targetList[2] : ", Integer.toString(targetList[2]));
 
                     for(int i = 0 ; i < 3 ; i ++){
-
+                        for (int j = 0 ; j < 3 ; j++){
+                            if(userList[i] == targetList[j]){
+                                vote_num[i]++;
+                            }
+                        }
                     }
+
+                    int max_num = 0;
+
+                    for(int i = 0 ; i < 3 ; i++){
+                        if(vote_num[i] > max_num){
+                            max_num = vote_num[i];
+                            max_idx = i;
+                        }
+                    }
+
+                    if(max_idx == 0){
+                        team1.setImageResource(R.drawable.bullet);
+                    }
+                    else if(max_idx == 1){
+                        team2.setImageResource(R.drawable.bullet);
+                    }
+                    else{
+                        team3.setImageResource(R.drawable.bullet);
+                    }
+
+
                 }
             }, 1000);
 
