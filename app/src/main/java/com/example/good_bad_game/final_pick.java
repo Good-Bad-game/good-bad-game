@@ -31,19 +31,37 @@ public class final_pick extends AppCompatActivity  {
         good_pick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Bad.class);
+                    Intent intent = new Intent(getApplicationContext(), Bad.class);
+                    intent.putExtra("room_num", room_num);
+                    intent.putExtra("id",id);
+                    intent.putExtra("type", type);
+                    intent.putExtra("userList",userList);
+                    startActivity(intent);
+
+            }
+        });
+
+        good_pick.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), Good.class);
                 intent.putExtra("room_num", room_num);
                 intent.putExtra("id",id);
                 intent.putExtra("type", type);
                 intent.putExtra("userList",userList);
                 startActivity(intent);
+
+                return false;
             }
         });
+
+
 
         bad_pick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Bad.class);
+                Intent intent = new Intent(getApplicationContext(), Good.class);
                 intent.putExtra("room_num", room_num);
                 intent.putExtra("id",id);
                 intent.putExtra("type", type);
@@ -52,5 +70,22 @@ public class final_pick extends AppCompatActivity  {
             }
         });
 
+        bad_pick.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), Bad.class);
+                intent.putExtra("room_num", room_num);
+                intent.putExtra("id",id);
+                intent.putExtra("type", type);
+                intent.putExtra("userList",userList);
+                startActivity(intent);
+
+                return false;
+            }
+        });
+
     }
+
+
 }

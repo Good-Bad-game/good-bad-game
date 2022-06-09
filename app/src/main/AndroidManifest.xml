@@ -74,6 +74,9 @@
             android:name=".Bad"
             android:exported="false" />
         <activity
+            android:name=".Good"
+            android:exported="false" />
+        <activity
             android:name=".loginout.SignUp"
             android:exported="false" />
         <activity
