@@ -134,7 +134,7 @@ public class InGame extends AppCompatActivity {
                             Log.d("Raking 가져오기 성공!","");
                             List<Ranking> rankings = response.body();
                             for( Ranking ranking : rankings){
-                                if(ranking.getUid() == userList[0]){
+                               if(ranking.getUid() == userList[0]){
                                     team1.setImageResource(skinId[ranking.getSid()]);
                                 }
                                 else if(ranking.getUid() == userList[1]){
@@ -265,14 +265,14 @@ public class InGame extends AppCompatActivity {
         config.key = "e3d66ede5091133201de590d62275a55b93ce6b0d5dc0322cf0360c10329eb71";
 
 
-        room_num += "room";
+        String num_name = room_num + "Room";
         Log.d(TAG, room_num);
 
-        remonConference.create(room_num, config, participant -> {
+        remonConference.create(num_name, config, participant -> {
             // 자신의 View를 초기화
 //             얼굴을 보이게 한다
             participant.setLocalView(null);
-            Log.d(TAG, room_num);
+            Log.d(TAG, num_name);
 
             // View 설정
             availableView[0] = true; // boolean : 할당된 미디어가 있는지 여부
@@ -287,11 +287,11 @@ public class InGame extends AppCompatActivity {
 
 
         // 만들어진 방에 들어가는 건가?
-        remonConference.create(room_num, config, (participant) -> {
+        remonConference.create(num_name, config, (participant) -> {
 
 //            participant.setLocalView(surfaceRendererArray[0]);
 //            room_name = "1";
-            Log.d(TAG, room_num);
+            Log.d(TAG, num_name);
 
         }).on("onRoomCreated", (participant) -> {
 
@@ -528,6 +528,7 @@ public class InGame extends AppCompatActivity {
                     intent.putExtra("userList",userList);
                     startActivity(intent);
                 }
+                remonConference.leave();
 
             }
         }.start();
