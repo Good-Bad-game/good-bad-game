@@ -29,9 +29,6 @@ public class StoreFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private View view;
 
-    private String mParam1;
-    private String mParam2;
-
     int[] skinId = {R.drawable.skin1, R.drawable.skin2, R.drawable.skin3, R.drawable.skin4, R.drawable.skin5, R.drawable.skin6};
 
 
@@ -46,7 +43,7 @@ public class StoreFragment extends Fragment {
         if(getArguments() != null){
             String id = getArguments().getString("id");
             String nick = getArguments().getString("nick");
-            Toast.makeText(getActivity(),id,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getActivity(),id,Toast.LENGTH_SHORT).show();
         }
 
         view = inflater.inflate(R.layout.activity_store_fragment, container, false);

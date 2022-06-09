@@ -64,7 +64,7 @@ public class ReadyRoomFramework extends Fragment {
         setHasOptionsMenu(true);
         Log.d(TAG, "OnCreateView");
 
-        Toast.makeText(getContext(),mParam1.toString(),Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(),mParam1.toString(),Toast.LENGTH_SHORT).show();
 
 //      tts 객체 생성
         tts = new TextToSpeech(getContext(), new TextToSpeech.OnInitListener(){

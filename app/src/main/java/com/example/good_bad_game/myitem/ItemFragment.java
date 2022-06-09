@@ -6,26 +6,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.good_bad_game.R;
-import com.example.good_bad_game.home.Home;
-import com.example.good_bad_game.home.HomeFragment;
 import com.example.good_bad_game.loginout.LoginService;
 import com.example.good_bad_game.ranking.Ranking;
-import com.example.good_bad_game.store.Store;
-import com.example.good_bad_game.store.StoreAdapter;
-import com.example.good_bad_game.store.StoreFragment;
 
 import java.util.List;
 
@@ -46,12 +38,6 @@ public class ItemFragment extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private View view;
     private String id;
-
-    int[] skinId = {R.drawable.skin1, R.drawable.skin2, R.drawable.skin3, R.drawable.skin4, R.drawable.skin5, R.drawable.skin6};
-
-    public static ItemFragment newInstance() {
-        return new ItemFragment();
-    }
 
     @Nullable
     @Override
@@ -101,8 +87,6 @@ public class ItemFragment extends Fragment {
 
         if(getArguments() != null){
             id = getArguments().getString("id");
-            String nick = getArguments().getString("nick");
-            Toast.makeText(getActivity(),id,Toast.LENGTH_SHORT).show();
         }
 
         view = inflater.inflate(R.layout.activity_my_item_fragment, container, false);
@@ -176,7 +160,6 @@ public class ItemFragment extends Fragment {
         adapter.addItem(new Item("아수라",R.drawable.skin3));
         adapter.addItem(new Item("터미넴",R.drawable.skin4));
         adapter.addItem(new Item("로봇",R.drawable.skin5));
-/*        adapter.addItem(new Item("아이템6",R.drawable.skin6));*/
     }
 
     @Override
@@ -184,12 +167,6 @@ public class ItemFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-    }
-
-    public void reload(){
-        Log.d("TAG", "reload가 실행되었습니다.");
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.detach(this).attach(this).commit();
     }
 
     private void fragmentRefresh(){

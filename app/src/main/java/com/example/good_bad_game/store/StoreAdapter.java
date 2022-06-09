@@ -39,10 +39,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
     private static final String TAG = "StoreAdapter";
     private List<Store> items = new ArrayList<>();
-    Context context;
     private ImageView image;
     private TextView name;
-    private StoreFragment storeFragment;
 
     public void addItem(Store store){ items.add(store); }
 
@@ -72,8 +70,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private ImageView selectedImage;
-        public TextToSpeech tts;
+        private TextToSpeech tts;
 
 
         public MyViewHolder(View itemView) {

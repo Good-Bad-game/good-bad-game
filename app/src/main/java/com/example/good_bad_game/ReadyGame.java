@@ -190,7 +190,7 @@ public class ReadyGame extends AppCompatActivity {
             }
         };
 
-        Toast.makeText(getApplicationContext(),"방 번호 : " + room_num,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),"방 번호 : " + room_num,Toast.LENGTH_SHORT).show();
         Log.d("v_type : ", v_type);
 
         btn_start.setOnClickListener(new View.OnClickListener() {

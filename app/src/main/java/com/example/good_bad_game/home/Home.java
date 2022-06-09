@@ -43,7 +43,7 @@ public class Home extends AppCompatActivity {
         String nick = receive_intent.getStringExtra("nickname");
 
         String id = receive_intent.getStringExtra("id");
-        Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
 
         nickname.setText(nick);
 

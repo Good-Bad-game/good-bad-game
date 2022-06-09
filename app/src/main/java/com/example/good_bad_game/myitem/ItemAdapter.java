@@ -35,9 +35,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
         void onItemClick(int pos);
     }
 
-    private ItemAdapter.OnItemClickListener onItemClickListener = null;
+    private OnItemClickListener onItemClickListener = null;
 
-    public void setOnItemClickListener(ItemAdapter.OnItemClickListener listener){
+    public void setOnItemClickListener(OnItemClickListener listener){
         this.onItemClickListener = listener;
     }
 
@@ -56,22 +56,21 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
     private List<Item> items = new ArrayList<>();
     private ImageView image;
     private TextView name;
-    private ItemFragment itemFragment;
 
     public void addItem(Item item){ items.add(item); }
 
     @NonNull
     @Override
-    public ItemAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.d(TAG, "MyViewHolder");
         LayoutInflater inflater=LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.my_item, parent, false);
 
-        return new ItemAdapter.MyViewHolder(view);
+        return new MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ItemAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         Item item = items.get(position);
         holder.setItem(item);
 
@@ -80,7 +79,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
 
     @Override
     public int getItemCount() {
-        Log.d(TAG, "getItemCount: ");
+        Log.d("getItemCount: ", String.valueOf(items.size()));
         return items.size();
     }
 
@@ -94,6 +93,16 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
             image = itemView.findViewById(R.id.rc_row_image);
             name = itemView.findViewById(R.id.rc_row_name);
 
+            tts = new TextToSpeech(itemView.getContext(), new TextToSpeech.OnInitListener() {
+                @Override
+                public void onInit(int status) {
+                    if(status != ERROR) {
+                        // 언어를 선택한다.
+                        tts.setLanguage(Locale.KOREAN);
+                    }
+                }
+            });
+
             image.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -103,7 +112,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
                             onItemClickListener.onItemClick(position);
                         }
                     }
-
+//                    Item item = items.get(getAdapterPosition());
+//                    String name = item.getName();
+//                    Log.d("name ", name);
+//                    tts.speak(name, TextToSpeech.QUEUE_FLUSH, null);
                 }
             });
 
@@ -113,6 +125,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.MyViewHolder> 
         public void setItem(Item item){
             Log.d("selected_idx : ", Integer.toString(selected_idx));
             Log.d("cnt : ", Integer.toString(cnt));
+
+
+
             if(cnt == selected_idx){
                 name.setTextColor(Color.GREEN);
                 Log.d("setTextColor : ", "Green 발동");
