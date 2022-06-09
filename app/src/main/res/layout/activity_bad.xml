@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sign_in_ema"
+    tools:context=".Bad">
+
+    <ImageView
+        android:id="@+id/good_pick"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
+        android:src="@drawable/bad_win"
+        android:textColor="@color/yellow"
+        android:textSize="40dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="200dp"
+        android:text="Bad 승리!"
+        android:textSize="80dp"
+        android:gravity="center"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:textColor="@color/white"
+        android:layout_marginTop="300dp"
+        android:text="Point : +15"
+        android:textSize="50dp"
+        android:gravity="center"
+        />
+
+</RelativeLayout>

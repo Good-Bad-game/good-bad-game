@@ -13,9 +13,13 @@ public class getItem {
     public String getCash(){return cash;}
     public String getCoin(){return coin;}
 
-//    getItem(int uid){
-//        uid = this.uid;
-//    }
+    public getItem(String uid, String sid, String cash, String coin){
+        this.uid = uid;
+        this.sid = sid;
+        this.cash = cash;
+        this.coin = coin;
+    }
+
 
 
 }

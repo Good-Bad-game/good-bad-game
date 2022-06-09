@@ -62,11 +62,17 @@
             android:name=".InGame"
             android:exported="false" />
         <activity
+            android:name=".final_pick"
+            android:exported="false" />
+        <activity
             android:name=".ReadyGame"
             android:exported="false" />
          <activity
          android:name=".home.Home"
          android:exported="false" />
+        <activity
+            android:name=".Bad"
+            android:exported="false" />
         <activity
             android:name=".loginout.SignUp"
             android:exported="false" />

@@ -6,18 +6,27 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.good_bad_game.R;
+import com.example.good_bad_game.getItem;
+import com.example.good_bad_game.home.Home;
+import com.example.good_bad_game.home.HomeFragment;
 import com.example.good_bad_game.loginout.LoginService;
 import com.example.good_bad_game.ranking.Ranking;
+import com.example.good_bad_game.store.Store;
+import com.example.good_bad_game.store.StoreAdapter;
+import com.example.good_bad_game.store.StoreFragment;
 
 import java.util.List;
 
@@ -39,10 +48,22 @@ public class ItemFragment extends Fragment {
     private View view;
     private String id;
 
+    int[] skinId = {R.drawable.skin1, R.drawable.skin2, R.drawable.skin3, R.drawable.skin4, R.drawable.skin5, R.drawable.skin6};
+
+    public static ItemFragment newInstance() {
+        return new ItemFragment();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
+
+        if(getArguments() != null){
+            id = getArguments().getString("id");
+            String nick = getArguments().getString("nick");
+            Toast.makeText(getActivity(),id,Toast.LENGTH_SHORT).show();
+        }
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -117,8 +138,6 @@ public class ItemFragment extends Fragment {
 
                 Ranking rank = new Ranking(Integer.parseInt(id), pos, rank_num[Integer.parseInt(id)]);
 
-
-
                 LoginService.putRanking(Integer.parseInt(id), rank).enqueue(new Callback<Ranking>() {
                     @Override
                     public void onResponse(Call<Ranking> call, Response<Ranking> response) {
@@ -132,6 +151,47 @@ public class ItemFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<Ranking> call, Throwable t) {
+
+                    }
+                });
+
+                Call<List<getItem>> call2 = LoginService.getItems();
+
+                call2.enqueue(new Callback<List<getItem>>() {
+                    @Override
+                    public void onResponse(Call<List<getItem>> call, Response<List<getItem>> response) {
+                        if(response.isSuccessful()){
+                            Log.d("성공", "성공");
+
+                            List<getItem> Items = response.body();
+
+                            for( getItem item : Items){
+                                if(item.getUserid().equals(id)){
+                                    Log.d("같다 발동!","");
+
+                                    getItem tmp_Item = new getItem(id, Integer.toString(pos), item.getCash(), item.getCoin());
+
+                                    LoginService.putItem(Integer.parseInt(id), tmp_Item).enqueue(new Callback<getItem>() {
+                                        @Override
+                                        public void onResponse(Call<getItem> call, Response<getItem> response) {
+                                            Log.d("최종 성공!","");
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<getItem> call, Throwable t) {
+
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                        else{
+                            Log.d("실패","실패");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<getItem>> call, Throwable t) {
 
                     }
                 });

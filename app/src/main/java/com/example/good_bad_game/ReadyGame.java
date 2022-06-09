@@ -152,7 +152,7 @@ public class ReadyGame extends AppCompatActivity {
                                                         {
                                                             if(userList.contains(item.getUserid())){
                                                                 img = (ImageView)findViewById(imgId[i]);
-                                                                img.setImageResource(skinId[(Integer.parseInt(item.getShopid()))-1]);
+                                                                img.setImageResource(skinId[(Integer.parseInt(item.getShopid()))]);
                                                                 i++;
                                                             }
                                                         }
