@@ -403,6 +403,10 @@ public class InGame extends AppCompatActivity {
                 }
                 else{
                     Intent intent = new Intent(getApplicationContext(), final_pick.class);
+                    intent.putExtra("room_num", room_num);
+                    intent.putExtra("id",id);
+                    intent.putExtra("type", type);
+                    intent.putExtra("userList",userList);
                     startActivity(intent);
                 }
 

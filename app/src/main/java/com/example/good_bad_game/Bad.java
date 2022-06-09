@@ -1,12 +1,14 @@
 package com.example.good_bad_game;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 
-public class final_pick extends AppCompatActivity  {
+public class Bad extends AppCompatActivity  {
 
     private String id;
     private String type;
@@ -16,7 +18,7 @@ public class final_pick extends AppCompatActivity  {
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_final_pick);
+        setContentView(R.layout.activity_bad);
 
         Intent intent = getIntent();
 
@@ -25,32 +27,19 @@ public class final_pick extends AppCompatActivity  {
         room_num = intent.getStringExtra("room_num");
         userList = intent.getIntArrayExtra("userList");
 
-        ImageView good_pick = findViewById(R.id.good_pick);
-        ImageView bad_pick = findViewById(R.id.bad_pick);
-
-        good_pick.setOnClickListener(new View.OnClickListener() {
+        new Handler().postDelayed(new Runnable() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Bad.class);
+            public void run() {
+                Intent intent = new Intent(getApplicationContext(), ReadyGame.class);
                 intent.putExtra("room_num", room_num);
                 intent.putExtra("id",id);
                 intent.putExtra("type", type);
+                intent.putExtra("v_type", "visitor");
                 intent.putExtra("userList",userList);
                 startActivity(intent);
             }
-        });
+        }, 4000);
 
-        bad_pick.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Bad.class);
-                intent.putExtra("room_num", room_num);
-                intent.putExtra("id",id);
-                intent.putExtra("type", type);
-                intent.putExtra("userList",userList);
-                startActivity(intent);
-            }
-        });
 
     }
 }

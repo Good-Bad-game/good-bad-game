@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.good_bad_game.R;
+import com.example.good_bad_game.getItem;
 import com.example.good_bad_game.home.Home;
 import com.example.good_bad_game.home.HomeFragment;
 import com.example.good_bad_game.loginout.LoginService;
@@ -57,6 +58,12 @@ public class ItemFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         setHasOptionsMenu(true);
+
+        if(getArguments() != null){
+            id = getArguments().getString("id");
+            String nick = getArguments().getString("nick");
+            Toast.makeText(getActivity(),id,Toast.LENGTH_SHORT).show();
+        }
 
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -98,13 +105,6 @@ public class ItemFragment extends Fragment {
             }
         });
 
-
-        if(getArguments() != null){
-            id = getArguments().getString("id");
-            String nick = getArguments().getString("nick");
-            Toast.makeText(getActivity(),id,Toast.LENGTH_SHORT).show();
-        }
-
         view = inflater.inflate(R.layout.activity_my_item_fragment, container, false);
         rvItem = (RecyclerView) view.findViewById(R.id.item_rc_view);
         rvItem.setHasFixedSize(true);
@@ -133,8 +133,6 @@ public class ItemFragment extends Fragment {
 
                 Ranking rank = new Ranking(Integer.parseInt(id), pos, rank_num[Integer.parseInt(id)]);
 
-
-
                 LoginService.putRanking(Integer.parseInt(id), rank).enqueue(new Callback<Ranking>() {
                     @Override
                     public void onResponse(Call<Ranking> call, Response<Ranking> response) {
@@ -148,6 +146,47 @@ public class ItemFragment extends Fragment {
 
                     @Override
                     public void onFailure(Call<Ranking> call, Throwable t) {
+
+                    }
+                });
+
+                Call<List<getItem>> call2 = LoginService.getItems();
+
+                call2.enqueue(new Callback<List<getItem>>() {
+                    @Override
+                    public void onResponse(Call<List<getItem>> call, Response<List<getItem>> response) {
+                        if(response.isSuccessful()){
+                            Log.d("성공", "성공");
+
+                            List<getItem> Items = response.body();
+
+                            for( getItem item : Items){
+                                if(item.getUserid().equals(id)){
+                                    Log.d("같다 발동!","");
+
+                                    getItem tmp_Item = new getItem(id, Integer.toString(pos), item.getCash(), item.getCoin());
+
+                                    LoginService.putItem(Integer.parseInt(id), tmp_Item).enqueue(new Callback<getItem>() {
+                                        @Override
+                                        public void onResponse(Call<getItem> call, Response<getItem> response) {
+                                            Log.d("최종 성공!","");
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<getItem> call, Throwable t) {
+
+                                        }
+                                    });
+                                }
+                            }
+                        }
+                        else{
+                            Log.d("실패","실패");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<List<getItem>> call, Throwable t) {
 
                     }
                 });

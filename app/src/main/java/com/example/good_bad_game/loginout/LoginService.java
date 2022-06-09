@@ -57,6 +57,9 @@ public interface LoginService {
     @GET("item/")
     retrofit2.Call<List<getItem>> getItems();
 
+    @PUT("item/{uid}/")
+    Call<getItem> putItem(@Path("uid") int uid, @Body getItem item);
+
     @PUT("ranking/{uid}/")
     Call<Ranking> putRanking(@Path("uid") int uid, @Body Ranking post);
 
