@@ -29,8 +29,8 @@
         android:layout_marginTop="60dp"
         android:layout_toEndOf="@+id/team1"
         android:background="@drawable/iamge"
-        android:text="팀2"
         android:gravity="center"
+        android:text="팀2"
         android:textColor="@color/yellow"
         android:textSize="40dp" />
 

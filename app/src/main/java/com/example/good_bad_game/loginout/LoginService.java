@@ -58,4 +58,7 @@ public interface LoginService {
 
     @PUT("ranking/{uid}/")
     Call<Ranking> putRanking(@Path("uid") int uid, @Body Ranking post);
+
+    @PUT("user-matching/{userId}/")
+    Call<Matching> putMatching(@Path("userId") int userId, @Body Matching ready);
 }

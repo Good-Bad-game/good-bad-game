@@ -74,7 +74,7 @@ public class RoomAdapter extends RecyclerView.Adapter<RoomAdapter.MyViewHolder> 
                         .addConverterFactory(GsonConverterFactory.create())
                         .build();
 
-                Matching matching = new Matching(null, userId, matchIdx);
+                Matching matching = new Matching(null, userId, matchIdx,null);
 
                 LoginService LoginService = retrofit.create(LoginService.class);
 

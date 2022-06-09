@@ -12,7 +12,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.good_bad_game.loginout.LoginService;
+import com.example.good_bad_game.ranking.Ranking;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,20 +38,24 @@ public class ReadyGame extends AppCompatActivity {
     private String id;
     private String v_type;
     private String room_num;
-    private int num = 0;
+    private int num, j = 0;
     private int ready_num = 0;
+    private int count = 0;
     private static Thread t, t1;
+    private String my_sid;
 
     int imgId[] = {
             R.id.team1, R.id.team2, R.id.team3,
             R.id.team4, R.id.team5, R.id.team6,
     };
 
-    int[] skinId = {R.drawable.skin1, R.drawable.skin2, R.drawable.skin3,
+    int skinId[] = {R.drawable.skin1, R.drawable.skin2, R.drawable.skin3,
             R.drawable.skin4, R.drawable.skin5, R.drawable.skin6};
 
     List<String> userList = Collections.synchronizedList(new ArrayList<String>());
-    ImageView img;
+    ImageView img,img2;
+    int pos = 0;
+
 
 
     @Override
@@ -66,6 +72,7 @@ public class ReadyGame extends AppCompatActivity {
         String nick = receive_intent.getStringExtra("nick");
 //        String room_num = receive_intent.getStringExtra("room_num");
 //        Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
+        my_sid = "";
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://54.180.121.58:8080/")
@@ -84,7 +91,7 @@ public class ReadyGame extends AppCompatActivity {
             Log.d("ID : ", id);
             Log.d("Room_num : ", room_num);
 
-            Matching matching = new Matching(null, id, room_num);
+            Matching matching = new Matching(null, id, room_num, null);
 
 //            LoginService LoginService = retrofit.create(LoginService.class);
 
@@ -117,7 +124,7 @@ public class ReadyGame extends AppCompatActivity {
             @Override
             public void run() {
 
-                while(!t.currentThread().isInterrupted()){
+                while(!t.isInterrupted()){
                     try {
                         Thread.sleep(3000);
 
@@ -141,6 +148,9 @@ public class ReadyGame extends AppCompatActivity {
                                         {
                                             if(items.getMatchIdx().equals(room_num)&& !userList.contains(items.getUserId())){
                                                 userList.add(items.getUserId());
+                                                Log.d("items id ", items.getUserId());
+//                                                Collections.reverse(userList);
+
 
                                                 Call<List<getItem>> call = LoginService.getItems();
 
@@ -153,15 +163,15 @@ public class ReadyGame extends AppCompatActivity {
                                                             return;
                                                         }
                                                         List<getItem> Items = response.body();
-                                                        int i = 0;
-                                                        Log.d("userList1 : ", userList.toString());
-
                                                         for ( getItem item : Items)
                                                         {
-                                                            if(userList.contains(item.getUserid())){
-                                                                img = (ImageView)findViewById(imgId[i]);
+                                                            pos = userList.indexOf(items.getUserId());
+                                                            if(item.getUserid().equals(id)){
+                                                                my_sid = item.getShopid();
+                                                            }
+                                                            if(userList.contains(item.getUserid()) && items.getReady().equals("0") ){
+                                                                img = (ImageView)findViewById(imgId[pos]);
                                                                 img.setImageResource(skinId[(Integer.parseInt(item.getShopid()))-1]);
-                                                                i++;
                                                             }
                                                         }
                                                         userList.clear();
@@ -172,22 +182,15 @@ public class ReadyGame extends AppCompatActivity {
                                                         return;
                                                     }
                                                 });
-
-
                                             }
-
                                         }
-
                                     }
-
                                     @Override
                                     public void onFailure(Call<List<getMatching>> calle, Throwable t) {
                                         Log.d("onFailure 발동","Connection Error");
                                         return;
                                     }
                                 });
-
-
                             }
                         });
                     } catch (InterruptedException e) {
@@ -205,19 +208,86 @@ public class ReadyGame extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                // 6명 정원찰 때 시작할 것.
+                Call<List<getMatching>> call = LoginService.getMatching();
 
-                Intent intent = new Intent(getApplicationContext(), InGame.class);
-                intent.putExtra("room_num", room_num);
-                intent.putExtra("type", "firstIn");
-                startActivity(intent);
+                call.enqueue(new Callback<List<getMatching>>() {
+                    @Override
+                    public void onResponse(Call<List<getMatching>> call, Response<List<getMatching>> response) {
+                        if (!response.isSuccessful())
+                        {
+                            return;
+                        }
 
+                        List<getMatching> Ready = response.body();
 
+                        for ( getMatching ready : Ready) {
+                            if (ready.getMatchIdx().equals(room_num) && ready.getUserId().equals(id)) {
+                                if (ready.getReady().equals("0")) {
+
+                                    Matching changeReady = new Matching(id, id, room_num,"1");
+
+                                    LoginService.putMatching(Integer.parseInt(id),changeReady).enqueue(new Callback<Matching>() {
+                                        @Override
+                                        public void onResponse(Call<Matching> call, Response<Matching> response) {
+                                            if(response.isSuccessful()){
+                                                Log.d("put 1 성공", "성공");
+                                                img2 = (ImageView) findViewById(imgId[pos]);
+                                                img2.setImageResource(R.drawable.skin7);
+                                                count++;
+
+                                            }
+                                            else{
+                                                Log.d("put 1 실패","실패");
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<Matching> call, Throwable t) {
+                                            return;
+                                        }
+                                    });
+                                }
+                                if(count >= 3){
+                                    // 3명 정원찰 때 시작할 것.
+                                    //t.interrupt();
+                                    Intent intent = new Intent(getApplicationContext(), InGame.class);
+                                    intent.putExtra("room_num", room_num);
+                                    intent.putExtra("type", "firstIn");
+                                    startActivity(intent);
+                                }
+                                if(ready.getReady().equals("1")){
+                                    Matching changeReady = new Matching(id, id, room_num,"0");
+
+                                    LoginService.putMatching(Integer.parseInt(id),changeReady).enqueue(new Callback<Matching>() {
+                                        @Override
+                                        public void onResponse(Call<Matching> call, Response<Matching> response) {
+                                            if(response.isSuccessful()){
+                                                Log.d("put 0 성공", "성공");
+                                            }
+                                            else{
+                                                Log.d("put 0 실패","실패");
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<Matching> call, Throwable t) {
+                                            return;
+                                        }
+                                    });
+                                }
+                                Log.d("count in : ", Integer.toString(count));
+                            }
+                        }
+                    }
+                    @Override
+                    public void onFailure(Call<List<getMatching>> call, Throwable t) {
+                        return;
+                    }
+                });
             }
         });
 
         t.start();
-
     }
 
     @Override
@@ -271,7 +341,6 @@ public class ReadyGame extends AppCompatActivity {
                                                     {
                                                         userList.remove(items.getUserId());
                                                     }
-                                                    Log.d("userListRemove : ", userList.toString());
 
                                                 }
                                             });

@@ -139,10 +139,10 @@ public class ItemFragment extends Fragment {
                     @Override
                     public void onResponse(Call<Ranking> call, Response<Ranking> response) {
                         if(response.isSuccessful()){
-                            Log.d("성공", "성공");
-                        }
+                                Log.d("성공", "성공");
+                            }
                         else{
-                            Log.d("실패","실패");
+                                Log.d("실패","실패");
                         }
                     }
 
