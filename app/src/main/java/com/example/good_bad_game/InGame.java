@@ -3,6 +3,7 @@ package com.example.good_bad_game;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
 import android.text.TextUtils;
 import android.util.Log;
@@ -11,11 +12,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
 
 import com.example.good_bad_game.loginout.LoginService;
 
+import java.util.List;
 import java.util.Locale;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -27,8 +33,9 @@ public class InGame extends AppCompatActivity {
     private String room_num;
     private String id;
     private int userList[] = {-1, -1, -1};
-    private int targetUid[] = {-1, -1, -1};
+    private int targetList[] = {-1, -1, -1};
     private int cnt = 0;
+    private String die;
 
     //투표할 사람을 선택했을 때 번호
     // init은 0으로 초기화
@@ -46,6 +53,7 @@ public class InGame extends AppCompatActivity {
 
         room_num = getintent.getStringExtra("room_num");
         id = getintent.getStringExtra("id");
+        die = getintent.getStringExtra("die");
         Toast.makeText(getApplicationContext(),room_num,Toast.LENGTH_SHORT).show();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -54,6 +62,97 @@ public class InGame extends AppCompatActivity {
                 .build();
 
         LoginService LoginService = retrofit.create(LoginService.class);
+
+        Call<List<getMatching>> call = LoginService.getMatching();
+
+        call.enqueue(new Callback<List<getMatching>>() {
+            @Override
+            public void onResponse(Call<List<getMatching>> call, Response<List<getMatching>> response) {
+                if(response.isSuccessful()){
+                    Log.d("데이터 접근 시작!","");
+                    List<getMatching> matchings = response.body();
+                    cnt = 0;
+                    for( getMatching matching : matchings){
+                        Log.d("room_num : ", room_num);
+                        Log.d("matchingIDX : ", matching.getMatchIdx());
+                        if(matching.getMatchIdx().equals(room_num)){
+                            Log.d("if문 발동!","");
+                            userList[cnt] = Integer.parseInt(matching.getUserId());
+                            cnt++;
+                        }
+                    }
+                }
+                else{
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<getMatching>> call, Throwable t) {
+
+            }
+        });
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.d("userList[0] : ", Integer.toString(userList[0]));
+                Log.d("userList[1] : ", Integer.toString(userList[1]));
+                Log.d("userList[2] : ", Integer.toString(userList[2]));
+            }
+        }, 500);
+
+
+        if( die != null ){
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+
+                    Call<List<Target>> call2 = LoginService.getTarget();
+
+                    call2.enqueue(new Callback<List<Target>>() {
+                        @Override
+                        public void onResponse(Call<List<Target>> call, Response<List<Target>> response) {
+                            if(response.isSuccessful()){
+                                List<Target> Targets = response.body();
+                                for(Target target : Targets){
+                                    for(int i = 0 ; i < 3 ; i++){
+                                        if(target.getUid() == userList[i]){
+                                            targetList[i] = target.getTarget();
+                                        }
+                                    }
+                                }
+                            }
+                            else{
+
+                            }
+                        }
+
+                        @Override
+                        public void onFailure(Call<List<Target>> call, Throwable t) {
+
+                        }
+                    });
+
+                }
+            }, 500);
+
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Log.d("targetList[0] : ", Integer.toString(targetList[0]));
+                    Log.d("targetList[1] : ", Integer.toString(targetList[1]));
+                    Log.d("targetList[2] : ", Integer.toString(targetList[2]));
+
+                    for(int i = 0 ; i < 3 ; i ++){
+
+                    }
+                }
+            }, 1000);
+
+
+        }
 
 
 
@@ -226,6 +325,7 @@ public class InGame extends AppCompatActivity {
                 intent.putExtra("room_num", room_num);
                 intent.putExtra("id",id);
                 intent.putExtra("type", type);
+                intent.putExtra("userList",userList);
                 startActivity(intent);
 
 

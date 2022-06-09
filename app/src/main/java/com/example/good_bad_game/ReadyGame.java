@@ -154,7 +154,7 @@ public class ReadyGame extends AppCompatActivity {
                                                         }
                                                         List<getItem> Items = response.body();
                                                         int i = 0;
-                                                        Log.d("userList1 : ", userList.toString());
+/*                                                        Log.d("userList1 : ", userList.toString());*/
 
                                                         for ( getItem item : Items)
                                                         {

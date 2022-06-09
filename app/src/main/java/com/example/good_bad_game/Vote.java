@@ -37,6 +37,7 @@ public class Vote extends AppCompatActivity {
     private String id;
     private int choice = -1;
     private String vote_confirm = "false";
+    private int userList[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +54,8 @@ public class Vote extends AppCompatActivity {
 
         room_num = intent.getStringExtra("room_num");
         id = intent.getStringExtra("id");
+        userList = intent.getIntArrayExtra("userList");
+
         Toast.makeText(getApplicationContext(),room_num,Toast.LENGTH_SHORT).show();
 
 
@@ -290,7 +293,7 @@ public class Vote extends AppCompatActivity {
 
                         LoginService LoginService = retrofit.create(LoginService.class);
 
-                        Target target = new Target(Integer.parseInt(id), choice);
+                        Target target = new Target(Integer.parseInt(id), userList[choice]);
 
                         LoginService.putTarget(Integer.parseInt(id), target).enqueue(new Callback<Target>() {
                             @Override
