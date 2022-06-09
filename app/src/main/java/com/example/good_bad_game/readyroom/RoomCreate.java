@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +17,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.good_bad_game.R;
 import com.example.good_bad_game.ReadyGame;
+import com.example.good_bad_game.home.Home;
 import com.example.good_bad_game.loginout.LoginService;
+
+import java.util.Locale;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,6 +32,7 @@ public class RoomCreate extends AppCompatActivity {
     private String TAG = "RoomCreate";
     private EditText room_name;
     Button room_create;
+    private TextToSpeech tts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +40,22 @@ public class RoomCreate extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_room_create);
 
+        tts = new TextToSpeech(RoomCreate.this, new TextToSpeech.OnInitListener(){
+
+            @Override
+            public void onInit(int status) {
+                if (status == TextToSpeech.SUCCESS){
+                    int result = tts.setLanguage(Locale.KOREA);
+                    if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+
+                        Toast.makeText(RoomCreate.this, "지원하지 않는 언어입니다.",Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
         Intent receive_intent = getIntent();
         String id = receive_intent.getStringExtra("id");
-        Toast.makeText(getApplicationContext(),id,Toast.LENGTH_SHORT).show();
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
 
@@ -61,10 +79,12 @@ public class RoomCreate extends AppCompatActivity {
 
         if ( room_name.length() == 0 ) {//공백일 때 처리할 내용
             Log.d(TAG,"room_mane is null");
-            Toast.makeText(getApplicationContext(), "방이름을 정하시오.", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(), "방이름을 정하시오.", Toast.LENGTH_SHORT).show();
+            tts_speech("방이름을 정하시오.");
         } else {//공백이 아닐 때 처리할 내용
+            String tmp = "방 이름 " + room_title + "이 만들어 졌습니다.";
             Log.d(TAG,"room_name is not null");
-
+            tts_speech(tmp);
             Log.d(TAG,"POST ROOM INFOMATION START");
 
             Retrofit retrofit = new Retrofit.Builder()
@@ -122,4 +142,7 @@ public class RoomCreate extends AppCompatActivity {
 
         }
 
+    public void tts_speech(String text){
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    }
     }

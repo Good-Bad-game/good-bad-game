@@ -35,11 +35,11 @@
 
             <EditText
                 android:id="@+id/room_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="290dp"
+                android:layout_height="79dp"
                 android:hint="방이름 입력하세요."
-                android:textColorHint="#5ED5A8"
                 android:textColor="#5ED5A8"
+                android:textColorHint="#5ED5A8"
                 android:textSize="34sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -51,18 +51,17 @@
 
             <Button
                 android:id="@+id/btn_create"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="142dp"
+                android:layout_height="86dp"
+                android:onClick="create"
                 android:text="만들기"
                 android:textSize="34sp"
                 android:textStyle="bold"
-                android:onClick="create"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.786"
-                 />
+                app:layout_constraintVertical_bias="0.786" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

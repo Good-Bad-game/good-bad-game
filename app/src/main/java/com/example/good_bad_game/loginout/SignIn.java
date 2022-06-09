@@ -137,7 +137,6 @@ public class SignIn extends AppCompatActivity {
                                 @Override
                                 public void run() {
                                     AlertDialog.Builder ad = new AlertDialog.Builder(SignIn.this);
-                                    tts_speech("이메일 혹은 패스워드가 잘못 되었습니다.");
                                     ad.setTitle("로그인 실패!");
                                     ad.setMessage("이메일 혹은 패스워드가 잘못 되었습니다.");
                                     ad.show();

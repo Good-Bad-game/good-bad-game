@@ -62,7 +62,7 @@ public class ItemFragment extends Fragment {
         if(getArguments() != null){
             id = getArguments().getString("id");
             String nick = getArguments().getString("nick");
-            Toast.makeText(getActivity(),id,Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getActivity(),id,Toast.LENGTH_SHORT).show();
         }
 
 

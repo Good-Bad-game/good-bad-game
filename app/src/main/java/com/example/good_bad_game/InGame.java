@@ -135,7 +135,7 @@ public class InGame extends AppCompatActivity {
                             List<Ranking> rankings = response.body();
                             for( Ranking ranking : rankings){
                                if(ranking.getUid() == userList[0]){
-                                    team1.setImageResource(skinId[ranking.getSid()]);
+                                   team1.setImageResource(skinId[ranking.getSid()]);
                                 }
                                 else if(ranking.getUid() == userList[1]){
                                     team2.setImageResource(skinId[ranking.getSid()]);
@@ -268,22 +268,22 @@ public class InGame extends AppCompatActivity {
         String num_name = room_num + "Room";
         Log.d(TAG, room_num);
 
-        remonConference.create(num_name, config, participant -> {
-            // 자신의 View를 초기화
-//             얼굴을 보이게 한다
-            participant.setLocalView(null);
-            Log.d(TAG, num_name);
-
-            // View 설정
-            availableView[0] = true; // boolean : 할당된 미디어가 있는지 여부
-        }).close(() -> {
-            // 클라이언트의 사용자(참여자)가 연결된 채널이 종료되면 호출됨
-            // 송출이 중단되면 그룹 통화에서 연결이 끊어진 것이며, 다른 사용자와의 연결도 모두 끊어짐
-        }).error(e -> {
-            // 클라이언트의 사용자(참여자)가 연결된 채널에서 오류 발생 시 호출됨
-            // 오류로 연결이 종료되면 error -> close 순으로 호출됨
-            Log.d(TAG, "error!!!");
-        });
+//        remonConference.create(num_name, config, participant -> {
+//            // 자신의 View를 초기화
+////             얼굴을 보이게 한다
+//            participant.setLocalView(null);
+//            Log.d(TAG, num_name);
+//
+//            // View 설정
+//            availableView[0] = true; // boolean : 할당된 미디어가 있는지 여부
+//        }).close(() -> {
+//            // 클라이언트의 사용자(참여자)가 연결된 채널이 종료되면 호출됨
+//            // 송출이 중단되면 그룹 통화에서 연결이 끊어진 것이며, 다른 사용자와의 연결도 모두 끊어짐
+//        }).error(e -> {
+//            // 클라이언트의 사용자(참여자)가 연결된 채널에서 오류 발생 시 호출됨
+//            // 오류로 연결이 종료되면 error -> close 순으로 호출됨
+//            Log.d(TAG, "error!!!");
+//        });
 
 
         // 만들어진 방에 들어가는 건가?
